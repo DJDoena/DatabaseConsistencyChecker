@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
 
-namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
+namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 {
     internal static class FilterHelper
     {
         internal static IEnumerable<DVD> FilterNullProfiles(this IEnumerable<DVD> profiles)
         {
-            var result = (profiles ?? Enumerable.Empty<DVD>()).Where(p => p != null);
+            var result = profiles?.Where(p => p != null) ?? Enumerable.Empty<DVD>();
 
             return result;
         }

@@ -33,19 +33,112 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CheckConfiguration.cs">
+    <Compile Include="ConfigurationItemHelper.cs" />
+    <Compile Include="Configuration\CheckConfiguration.cs">
       <DependentUpon>CheckConfiguration.xsd</DependentUpon>
     </Compile>
-    <Compile Include="CheckConfiguration.NotGenerated.cs">
+    <Compile Include="Configuration\CheckConfiguration.NotGenerated.cs">
       <DependentUpon>CheckConfiguration.xsd</DependentUpon>
     </Compile>
     <Compile Include="CheckResult.cs" />
-    <Compile Include="FilterHelper.cs" />
+    <Compile Include="Configuration\FilterHelper.cs" />
+    <Compile Include="Forms\CheckForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CheckForm.Designer.cs">
+      <DependentUpon>CheckForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OrFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OrFilterForm.Designer.cs">
+      <DependentUpon>OrFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AndFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AndFilterForm.Designer.cs">
+      <DependentUpon>AndFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\ExceptFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ExceptFilterForm.Designer.cs">
+      <DependentUpon>ExceptFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EventFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EventFilterForm.Designer.cs">
+      <DependentUpon>EventFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\IntFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\IntFilterForm.Designer.cs">
+      <DependentUpon>IntFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MultiLogicFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StringFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StringFilterForm.Designer.cs">
+      <DependentUpon>StringFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BooleanFilterForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BooleanFilterForm.Designer.cs">
+      <DependentUpon>BooleanFilterForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FilterTypeComboBoxItem.cs" />
+    <Compile Include="Forms\RuleForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\RuleForm.Designer.cs">
+      <DependentUpon>RuleForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigurationItemResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConfigurationItemResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RuleChecker.cs" />
   </ItemGroup>
@@ -60,9 +153,47 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="CheckConfiguration.xsd">
+    <None Include="Configuration\CheckConfiguration.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="DJDSOFT.ICO" />
+    <EmbeddedResource Include="Forms\CheckForm.resx">
+      <DependentUpon>CheckForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OrFilterForm.resx">
+      <DependentUpon>OrFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BooleanFilterForm.resx">
+      <DependentUpon>BooleanFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EventFilterForm.resx">
+      <DependentUpon>EventFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AndFilterForm.resx">
+      <DependentUpon>AndFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ExceptFilterForm.resx">
+      <DependentUpon>ExceptFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\IntFilterForm.resx">
+      <DependentUpon>IntFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\RuleForm.resx">
+      <DependentUpon>RuleForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigurationItemResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ConfigurationItemResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StringFilterForm.resx">
+      <DependentUpon>StringFilterForm.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

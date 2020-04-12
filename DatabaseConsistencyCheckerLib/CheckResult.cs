@@ -18,6 +18,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
         public CheckResult(CheckItem check, IEnumerable<DVD> failedProfiles)
         {
             Check = check;
+
             FailedProfiles = failedProfiles.ToList();
         }
     }

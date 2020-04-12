@@ -48,10 +48,12 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasEventItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(LogicItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AndItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OrItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ExceptItem))]
-    [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasEventItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(NoParamItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(MustNotContainCountryOfOriginsItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(MustContainCountryOfOriginsItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(MustNotContainMediaCompaniesItem))]
@@ -115,41 +117,6 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class AndItem : Item {
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("And")]
-        public Item[] And;
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class OrItem : Item {
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Or")]
-        public Item[] Or;
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class ExceptItem : Item {
-        
-        /// <remarks/>
-        public Item Except;
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class HasEventItem : Item {
         
         /// <remarks/>
@@ -186,11 +153,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(AndItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(OrItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(ExceptItem))]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class MustNotContainCountryOfOriginsItem : Item {
+    public abstract partial class LogicItem : Item {
     }
     
     /// <remarks/>
@@ -198,7 +168,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class MustContainCountryOfOriginsItem : Item {
+    public partial class AndItem : LogicItem {
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("And")]
+        public Item[] And;
     }
     
     /// <remarks/>
@@ -206,7 +180,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class MustNotContainMediaCompaniesItem : Item {
+    public partial class OrItem : LogicItem {
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Or")]
+        public Item[] Or;
     }
     
     /// <remarks/>
@@ -214,7 +192,26 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class MustContainMediaCompaniesItem : Item {
+    public partial class ExceptItem : LogicItem {
+        
+        /// <remarks/>
+        public Item Except;
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(MustNotContainCountryOfOriginsItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(MustContainCountryOfOriginsItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(MustNotContainMediaCompaniesItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(MustContainMediaCompaniesItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(MustNotContainStudiosItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(MustContainStudiosItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(MustNotContainGenresItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(MustContainGenresItem))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public abstract partial class NoParamItem : Item {
     }
     
     /// <remarks/>
@@ -222,7 +219,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class MustNotContainStudiosItem : Item {
+    public partial class MustNotContainCountryOfOriginsItem : NoParamItem {
     }
     
     /// <remarks/>
@@ -230,7 +227,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class MustContainStudiosItem : Item {
+    public partial class MustContainCountryOfOriginsItem : NoParamItem {
     }
     
     /// <remarks/>
@@ -238,7 +235,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class MustNotContainGenresItem : Item {
+    public partial class MustNotContainMediaCompaniesItem : NoParamItem {
     }
     
     /// <remarks/>
@@ -246,7 +243,39 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    public partial class MustContainGenresItem : Item {
+    public partial class MustContainMediaCompaniesItem : NoParamItem {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MustNotContainStudiosItem : NoParamItem {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MustContainStudiosItem : NoParamItem {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MustNotContainGenresItem : NoParamItem {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class MustContainGenresItem : NoParamItem {
     }
     
     /// <remarks/>

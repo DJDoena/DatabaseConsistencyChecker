@@ -49,6 +49,18 @@
     </xs:complexContent>
   </xs:complexType>
 
+  <xs:complexType name="NoParamItem" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="Item" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="LogicItem" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="Item" />
+    </xs:complexContent>
+  </xs:complexType>
+
   <xs:complexType name="MustContainGenreItem">
     <xs:complexContent>
       <xs:extension base="StringItem" />
@@ -159,49 +171,49 @@
 
   <xs:complexType name="MustContainGenresItem">
     <xs:complexContent>
-      <xs:extension base="Item" />
+      <xs:extension base="NoParamItem" />
     </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="MustNotContainGenresItem">
     <xs:complexContent>
-      <xs:extension base="Item" />
+      <xs:extension base="NoParamItem" />
     </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="MustContainStudiosItem">
     <xs:complexContent>
-      <xs:extension base="Item" />
+      <xs:extension base="NoParamItem" />
     </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="MustNotContainStudiosItem">
     <xs:complexContent>
-      <xs:extension base="Item" />
+      <xs:extension base="NoParamItem" />
     </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="MustContainMediaCompaniesItem">
     <xs:complexContent>
-      <xs:extension base="Item" />
+      <xs:extension base="NoParamItem" />
     </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="MustNotContainMediaCompaniesItem">
     <xs:complexContent>
-      <xs:extension base="Item" />
+      <xs:extension base="NoParamItem" />
     </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="MustContainCountryOfOriginsItem">
     <xs:complexContent>
-      <xs:extension base="Item" />
+      <xs:extension base="NoParamItem" />
     </xs:complexContent>
   </xs:complexType>
 
   <xs:complexType name="MustNotContainCountryOfOriginsItem">
     <xs:complexContent>
-      <xs:extension base="Item" />
+      <xs:extension base="NoParamItem" />
     </xs:complexContent>
   </xs:complexType>
 
@@ -268,7 +280,7 @@
 
   <xs:complexType name="ExceptItem">
     <xs:complexContent>
-      <xs:extension base="Item">
+      <xs:extension base="LogicItem">
         <xs:sequence>
           <xs:element name="Except" type="Item" minOccurs="1" maxOccurs="1" />
         </xs:sequence>
@@ -278,7 +290,7 @@
 
   <xs:complexType name="OrItem">
     <xs:complexContent>
-      <xs:extension base="Item">
+      <xs:extension base="LogicItem">
         <xs:sequence>
           <xs:element name="Or" type="Item" minOccurs="1" maxOccurs="unbounded" />
         </xs:sequence>
@@ -288,7 +300,7 @@
 
   <xs:complexType name="AndItem">
     <xs:complexContent>
-      <xs:extension base="Item">
+      <xs:extension base="LogicItem">
         <xs:sequence>
           <xs:element name="And" type="Item" minOccurs="1" maxOccurs="unbounded" />
         </xs:sequence>

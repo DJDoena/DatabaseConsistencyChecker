@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
@@ -6,6 +7,19 @@ using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 {
     //xsd.exe xsd CheckConfiguration.xsd /c /l:cs /f /n:DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
+
+    partial class RuleItem
+    {
+        public RuleItem Clone()
+        {
+            return new RuleItem()
+            {
+                Name = Name,
+                Filter = Filter?.Clone(),
+                Check = Check?.Select(c => c?.Clone()).ToArray(),
+            };
+        }
+    }
 
     partial class Item
     {
@@ -19,11 +33,38 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
             return incorrect;
         }
+
+        public abstract Item Clone();
+
+        public override string ToString() => string.Empty;
+    }
+
+    partial class BooleanItem
+    {
+        public override string ToString() => Value.ToString();
+    }
+
+    partial class IntItem
+    {
+        public override string ToString() => Value.ToString();
+    }
+
+    partial class StringItem
+    {
+        public override string ToString() => Value;
     }
 
     [DebuggerDisplay("{Name}")]
     partial class CheckItem
     {
+        public CheckItem Clone()
+        {
+            return new CheckItem()
+            {
+                Name = Name,
+                Item = Item?.Clone(),
+            };
+        }
     }
 
     partial class CountAsEqualToItem
@@ -34,6 +75,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
             return result;
         }
+
+        public override Item Clone()
+        {
+            return new CountAsEqualToItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class CountAsNotEqualToItem
@@ -43,6 +92,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
             var result = profiles.Where(p => p.CountAs != Value);
 
             return result;
+        }
+
+        public override Item Clone()
+        {
+            return new CountAsNotEqualToItem()
+            {
+                Value = Value,
+            };
         }
     }
 
@@ -63,6 +120,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return result;
             }
         }
+
+        public override Item Clone()
+        {
+            return new IsPartOfOwnedCollectionItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class MustContainGenreItem
@@ -72,6 +137,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
             var result = profiles.Where(p => p.GenreList != null && p.GenreList.Any(g => g.CheckString(Value)));
 
             return result;
+        }
+
+        public override Item Clone()
+        {
+            return new MustContainGenreItem()
+            {
+                Value = Value,
+            };
         }
     }
 
@@ -83,6 +156,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
             return result;
         }
+
+        public override Item Clone()
+        {
+            return new MustContainTagItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class MustNotContainGenreItem
@@ -93,6 +174,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
             return result;
         }
+
+        public override Item Clone()
+        {
+            return new MustNotContainGenreItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class MustNotContainTagItem
@@ -102,6 +191,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
             var result = profiles.Where(p => !p.TagList.CheckTagName(Value));
 
             return result;
+        }
+
+        public override Item Clone()
+        {
+            return new MustNotContainTagItem()
+            {
+                Value = Value,
+            };
         }
     }
 
@@ -123,6 +220,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return result;
             }
         }
+
+        public override Item Clone()
+        {
+            return new IsMediaTypeDVDItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class IsMediaTypeBluRayItem
@@ -141,6 +246,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
                 return result;
             }
+        }
+
+        public override Item Clone()
+        {
+            return new IsMediaTypeBluRayItem()
+            {
+                Value = Value,
+            };
         }
     }
 
@@ -161,6 +274,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return result;
             }
         }
+
+        public override Item Clone()
+        {
+            return new IsMediaTypeUltraHDItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class IsMediaTypeHDDVDItem
@@ -180,6 +301,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return result;
             }
         }
+
+        public override Item Clone()
+        {
+            return new IsMediaTypeHDDVDItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class IsCustomMediaTypeItem
@@ -190,6 +319,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
             return result;
         }
+
+        public override Item Clone()
+        {
+            return new IsCustomMediaTypeItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class IsNotCustomMediaTypeItem
@@ -199,6 +336,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
             var result = profiles.Where(p => p.MediaTypes == null || !p.MediaTypes.CustomMediaType.CheckString(Value));
 
             return result;
+        }
+
+        public override Item Clone()
+        {
+            return new IsNotCustomMediaTypeItem()
+            {
+                Value = Value,
+            };
         }
     }
 
@@ -219,6 +364,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return result;
             }
         }
+
+        public override Item Clone()
+        {
+            return new HasCustomMediaTypeItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class IsCollectionTypeItem
@@ -229,6 +382,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
             return result;
         }
+
+        public override Item Clone()
+        {
+            return new IsCollectionTypeItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class IsNotCollectionTypeItem
@@ -238,6 +399,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
             var result = profiles.Where(p => p.CollectionType == null || !p.CollectionType.Value.CheckString(Value));
 
             return result;
+        }
+
+        public override Item Clone()
+        {
+            return new IsNotCollectionTypeItem()
+            {
+                Value = Value,
+            };
         }
     }
 
@@ -258,6 +427,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return result;
             }
         }
+
+        public override Item Clone()
+        {
+            return new IsCollectionNumberSetItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class IsRunningTimeSetItem
@@ -277,6 +454,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return result;
             }
         }
+
+        public override Item Clone()
+        {
+            return new IsRunningTimeSetItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class MustContainGenresItem
@@ -286,6 +471,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
             var result = profiles.Where(p => p.GenreList != null && p.GenreList.Any());
 
             return result;
+        }
+
+        public override Item Clone()
+        {
+            return new MustContainGenresItem();
         }
     }
 
@@ -297,6 +487,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
             return result;
         }
+
+        public override Item Clone()
+        {
+            return new MustNotContainGenresItem();
+        }
     }
 
     partial class MustContainStudiosItem
@@ -306,6 +501,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
             var result = profiles.Where(p => p.StudioList != null && p.StudioList.Any());
 
             return result;
+        }
+
+        public override Item Clone()
+        {
+            return new MustContainStudiosItem();
         }
     }
 
@@ -317,6 +517,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
             return result;
         }
+
+        public override Item Clone()
+        {
+            return new MustNotContainStudiosItem();
+        }
     }
 
     partial class MustContainMediaCompaniesItem
@@ -326,6 +531,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
             var result = profiles.Where(p => p.MediaCompanyList != null && p.MediaCompanyList.Any());
 
             return result;
+        }
+
+        public override Item Clone()
+        {
+            return new MustContainMediaCompaniesItem();
         }
     }
 
@@ -337,6 +547,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
             return result;
         }
+
+        public override Item Clone()
+        {
+            return new MustNotContainMediaCompaniesItem();
+        }
     }
 
     partial class MustContainCountryOfOriginsItem
@@ -347,6 +562,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
             return result;
         }
+
+        public override Item Clone()
+        {
+            return new MustContainCountryOfOriginsItem();
+        }
     }
 
     partial class MustNotContainCountryOfOriginsItem
@@ -356,6 +576,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
             var result = profiles.Where(p => p.CountryOfOriginList == null || !p.CountryOfOriginList.Any(coo => !string.IsNullOrWhiteSpace(coo)));
 
             return result;
+        }
+
+        public override Item Clone()
+        {
+            return new MustNotContainCountryOfOriginsItem();
         }
     }
 
@@ -376,6 +601,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return result;
             }
         }
+
+        public override Item Clone()
+        {
+            return new IsProductionYearSet()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class HasCastItem
@@ -394,6 +627,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
                 return result;
             }
+        }
+
+        public override Item Clone()
+        {
+            return new HasCastItem()
+            {
+                Value = Value,
+            };
         }
     }
 
@@ -414,6 +655,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return result;
             }
         }
+
+        public override Item Clone()
+        {
+            return new HasCrewItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class HasEventItem
@@ -433,6 +682,19 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return result;
             }
         }
+
+        public override Item Clone()
+        {
+            return new HasEventItem()
+            {
+                Value = Value,
+                EventType = EventType,
+                UserFirstName = UserFirstName,
+                UserLastName = UserLastName,
+            };
+        }
+
+        public override string ToString() => $"Type: {EventType}, User: {(UserFirstName + " " + UserLastName).Trim()}";
     }
 
     partial class HasOnlinePublicExclusionItem
@@ -451,6 +713,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
                 return result;
             }
+        }
+
+        public override Item Clone()
+        {
+            return new HasOnlinePublicExclusionItem()
+            {
+                Value = Value,
+            };
         }
     }
 
@@ -471,6 +741,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return result;
             }
         }
+
+        public override Item Clone()
+        {
+            return new HasOnlinePrivateExclusionItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class HasPDAExclusionItem
@@ -489,6 +767,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 
                 return result;
             }
+        }
+
+        public override Item Clone()
+        {
+            return new HasPDAExclusionItem()
+            {
+                Value = Value,
+            };
         }
     }
 
@@ -509,6 +795,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return result;
             }
         }
+
+        public override Item Clone()
+        {
+            return new HasSmartPhoneExclusionItem()
+            {
+                Value = Value,
+            };
+        }
     }
 
     partial class ExceptItem
@@ -527,6 +821,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
             {
                 return profiles;
             }
+        }
+
+        public override Item Clone()
+        {
+            return new ExceptItem()
+            {
+                Except = Except?.Clone(),
+            };
         }
     }
 
@@ -554,6 +856,16 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return profiles;
             }
         }
+
+        public override Item Clone()
+        {
+            return new OrItem()
+            {
+                Or = Or?.Select(o => o?.Clone()).ToArray(),
+            };
+        }
+
+        public override string ToString() => $"Count: {Or?.Length ?? 0}";
     }
 
     partial class AndItem
@@ -580,5 +892,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
                 return profiles;
             }
         }
+
+        public override Item Clone()
+        {
+            return new AndItem()
+            {
+                And = And?.Select(a => a?.Clone()).ToArray(),
+            };
+        }
+
+        public override string ToString() => $"Count: {And?.Length ?? 0}";
     }
 }

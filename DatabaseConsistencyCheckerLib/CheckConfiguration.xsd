@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" >
+  <xs:element name="CheckConfiguration" type="CheckConfiguration" />
+
+  <xs:complexType name="CheckConfiguration">
+    <xs:sequence>
+      <xs:element name="Rule" type="RuleItem" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="RuleItem">
+    <xs:sequence>
+      <xs:element name="Filter" type="Item" minOccurs="1" maxOccurs="1" />
+      <xs:element name="Check" type="CheckItem" minOccurs="1" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="CheckItem">
+    <xs:sequence>
+      <xs:element name="Item" type="Item" minOccurs="1" maxOccurs="1" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="Item" abstract="true" />
+
+  <xs:complexType name="StringItem" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="Item">
+        <xs:attribute name="Value" type="xs:string" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IntItem" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="Item">
+        <xs:attribute name="Value" type="xs:int" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="BooleanItem" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="Item">
+        <xs:attribute name="Value" type="xs:boolean" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MustContainGenreItem">
+    <xs:complexContent>
+      <xs:extension base="StringItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MustNotContainGenreItem">
+    <xs:complexContent>
+      <xs:extension base="StringItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MustContainTagItem">
+    <xs:complexContent>
+      <xs:extension base="StringItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MustNotContainTagItem">
+    <xs:complexContent>
+      <xs:extension base="StringItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CountAsEqualToItem">
+    <xs:complexContent>
+      <xs:extension base="IntItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CountAsNotEqualToItem">
+    <xs:complexContent>
+      <xs:extension base="IntItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsPartOfOwnedCollectionItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsCollectionTypeItem">
+    <xs:complexContent>
+      <xs:extension base="StringItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsNotCollectionTypeItem">
+    <xs:complexContent>
+      <xs:extension base="StringItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsMediaTypeDVDItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsMediaTypeBluRayItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsMediaTypeUltraHDItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsMediaTypeHDDVDItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasCustomMediaTypeItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsCustomMediaTypeItem">
+    <xs:complexContent>
+      <xs:extension base="StringItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsNotCustomMediaTypeItem">
+    <xs:complexContent>
+      <xs:extension base="StringItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsCollectionNumberSetItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsRunningTimeSetItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MustContainGenresItem">
+    <xs:complexContent>
+      <xs:extension base="Item" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MustNotContainGenresItem">
+    <xs:complexContent>
+      <xs:extension base="Item" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MustContainStudiosItem">
+    <xs:complexContent>
+      <xs:extension base="Item" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MustNotContainStudiosItem">
+    <xs:complexContent>
+      <xs:extension base="Item" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MustContainMediaCompaniesItem">
+    <xs:complexContent>
+      <xs:extension base="Item" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MustNotContainMediaCompaniesItem">
+    <xs:complexContent>
+      <xs:extension base="Item" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MustContainCountryOfOriginsItem">
+    <xs:complexContent>
+      <xs:extension base="Item" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="MustNotContainCountryOfOriginsItem">
+    <xs:complexContent>
+      <xs:extension base="Item" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsProductionYearSet">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasCastItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasCrewItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasEventItem">
+    <xs:complexContent>
+      <xs:extension base="Item">
+        <xs:attribute name="Value" type="xs:boolean" use="required" />
+        <xs:attribute name="UserFirstName" type="xs:string" use="required" />
+        <xs:attribute name="UserLastName" type="xs:string" use="required" />
+        <xs:attribute name="EventType" use="required">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:enumeration value="Watched"/>
+              <xs:enumeration value="Returned"/>
+              <xs:enumeration value="Borrowed"/>
+            </xs:restriction>
+          </xs:simpleType>
+        </xs:attribute>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasOnlinePublicExclusionItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasOnlinePrivateExclusionItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasPDAExclusionItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasSmartPhoneExclusionItem">
+    <xs:complexContent>
+      <xs:extension base="BooleanItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="ExceptItem">
+    <xs:complexContent>
+      <xs:extension base="Item">
+        <xs:sequence>
+          <xs:element name="Except" type="Item" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="OrItem">
+    <xs:complexContent>
+      <xs:extension base="Item">
+        <xs:sequence>
+          <xs:element name="Or" type="Item" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="AndItem">
+    <xs:complexContent>
+      <xs:extension base="Item">
+        <xs:sequence>
+          <xs:element name="And" type="Item" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>

@@ -130,31 +130,31 @@
     <value>Logic: Exclude profiles</value>
   </data>
   <data name="HasCastItem" xml:space="preserve">
-    <value>Cast: Must (not) contain cast members</value>
+    <value>Cast: Must contain cast members (true = must, false = must not)</value>
   </data>
   <data name="HasCrewItem" xml:space="preserve">
-    <value>Crew: Must (not) contain crew members</value>
+    <value>Crew: Must contain crew members (true = must, false = must not)</value>
   </data>
   <data name="HasCustomMediaTypeItem" xml:space="preserve">
-    <value>Media Type: Custom Type must (not) be set</value>
+    <value>Media Type: Custom Type must be set (true = must, false = must not)</value>
   </data>
   <data name="HasEventItem" xml:space="preserve">
-    <value>Event: Must (not) contain event of the given type and user</value>
+    <value>Event: Must contain event of the given type and user (true = must, false = must not)</value>
   </data>
   <data name="HasOnlinePrivateExclusionItem" xml:space="preserve">
-    <value>Exclusion: Must (not) be excluded from online private listing</value>
+    <value>Exclusion: Must be excluded from online private listing (true = must, false = must not)</value>
   </data>
   <data name="HasOnlinePublicExclusionItem" xml:space="preserve">
-    <value>Exclusion: Must (not) be excluded from online public listing</value>
+    <value>Exclusion: Must be excluded from online public listing (true = must, false = must not)</value>
   </data>
   <data name="HasPDAExclusionItem" xml:space="preserve">
-    <value>Exclusion: Must (not) be excluded from DVD Profiler Mobile (PDA)</value>
+    <value>Exclusion: Must be excluded from DVD Profiler Mobile (PDA) (true = must, false = must not)</value>
   </data>
   <data name="HasSmartPhoneExclusionItem" xml:space="preserve">
-    <value>Exclusion: Must (not) be excluded from DVD Profiler for iPhone / Android</value>
+    <value>Exclusion: Must be excluded from DVD Profiler for iPhone / Android (true = must, false = must not)</value>
   </data>
   <data name="IsCollectionNumberSetItem" xml:space="preserve">
-    <value>Collection Number: Must (not) be set</value>
+    <value>Collection Number: Must be set (true = must, false = must not)</value>
   </data>
   <data name="IsCollectionTypeItem" xml:space="preserve">
     <value>Collection Type: Must be part of given collection type</value>
@@ -163,16 +163,16 @@
     <value>Media Type: Custom Type must be equal to given custom media type</value>
   </data>
   <data name="IsMediaTypeBluRayItem" xml:space="preserve">
-    <value>Media Type: Must (not) be Blu-ray</value>
+    <value>Media Type: Must be Blu-ray (true = must, false = must not)</value>
   </data>
   <data name="IsMediaTypeDVDItem" xml:space="preserve">
-    <value>Media Type: Must (not) be DVD</value>
+    <value>Media Type: Must be DVD (true = must, false = must not)</value>
   </data>
   <data name="IsMediaTypeHDDVDItem" xml:space="preserve">
-    <value>Media Type: Must (not) be HD-DVD</value>
+    <value>Media Type: Must be HD-DVD (true = must, false = must not)</value>
   </data>
   <data name="IsMediaTypeUltraHDItem" xml:space="preserve">
-    <value>Media Type: Must (not) be Ultra-HD</value>
+    <value>Media Type: Must be Ultra-HD (true = must, false = must not)</value>
   </data>
   <data name="IsNotCollectionTypeItem" xml:space="preserve">
     <value>Collection Type: Must not be part of given collection type</value>
@@ -181,13 +181,13 @@
     <value>Media Type: Custom Type must not be equal to given custom media type</value>
   </data>
   <data name="IsPartOfOwnedCollectionItem" xml:space="preserve">
-    <value>Collection Type: Must (not) be part of Owned collection</value>
+    <value>Collection Type: Must be part of Owned collection (true = must, false = must not)</value>
   </data>
   <data name="IsProductionYearSet" xml:space="preserve">
-    <value>Production Year: must (not) be set</value>
+    <value>Production Year: must be set (true = must, false = must not)</value>
   </data>
   <data name="IsRunningTimeSetItem" xml:space="preserve">
-    <value>Running Time: must (not) be set</value>
+    <value>Running Time: must be set (true = must, false = must not)</value>
   </data>
   <data name="MustContainCountryOfOriginsItem" xml:space="preserve">
     <value>Country of Origin: Must contain countries of origin</value>

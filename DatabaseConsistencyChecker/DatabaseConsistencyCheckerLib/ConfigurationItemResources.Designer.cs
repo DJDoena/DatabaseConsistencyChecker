@@ -97,7 +97,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Cast: Must (not) contain cast members.
+        ///   Looks up a localized string similar to Cast: Must contain cast members (true = must, false = must not).
         /// </summary>
         internal static string HasCastItem {
             get {
@@ -106,7 +106,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Crew: Must (not) contain crew members.
+        ///   Looks up a localized string similar to Crew: Must contain crew members (true = must, false = must not).
         /// </summary>
         internal static string HasCrewItem {
             get {
@@ -115,7 +115,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Media Type: Custom Type must (not) be set.
+        ///   Looks up a localized string similar to Media Type: Custom Type must be set (true = must, false = must not).
         /// </summary>
         internal static string HasCustomMediaTypeItem {
             get {
@@ -124,7 +124,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Event: Must (not) contain event of the given type and user.
+        ///   Looks up a localized string similar to Event: Must contain event of the given type and user (true = must, false = must not).
         /// </summary>
         internal static string HasEventItem {
             get {
@@ -133,7 +133,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exclusion: Must (not) be excluded from online private listing.
+        ///   Looks up a localized string similar to Exclusion: Must be excluded from online private listing (true = must, false = must not).
         /// </summary>
         internal static string HasOnlinePrivateExclusionItem {
             get {
@@ -142,7 +142,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exclusion: Must (not) be excluded from online public listing.
+        ///   Looks up a localized string similar to Exclusion: Must be excluded from online public listing (true = must, false = must not).
         /// </summary>
         internal static string HasOnlinePublicExclusionItem {
             get {
@@ -151,7 +151,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exclusion: Must (not) be excluded from DVD Profiler Mobile (PDA).
+        ///   Looks up a localized string similar to Exclusion: Must be excluded from DVD Profiler Mobile (PDA) (true = must, false = must not).
         /// </summary>
         internal static string HasPDAExclusionItem {
             get {
@@ -160,7 +160,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Exclusion: Must (not) be excluded from DVD Profiler for iPhone / Android.
+        ///   Looks up a localized string similar to Exclusion: Must be excluded from DVD Profiler for iPhone / Android (true = must, false = must not).
         /// </summary>
         internal static string HasSmartPhoneExclusionItem {
             get {
@@ -169,7 +169,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Collection Number: Must (not) be set.
+        ///   Looks up a localized string similar to Collection Number: Must be set (true = must, false = must not).
         /// </summary>
         internal static string IsCollectionNumberSetItem {
             get {
@@ -196,7 +196,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Media Type: Must (not) be Blu-ray.
+        ///   Looks up a localized string similar to Media Type: Must be Blu-ray (true = must, false = must not).
         /// </summary>
         internal static string IsMediaTypeBluRayItem {
             get {
@@ -205,7 +205,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Media Type: Must (not) be DVD.
+        ///   Looks up a localized string similar to Media Type: Must be DVD (true = must, false = must not).
         /// </summary>
         internal static string IsMediaTypeDVDItem {
             get {
@@ -214,7 +214,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Media Type: Must (not) be HD-DVD.
+        ///   Looks up a localized string similar to Media Type: Must be HD-DVD (true = must, false = must not).
         /// </summary>
         internal static string IsMediaTypeHDDVDItem {
             get {
@@ -223,7 +223,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Media Type: Must (not) be Ultra-HD.
+        ///   Looks up a localized string similar to Media Type: Must be Ultra-HD (true = must, false = must not).
         /// </summary>
         internal static string IsMediaTypeUltraHDItem {
             get {
@@ -250,7 +250,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Collection Type: Must (not) be part of Owned collection.
+        ///   Looks up a localized string similar to Collection Type: Must be part of Owned collection (true = must, false = must not).
         /// </summary>
         internal static string IsPartOfOwnedCollectionItem {
             get {
@@ -259,7 +259,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Production Year: must (not) be set.
+        ///   Looks up a localized string similar to Production Year: must be set (true = must, false = must not).
         /// </summary>
         internal static string IsProductionYearSet {
             get {
@@ -268,7 +268,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Running Time: must (not) be set.
+        ///   Looks up a localized string similar to Running Time: must be set (true = must, false = must not).
         /// </summary>
         internal static string IsRunningTimeSetItem {
             get {

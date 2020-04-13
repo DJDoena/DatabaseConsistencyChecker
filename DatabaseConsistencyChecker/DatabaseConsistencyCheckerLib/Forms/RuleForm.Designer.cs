@@ -76,28 +76,28 @@
             this.InfoLabel3.AutoSize = true;
             this.InfoLabel3.Location = new System.Drawing.Point(12, 49);
             this.InfoLabel3.Name = "InfoLabel3";
-            this.InfoLabel3.Size = new System.Drawing.Size(107, 13);
+            this.InfoLabel3.Size = new System.Drawing.Size(130, 13);
             this.InfoLabel3.TabIndex = 2;
-            this.InfoLabel3.Text = "- A name (mandatory)";
+            this.InfoLabel3.Text = "- A rule name. (mandatory)";
             // 
             // InfoLabel4
             // 
             this.InfoLabel4.AutoSize = true;
             this.InfoLabel4.Location = new System.Drawing.Point(12, 69);
             this.InfoLabel4.Name = "InfoLabel4";
-            this.InfoLabel4.Size = new System.Drawing.Size(430, 13);
+            this.InfoLabel4.Size = new System.Drawing.Size(476, 13);
             this.InfoLabel4.TabIndex = 3;
-            this.InfoLabel4.Text = "- A filter to be applied on the collection so that only relevant profiles are che" +
-    "cked (optional)";
+            this.InfoLabel4.Text = "- A filter to be applied on the collection. Profiles that don\'t match the filter " +
+    "are not checked. (optional)";
             // 
             // InfoLabel5
             // 
             this.InfoLabel5.AutoSize = true;
             this.InfoLabel5.Location = new System.Drawing.Point(12, 89);
             this.InfoLabel5.Name = "InfoLabel5";
-            this.InfoLabel5.Size = new System.Drawing.Size(246, 13);
+            this.InfoLabel5.Size = new System.Drawing.Size(352, 13);
             this.InfoLabel5.TabIndex = 4;
-            this.InfoLabel5.Text = "- A list of checks to be run (at least one mandatory)";
+            this.InfoLabel5.Text = "- A list of checks to be run against the collection. (at least one mandatory)";
             // 
             // RuleNameTextBox
             // 
@@ -107,6 +107,7 @@
             this.RuleNameTextBox.Name = "RuleNameTextBox";
             this.RuleNameTextBox.Size = new System.Drawing.Size(499, 20);
             this.RuleNameTextBox.TabIndex = 6;
+            this.RuleNameTextBox.TextChanged += new System.EventHandler(this.OnRuleNameTextBoxTextChanged);
             // 
             // RuleNameLabel
             // 

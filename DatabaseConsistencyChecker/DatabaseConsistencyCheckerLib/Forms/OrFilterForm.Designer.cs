@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AndFilterForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrFilterForm));
             this.FilterDescriptionLabel = new System.Windows.Forms.Label();
             this.FilterTypeLabel = new System.Windows.Forms.Label();
             this.FilterTypeComboBox = new System.Windows.Forms.ComboBox();
@@ -141,7 +141,7 @@
             this.FilterValueColumn.Text = "Value";
             this.FilterValueColumn.Width = 150;
             // 
-            // AndFilterForm
+            // OrFilterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -156,8 +156,8 @@
             this.Controls.Add(this.FilterDescriptionLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(600, 250);
-            this.Name = "AndFilterForm";
-            this.Text = "AND Filter";
+            this.Name = "OrFilterForm";
+            this.Text = "OR Filter";
             this.Controls.SetChildIndex(this.FilterDescriptionLabel, 0);
             this.Controls.SetChildIndex(this.FilterListView, 0);
             this.Controls.SetChildIndex(this.FilterLabel, 0);

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CheckConfiguration>
-  <Rule Name="Box-Set">
-    <Filter d3p1:type="MustContainTagItem" Value="Box-Set" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Rule Name="Box set">
+    <Filter d3p1:type="MustContainTagItem" Value="Box set" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
     <Check Name="Watchable Profile">
       <Item d4p1:type="MustNotContainTagItem" Value="Watchable Profile" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
     </Check>
@@ -15,8 +15,8 @@
       <Item d4p1:type="IsRunningTimeSetItem" Value="false" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
     </Check>
   </Rule>
-  <Rule Name="Box-Set-Inhalt">
-    <Filter d3p1:type="MustContainTagItem" Value="Box-Set-Inhalt" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Rule Name="Box set content">
+    <Filter d3p1:type="MustContainTagItem" Value="Box set content" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
     <Check Name="Watchable Profile">
       <Item d4p1:type="MustContainTagItem" Value="Watchable Profile" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
     </Check>
@@ -30,19 +30,19 @@
       <Item d4p1:type="IsRunningTimeSetItem" Value="true" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
     </Check>
   </Rule>
-  <Rule Name="Film">
-    <Filter d3p1:type="MustContainTagItem" Value="Film" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
-    <Check Name="Serie">
-      <Item d4p1:type="MustNotContainTagItem" Value="Serie" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Rule Name="Movie">
+    <Filter d3p1:type="MustContainTagItem" Value="Movie" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <Check Name="TV Show">
+      <Item d4p1:type="MustNotContainTagItem" Value="TV Show" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
     </Check>
     <Check Name="Special Interest">
       <Item d4p1:type="MustNotContainTagItem" Value="Special Interest" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
     </Check>
   </Rule>
-  <Rule Name="Serie">
-    <Filter d3p1:type="MustContainTagItem" Value="Serie" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
-    <Check Name="Film">
-      <Item d4p1:type="MustNotContainTagItem" Value="Film" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Rule Name="TV Show">
+    <Filter d3p1:type="MustContainTagItem" Value="TV Show" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <Check Name="Movie">
+      <Item d4p1:type="MustNotContainTagItem" Value="Movie" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
     </Check>
     <Check Name="Special Interest">
       <Item d4p1:type="MustNotContainTagItem" Value="Special Interest" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
@@ -50,15 +50,15 @@
   </Rule>
   <Rule Name="Special Interest">
     <Filter d3p1:type="MustContainTagItem" Value="Special Interest" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
-    <Check Name="Film">
-      <Item d4p1:type="MustNotContainTagItem" Value="Film" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <Check Name="Movie">
+      <Item d4p1:type="MustNotContainTagItem" Value="Movie" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
     </Check>
-    <Check Name="Serie">
-      <Item d4p1:type="MustNotContainTagItem" Value="Serie" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <Check Name="TV Show">
+      <Item d4p1:type="MustNotContainTagItem" Value="TV Show" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
     </Check>
   </Rule>
-  <Rule Name="Keine Nummer">
-    <Filter d3p1:type="MustContainTagItem" Value="Keine Nummer" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Rule Name="No number">
+    <Filter d3p1:type="MustContainTagItem" Value="No number" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
     <Check Name="Watchable Profile">
       <Item d4p1:type="MustNotContainTagItem" Value="Watchable Profile" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
     </Check>
@@ -90,8 +90,8 @@
       <Item d4p1:type="HasEventItem" Value="true" UserFirstName="DJ Doena" UserLastName="" EventType="Watched" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
     </Check>
   </Rule>
-  <Rule Name="Nie gesehen">
-    <Filter d3p1:type="MustContainTagItem" Value="nie gesehen" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+  <Rule Name="Never seen">
+    <Filter d3p1:type="MustContainTagItem" Value="Never seen" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
     <Check Name="Watchable Profile">
       <Item d4p1:type="MustContainTagItem" Value="Watchable Profile" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance" />
     </Check>
@@ -136,6 +136,7 @@
     </Check>
   </Rule>
   <Rule Name="Multiple Media Types">
+    <Filter d3p1:type="IsPartOfOwnedCollectionItem" Value="true" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
     <Check Name="Multiple Media Types">
       <Item d4p1:type="OrItem" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance">
         <Or d4p1:type="AndItem">
@@ -188,20 +189,24 @@
     </Check>
   </Rule>
   <Rule Name="No Category">
+    <Filter d3p1:type="IsPartOfOwnedCollectionItem" Value="true" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
     <Check Name="No Category">
       <Item d4p1:type="OrItem" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance">
-        <Or d4p1:type="MustContainTagItem" Value="Film" />
-        <Or d4p1:type="MustContainTagItem" Value="Serie" />
+        <Or d4p1:type="MustContainTagItem" Value="Movie" />
+        <Or d4p1:type="MustContainTagItem" Value="TV Show" />
         <Or d4p1:type="MustContainTagItem" Value="Special Interest" />
       </Item>
     </Check>
   </Rule>
   <Rule Name="Not Excluded">
-    <Filter d3p1:type="ExceptItem" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
-      <Except d3p1:type="OrItem">
-        <Or d3p1:type="MustContainTagItem" Value="Kauf-Item" />
-        <Or d3p1:type="MustContainTagItem" Value="Film" />
-      </Except>
+    <Filter d3p1:type="AndItem" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance">
+      <And d3p1:type="IsPartOfOwnedCollectionItem" Value="true" />
+      <And d3p1:type="ExceptItem">
+        <Except d3p1:type="OrItem">
+          <Or d3p1:type="MustContainTagItem" Value="Purchase item" />
+          <Or d3p1:type="MustContainTagItem" Value="Movie" />
+        </Except>
+      </And>
     </Filter>
     <Check Name="Not Excluded">
       <Item d4p1:type="AndItem" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance">
@@ -213,7 +218,7 @@
     </Check>
   </Rule>
   <Rule Name="Excluded">
-    <Filter d3p1:type="MustContainTagItem" Value="Kauf-Item" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
+    <Filter d3p1:type="MustContainTagItem" Value="Purchase item" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
     <Check Name="Excluded">
       <Item d4p1:type="OrItem" xmlns:d4p1="http://www.w3.org/2001/XMLSchema-instance">
         <Or d4p1:type="HasOnlinePublicExclusionItem" Value="false" />

@@ -10,6 +10,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
             ArrangeControls();
 
+            FilterDescriptionLabel.Text = ConfigurationItemHelper.GetDisplayValue(EditValue);
+
             FillFilterType(FilterTypeComboBox);
             FillFilterListView(EditValue.And, FilterListView);
             SwitchFilterControls();

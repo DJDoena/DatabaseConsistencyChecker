@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
@@ -7,6 +6,17 @@ using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
 {
     //xsd.exe xsd CheckConfiguration.xsd /c /l:cs /f /n:DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
+
+    partial class CheckConfiguration
+    {
+        public CheckConfiguration Clone()
+        {
+            return new CheckConfiguration()
+            {
+                Rule = Rule?.Select(r => r?.Clone()).ToArray(),
+            };
+        }
+    }
 
     partial class RuleItem
     {

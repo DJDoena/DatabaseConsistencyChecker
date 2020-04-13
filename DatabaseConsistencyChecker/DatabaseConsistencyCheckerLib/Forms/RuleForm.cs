@@ -258,5 +258,12 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         }
 
         #endregion
+
+        private void OnRuleNameTextBoxTextChanged(object sender, EventArgs e)
+        {
+            EditValue.Name = RuleNameTextBox.Text;
+
+            HasChanged = true;
+        }
     }
 }

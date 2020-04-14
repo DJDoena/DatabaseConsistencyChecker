@@ -45,13 +45,15 @@
             this.ExportFlagSetButton = new System.Windows.Forms.Button();
             this.EditConfigurationButton = new System.Windows.Forms.Button();
             this.SaveConfigurationButton = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.RootMenuStrip = new System.Windows.Forms.MenuStrip();
             this.FileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ExitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CheckForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.ProfilesLoadedLabel = new System.Windows.Forms.Label();
+            this.RulesLoadedLabel = new System.Windows.Forms.Label();
+            this.RootMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // CollectionFileTextBox
@@ -62,7 +64,7 @@
             this.CollectionFileTextBox.Name = "CollectionFileTextBox";
             this.CollectionFileTextBox.ReadOnly = true;
             this.CollectionFileTextBox.Size = new System.Drawing.Size(638, 20);
-            this.CollectionFileTextBox.TabIndex = 1;
+            this.CollectionFileTextBox.TabIndex = 2;
             // 
             // ConfigurationFileTextBox
             // 
@@ -72,7 +74,7 @@
             this.ConfigurationFileTextBox.Name = "ConfigurationFileTextBox";
             this.ConfigurationFileTextBox.ReadOnly = true;
             this.ConfigurationFileTextBox.Size = new System.Drawing.Size(638, 20);
-            this.ConfigurationFileTextBox.TabIndex = 4;
+            this.ConfigurationFileTextBox.TabIndex = 5;
             // 
             // LoadCollectionButton
             // 
@@ -80,7 +82,7 @@
             this.LoadCollectionButton.Location = new System.Drawing.Point(747, 27);
             this.LoadCollectionButton.Name = "LoadCollectionButton";
             this.LoadCollectionButton.Size = new System.Drawing.Size(125, 23);
-            this.LoadCollectionButton.TabIndex = 2;
+            this.LoadCollectionButton.TabIndex = 3;
             this.LoadCollectionButton.Text = "Load collection";
             this.LoadCollectionButton.UseVisualStyleBackColor = true;
             this.LoadCollectionButton.Click += new System.EventHandler(this.OnLoadCollectionButtonClick);
@@ -91,7 +93,7 @@
             this.LoadConfigurationButton.Location = new System.Drawing.Point(747, 56);
             this.LoadConfigurationButton.Name = "LoadConfigurationButton";
             this.LoadConfigurationButton.Size = new System.Drawing.Size(125, 23);
-            this.LoadConfigurationButton.TabIndex = 5;
+            this.LoadConfigurationButton.TabIndex = 6;
             this.LoadConfigurationButton.Text = "Load configuration";
             this.LoadConfigurationButton.UseVisualStyleBackColor = true;
             this.LoadConfigurationButton.Click += new System.EventHandler(this.OnLoadConfigurationButtonClick);
@@ -102,7 +104,7 @@
             this.NewConfigurationButton.Location = new System.Drawing.Point(747, 114);
             this.NewConfigurationButton.Name = "NewConfigurationButton";
             this.NewConfigurationButton.Size = new System.Drawing.Size(125, 23);
-            this.NewConfigurationButton.TabIndex = 7;
+            this.NewConfigurationButton.TabIndex = 10;
             this.NewConfigurationButton.Text = "New configuration";
             this.NewConfigurationButton.UseVisualStyleBackColor = true;
             this.NewConfigurationButton.Click += new System.EventHandler(this.OnNewConfigurationButtonClick);
@@ -113,7 +115,7 @@
             this.RunChecksButton.Location = new System.Drawing.Point(747, 200);
             this.RunChecksButton.Name = "RunChecksButton";
             this.RunChecksButton.Size = new System.Drawing.Size(125, 23);
-            this.RunChecksButton.TabIndex = 11;
+            this.RunChecksButton.TabIndex = 14;
             this.RunChecksButton.Text = "Run checks";
             this.RunChecksButton.UseVisualStyleBackColor = true;
             this.RunChecksButton.Click += new System.EventHandler(this.OnRunChecksButtonClick);
@@ -124,7 +126,7 @@
             this.CollectionFileLabel.Location = new System.Drawing.Point(12, 32);
             this.CollectionFileLabel.Name = "CollectionFileLabel";
             this.CollectionFileLabel.Size = new System.Drawing.Size(69, 13);
-            this.CollectionFileLabel.TabIndex = 0;
+            this.CollectionFileLabel.TabIndex = 1;
             this.CollectionFileLabel.Text = "Collection file";
             // 
             // ConfigurationFileLabel
@@ -133,7 +135,7 @@
             this.ConfigurationFileLabel.Location = new System.Drawing.Point(12, 61);
             this.ConfigurationFileLabel.Name = "ConfigurationFileLabel";
             this.ConfigurationFileLabel.Size = new System.Drawing.Size(85, 13);
-            this.ConfigurationFileLabel.TabIndex = 3;
+            this.ConfigurationFileLabel.TabIndex = 4;
             this.ConfigurationFileLabel.Text = "Configuration file";
             // 
             // ResultListView
@@ -151,7 +153,7 @@
             this.ResultListView.Location = new System.Drawing.Point(103, 200);
             this.ResultListView.Name = "ResultListView";
             this.ResultListView.Size = new System.Drawing.Size(638, 249);
-            this.ResultListView.TabIndex = 10;
+            this.ResultListView.TabIndex = 13;
             this.ResultListView.UseCompatibleStateImageBehavior = false;
             this.ResultListView.View = System.Windows.Forms.View.Details;
             // 
@@ -176,7 +178,7 @@
             this.CheckResultLabel.Location = new System.Drawing.Point(12, 205);
             this.CheckResultLabel.Name = "CheckResultLabel";
             this.CheckResultLabel.Size = new System.Drawing.Size(71, 13);
-            this.CheckResultLabel.TabIndex = 9;
+            this.CheckResultLabel.TabIndex = 12;
             this.CheckResultLabel.Text = "Check results";
             // 
             // ExportFlagSetButton
@@ -185,7 +187,7 @@
             this.ExportFlagSetButton.Location = new System.Drawing.Point(747, 426);
             this.ExportFlagSetButton.Name = "ExportFlagSetButton";
             this.ExportFlagSetButton.Size = new System.Drawing.Size(125, 23);
-            this.ExportFlagSetButton.TabIndex = 12;
+            this.ExportFlagSetButton.TabIndex = 15;
             this.ExportFlagSetButton.Text = "Export flag set";
             this.ExportFlagSetButton.UseVisualStyleBackColor = true;
             this.ExportFlagSetButton.Click += new System.EventHandler(this.OnExportFlagSetButtonClick);
@@ -196,7 +198,7 @@
             this.EditConfigurationButton.Location = new System.Drawing.Point(747, 85);
             this.EditConfigurationButton.Name = "EditConfigurationButton";
             this.EditConfigurationButton.Size = new System.Drawing.Size(125, 23);
-            this.EditConfigurationButton.TabIndex = 6;
+            this.EditConfigurationButton.TabIndex = 8;
             this.EditConfigurationButton.Text = "Edit configuration";
             this.EditConfigurationButton.UseVisualStyleBackColor = true;
             this.EditConfigurationButton.Click += new System.EventHandler(this.OnEditConfigurationButtonClick);
@@ -207,21 +209,21 @@
             this.SaveConfigurationButton.Location = new System.Drawing.Point(747, 143);
             this.SaveConfigurationButton.Name = "SaveConfigurationButton";
             this.SaveConfigurationButton.Size = new System.Drawing.Size(125, 23);
-            this.SaveConfigurationButton.TabIndex = 8;
+            this.SaveConfigurationButton.TabIndex = 11;
             this.SaveConfigurationButton.Text = "Save configuration as";
             this.SaveConfigurationButton.UseVisualStyleBackColor = true;
             this.SaveConfigurationButton.Click += new System.EventHandler(this.OnSaveConfigurationButtonClick);
             // 
-            // menuStrip1
+            // RootMenuStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RootMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.FileToolStripMenuItem,
             this.HelpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(884, 24);
-            this.menuStrip1.TabIndex = 13;
-            this.menuStrip1.Text = "menuStrip1";
+            this.RootMenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.RootMenuStrip.Name = "RootMenuStrip";
+            this.RootMenuStrip.Size = new System.Drawing.Size(884, 24);
+            this.RootMenuStrip.TabIndex = 0;
+            this.RootMenuStrip.Text = "menuStrip1";
             // 
             // FileToolStripMenuItem
             // 
@@ -234,7 +236,7 @@
             // ExitToolStripMenuItem
             // 
             this.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem";
-            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.ExitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
             this.ExitToolStripMenuItem.Text = "&Exit";
             this.ExitToolStripMenuItem.Click += new System.EventHandler(this.OnExitToolStripMenuItemClick);
             // 
@@ -250,22 +252,40 @@
             // CheckForUpdatesToolStripMenuItem
             // 
             this.CheckForUpdatesToolStripMenuItem.Name = "CheckForUpdatesToolStripMenuItem";
-            this.CheckForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.CheckForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.CheckForUpdatesToolStripMenuItem.Text = "&Check for Updates";
             this.CheckForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.OnCheckForUpdatesToolStripMenuItemClick);
             // 
             // AboutToolStripMenuItem
             // 
             this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.AboutToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.AboutToolStripMenuItem.Text = "&About";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.OnAboutToolStripMenuItemClick);
+            // 
+            // ProfilesLoadedLabel
+            // 
+            this.ProfilesLoadedLabel.AutoSize = true;
+            this.ProfilesLoadedLabel.Location = new System.Drawing.Point(100, 90);
+            this.ProfilesLoadedLabel.Name = "ProfilesLoadedLabel";
+            this.ProfilesLoadedLabel.Size = new System.Drawing.Size(0, 13);
+            this.ProfilesLoadedLabel.TabIndex = 7;
+            // 
+            // RulesLoadedLabel
+            // 
+            this.RulesLoadedLabel.AutoSize = true;
+            this.RulesLoadedLabel.Location = new System.Drawing.Point(100, 119);
+            this.RulesLoadedLabel.Name = "RulesLoadedLabel";
+            this.RulesLoadedLabel.Size = new System.Drawing.Size(0, 13);
+            this.RulesLoadedLabel.TabIndex = 9;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 461);
+            this.Controls.Add(this.RulesLoadedLabel);
+            this.Controls.Add(this.ProfilesLoadedLabel);
             this.Controls.Add(this.SaveConfigurationButton);
             this.Controls.Add(this.EditConfigurationButton);
             this.Controls.Add(this.ExportFlagSetButton);
@@ -279,14 +299,13 @@
             this.Controls.Add(this.LoadCollectionButton);
             this.Controls.Add(this.ConfigurationFileTextBox);
             this.Controls.Add(this.CollectionFileTextBox);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.RootMenuStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip1;
             this.MinimumSize = new System.Drawing.Size(900, 500);
             this.Name = "MainForm";
             this.Text = "Database Consistency Checker";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.RootMenuStrip.ResumeLayout(false);
+            this.RootMenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -310,11 +329,13 @@
         private System.Windows.Forms.ColumnHeader ProfileColumn;
         private System.Windows.Forms.Button EditConfigurationButton;
         private System.Windows.Forms.Button SaveConfigurationButton;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip RootMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem FileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ExitToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem HelpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CheckForUpdatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+        private System.Windows.Forms.Label ProfilesLoadedLabel;
+        private System.Windows.Forms.Label RulesLoadedLabel;
     }
 }

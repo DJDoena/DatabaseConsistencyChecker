@@ -45,9 +45,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 {
                     try
                     {
-                        _collection = DVDProfilerSerializer<Collection>.Deserialize(collectionFile);
-
-                        CollectionFileTextBox.Text = collectionFile;
+                        TryLoadCollection(collectionFile);
                     }
                     catch
                     { }
@@ -60,9 +58,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             {
                 try
                 {
-                    _configuration = DVDProfilerSerializer<CheckConfiguration>.Deserialize(configurationFile);
-
-                    ConfigurationFileTextBox.Text = configurationFile;
+                    TryLoadConfiguration(configurationFile);
                 }
                 catch
                 { }
@@ -113,11 +109,19 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 Title = "Please select your collection XML file",
             })
             {
+                var collectionFile = Properties.Settings.Default.CollectionFile;
+
+                if (!string.IsNullOrEmpty(collectionFile) && File.Exists(collectionFile))
+                {
+                    var fi = new FileInfo(collectionFile);
+
+                    ofd.InitialDirectory = fi.DirectoryName;
+                    ofd.FileName = fi.Name;
+                }
+
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    _collection = DVDProfilerSerializer<Collection>.Deserialize(ofd.FileName);
-
-                    CollectionFileTextBox.Text = ofd.FileName;
+                    TryLoadCollection(ofd.FileName);
 
                     Properties.Settings.Default.CollectionFile = ofd.FileName;
                     Properties.Settings.Default.Save();
@@ -127,6 +131,17 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                     ClearResults();
                 }
             }
+        }
+
+        private void TryLoadCollection(string fileName)
+        {
+            _collection = DVDProfilerSerializer<Collection>.Deserialize(fileName);
+
+            CollectionFileTextBox.Text = fileName;
+
+            var profileCount = _collection.DVDList?.Length ?? 0;
+
+            ProfilesLoadedLabel.Text = $"{profileCount:#,0} profiles loaded.";
         }
 
         private void OnLoadConfigurationButtonClick(object sender, EventArgs e)
@@ -145,20 +160,40 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 Title = "Please select your configuration file",
             })
             {
+                var configurationFile = Properties.Settings.Default.ConfigurationFile;
+
+                if (!string.IsNullOrEmpty(configurationFile) && File.Exists(configurationFile))
+                {
+                    var fi = new FileInfo(configurationFile);
+
+                    ofd.InitialDirectory = fi.DirectoryName;
+                    ofd.FileName = fi.Name;
+                }
+
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    _configuration = DVDProfilerSerializer<CheckConfiguration>.Deserialize(ofd.FileName);
-
-                    ConfigurationFileTextBox.Text = ofd.FileName;
+                    TryLoadConfiguration(ofd.FileName);
 
                     Properties.Settings.Default.ConfigurationFile = ofd.FileName;
                     Properties.Settings.Default.Save();
+
 
                     SwitchButtons();
 
                     ClearResults();
                 }
             }
+        }
+
+        private void TryLoadConfiguration(string fileName)
+        {
+            _configuration = DVDProfilerSerializer<CheckConfiguration>.Deserialize(fileName);
+
+            ConfigurationFileTextBox.Text = fileName;
+
+            var ruleCount = _configuration.Rule?.Length ?? 0;
+
+            RulesLoadedLabel.Text = $"{ruleCount:#,0} rules loaded.";
         }
 
         private void OnEditConfigurationButtonClick(object sender, EventArgs e)

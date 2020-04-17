@@ -1642,7 +1642,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
 
         public override Item Clone()
         {
-            return new HasDVDReviewItem()
+            return new HasAudioReviewItem()
             {
                 Choice = Choice,
             };
@@ -1668,9 +1668,35 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
 
         public override Item Clone()
         {
-            return new HasDVDReviewItem()
+            return new HasExtrasReviewItem()
             {
                 Choice = Choice,
+            };
+        }
+    }
+
+    partial class IsSRPCurrencyItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(p => IsSRPCurrency(p) == Choice);
+
+            return result;
+        }
+
+        private bool IsSRPCurrency(DVD profile)
+        {
+            var result = profile.SRP.IsCurrency(Value);
+
+            return result;
+        }
+
+        public override Item Clone()
+        {
+            return new IsSRPCurrencyItem()
+            {
+                Choice = Choice,
+                Value = Value,
             };
         }
     }

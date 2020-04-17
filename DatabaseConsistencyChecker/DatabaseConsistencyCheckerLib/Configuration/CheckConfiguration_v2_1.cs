@@ -104,6 +104,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1 {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IntItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsCountAsItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StringItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsSRPCurrencyItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsCaseTypeItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsPurchasePlaceItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsPurchaseCurrencyItem))]
@@ -231,6 +232,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1 {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IntItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsCountAsItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StringItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsSRPCurrencyItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsCaseTypeItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsPurchasePlaceItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsPurchaseCurrencyItem))]
@@ -655,6 +657,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1 {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsSRPCurrencyItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsCaseTypeItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsPurchasePlaceItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsPurchaseCurrencyItem))]
@@ -675,6 +678,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1 {
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public string Value;
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class IsSRPCurrencyItem : StringItem {
     }
     
     /// <remarks/>

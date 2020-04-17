@@ -435,4 +435,10 @@
     </xs:complexContent>
   </xs:complexType>
 
+  <xs:complexType name="IsSRPCurrencyItem">
+    <xs:complexContent>
+      <xs:extension base="StringItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
 </xs:schema>

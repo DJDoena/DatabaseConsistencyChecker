@@ -583,6 +583,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SRP: Currency must be equal to given value.
+        /// </summary>
+        internal static string IsSRPCurrencyItem {
+            get {
+                return ResourceManager.GetString("IsSRPCurrencyItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logic: Combine filters/checks with OR.
         /// </summary>
         internal static string OrItem {

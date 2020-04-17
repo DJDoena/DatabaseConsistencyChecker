@@ -291,6 +291,9 @@
   <data name="IsRatingSystemItem" xml:space="preserve">
     <value>Rating: Rating System must be equal to given value</value>
   </data>
+  <data name="IsSRPCurrencyItem" xml:space="preserve">
+    <value>SRP: Currency must be equal to given value</value>
+  </data>
   <data name="OrItem" xml:space="preserve">
     <value>Logic: Combine filters/checks with OR</value>
   </data>

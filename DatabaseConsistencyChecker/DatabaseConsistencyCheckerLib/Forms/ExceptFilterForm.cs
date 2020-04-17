@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
-    public partial class ExceptFilterForm : BaseForm<Configuration.ExceptItem>
+    public partial class ExceptFilterForm : BaseForm<Config.ExceptItem>
     {
-        public ExceptFilterForm(Configuration.ExceptItem value) : base(value)
+        public ExceptFilterForm(Config.ExceptItem value) : base(value)
         {
             InitializeComponent();
 
@@ -46,7 +47,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        private static void DrawFilterListItem(ListViewItem row, Configuration.Item item)
+        private static void DrawFilterListItem(ListViewItem row, Config.Item item)
         {
             row.Tag = item;
 
@@ -66,7 +67,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             var type = (Type)FilterTypeComboBox.SelectedValue;
 
-            var newItem = (Configuration.Item)Activator.CreateInstance(type);
+            var newItem = (Config.Item)Activator.CreateInstance(type);
 
             if (OpenFilterWindow(newItem))
             {
@@ -84,7 +85,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             var row = FilterListView.SelectedItems[0];
 
-            var original = (Configuration.Item)row.Tag;
+            var original = (Config.Item)row.Tag;
 
             var copy = original.Clone();
 

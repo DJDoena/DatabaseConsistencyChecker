@@ -1,10 +1,11 @@
 ﻿using System;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
-    public partial class OrFilterForm : MultiLogicFilterForm<Configuration.OrItem>
+    public partial class OrFilterForm : MultiLogicFilterForm<Config.OrItem>
     {
-        public OrFilterForm(Configuration.OrItem value) : base(value)
+        public OrFilterForm(Config.OrItem value) : base(value)
         {
             InitializeComponent();
 

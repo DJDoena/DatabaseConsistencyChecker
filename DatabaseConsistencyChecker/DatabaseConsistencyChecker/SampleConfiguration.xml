@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<CheckConfiguration>
+<CheckConfiguration Version="1.0">
   <Rule Name="Box set">
     <Filter d3p1:type="MustContainTagItem" Value="Box set" xmlns:d3p1="http://www.w3.org/2001/XMLSchema-instance" />
     <Check Name="Watchable Profile">

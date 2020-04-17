@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 {
@@ -30,7 +30,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
             _profiles = profiles.FilterNullProfiles();
         }
 
-        public IEnumerable<CheckResult> Check(RuleItem rule)
+        public IEnumerable<CheckResult> Check(Config.RuleItem rule)
         {
             if (rule == null)
             {
@@ -38,15 +38,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
             }
             else if (rule.Check == null)
             {
-                throw new ArgumentNullException($"{nameof(rule)}.{nameof(RuleItem.Check)}");
+                throw new ArgumentNullException($"{nameof(rule)}.{nameof(Config.RuleItem.Check)}");
             }
             else if (rule.Check.Any(c => c == null))
             {
-                throw new ArgumentException("A check must not be null", $"{nameof(rule)}.{nameof(RuleItem.Check)}");
+                throw new ArgumentException("A check must not be null", $"{nameof(rule)}.{nameof(Config.RuleItem.Check)}");
             }
             else if (rule.Check.Any(c => c.Item == null))
             {
-                throw new ArgumentException("A check item must not be null", $"{nameof(rule)}.{nameof(RuleItem.Check)}.{nameof(CheckItem.Item)}");
+                throw new ArgumentException("A check item must not be null", $"{nameof(rule)}.{nameof(Config.RuleItem.Check)}.{nameof(Config.CheckItem.Item)}");
             }
 
             var filtered = rule.Filter != null

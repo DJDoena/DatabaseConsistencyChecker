@@ -1,4 +1,5 @@
 ﻿using System;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 {
@@ -20,7 +21,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
             return result;
         }
 
-        public static string GetDisplayValue(Configuration.Item item)
+        public static string GetDisplayValue(Config.Item item)
         {
             if (item == null)
             {

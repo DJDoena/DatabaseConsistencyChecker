@@ -1,18 +1,19 @@
 ﻿using System;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
-    public partial class EventFilterForm : BaseForm<Configuration.HasEventItem>
+    public partial class EventFilterForm : BaseForm<Config.HasEventItem>
     {
-        public EventFilterForm(Configuration.HasEventItem value) : base(value)
+        public EventFilterForm(Config.HasEventItem value) : base(value)
         {
             InitializeComponent();
 
             ArrangeControls();
 
-            EventTypeComboBox.Items.Add(Configuration.HasEventItemEventType.Watched.ToString());
-            EventTypeComboBox.Items.Add(Configuration.HasEventItemEventType.Borrowed.ToString());
-            EventTypeComboBox.Items.Add(Configuration.HasEventItemEventType.Returned.ToString());
+            EventTypeComboBox.Items.Add(Config.HasEventItemEventType.Watched.ToString());
+            EventTypeComboBox.Items.Add(Config.HasEventItemEventType.Borrowed.ToString());
+            EventTypeComboBox.Items.Add(Config.HasEventItemEventType.Returned.ToString());
 
             FilterDescriptionLabel.Text = ConfigurationItemHelper.GetDisplayValue(EditValue);
 
@@ -25,7 +26,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         private void OnEventTypeComboBoxSelectedIndexChanged(object sender, EventArgs e)
         {
-            EditValue.EventType = (Configuration.HasEventItemEventType)Enum.Parse(typeof(Configuration.HasEventItemEventType), EventTypeComboBox.Text);
+            EditValue.EventType = (Config.HasEventItemEventType)Enum.Parse(typeof(Config.HasEventItemEventType), EventTypeComboBox.Text);
 
             HasChanged = true;
         }

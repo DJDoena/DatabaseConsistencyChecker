@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
@@ -13,11 +14,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         /// <remarks>
         /// Only for designer!
         /// </remarks>
-        protected MultiLogicFilterForm() : this(default)
+        public MultiLogicFilterForm() : this(default)
         {
         }
 
-        protected static bool ValidateData(Configuration.Item[] items)
+        protected static bool ValidateData(Config.Item[] items)
         {
             if (items == null || items.Length == 0)
             {
@@ -37,7 +38,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        protected static void FillFilterListView(Configuration.Item[] items, ListView filterListView)
+        protected static void FillFilterListView(Config.Item[] items, ListView filterListView)
         {
             if (items != null)
             {
@@ -48,7 +49,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        private static void AddFilterListRow(Configuration.Item item, ListView filterListView)
+        private static void AddFilterListRow(Config.Item item, ListView filterListView)
         {
             var row = new ListViewItem();
 
@@ -57,7 +58,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             filterListView.Items.Add(row);
         }
 
-        protected static void DrawFilterListItem(ListViewItem row, Configuration.Item item)
+        protected static void DrawFilterListItem(ListViewItem row, Config.Item item)
         {
             row.Tag = item;
 
@@ -73,15 +74,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        protected Configuration.Item[] AddFilter(Configuration.Item[] items, ComboBox filterTypeComboBox, ListView filterListView)
+        protected Config.Item[] AddFilter(Config.Item[] items, ComboBox filterTypeComboBox, ListView filterListView)
         {
             var type = (Type)filterTypeComboBox.SelectedValue;
 
-            var newItem = (Configuration.Item)Activator.CreateInstance(type);
+            var newItem = (Config.Item)Activator.CreateInstance(type);
 
             if (OpenFilterWindow(newItem))
             {
-                var list = (items ?? Enumerable.Empty<Configuration.Item>()).ToList();
+                var list = (items ?? Enumerable.Empty<Config.Item>()).ToList();
 
                 list.Add(newItem);
 
@@ -95,11 +96,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             return items;
         }
 
-        protected void EditFilter(Configuration.Item[] items, ListView filterListView)
+        protected void EditFilter(Config.Item[] items, ListView filterListView)
         {
             var row = filterListView.SelectedItems[0];
 
-            var original = (Configuration.Item)row.Tag;
+            var original = (Config.Item)row.Tag;
 
             var copy = original.Clone();
 
@@ -121,11 +122,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        protected Configuration.Item[] RemoveFilter(Configuration.Item[] items, ListView filterListView)
+        protected Config.Item[] RemoveFilter(Config.Item[] items, ListView filterListView)
         {
             var row = filterListView.SelectedItems[0];
 
-            var obsolete = (Configuration.Item)row.Tag;
+            var obsolete = (Config.Item)row.Tag;
 
             filterListView.Items.Remove(row);
 

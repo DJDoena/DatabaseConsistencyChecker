@@ -1,10 +1,11 @@
 ﻿using System;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
-    public partial class AndFilterForm : MultiLogicFilterForm<Configuration.AndItem>
+    public partial class AndFilterForm : MultiLogicFilterForm<Config.AndItem>
     {
-        public AndFilterForm(Configuration.AndItem value) : base(value)
+        public AndFilterForm(Config.AndItem value) : base(value)
         {
             InitializeComponent();
 

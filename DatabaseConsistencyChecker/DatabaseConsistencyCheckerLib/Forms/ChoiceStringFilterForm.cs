@@ -3,14 +3,15 @@ using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
-    public partial class StringFilterForm : BaseForm<Config.StringValueItem>
+    public partial class ChoiceStringFilterForm : BaseForm<Config.ChoiceStringItem>
     {
-        public StringFilterForm(Config.StringValueItem value) : base(value)
+        public ChoiceStringFilterForm(Config.ChoiceStringItem value) : base(value)
         {
             InitializeComponent();
 
             FilterDescriptionLabel.Text = ConfigurationItemHelper.GetDisplayValue(EditValue);
 
+            ChoiceCheckBox.Checked = EditValue.Choice;
             ValueTextBox.Text = EditValue.Value;
 
             ArrangeControls();
@@ -30,6 +31,17 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             {
                 return true;
             }
+        }
+
+        private void OnChoiceCheckBoxCheckedChanged(object sender, System.EventArgs e)
+        {
+            EditValue.Choice = ChoiceCheckBox.Checked;
+
+            HasChanged = true;
+
+            ChoiceInfoLabel.Text = EditValue.Choice
+                ? "must be"
+                : "must not be";
         }
 
         private void OnValueTextBoxTextChanged(object sender, System.EventArgs e)

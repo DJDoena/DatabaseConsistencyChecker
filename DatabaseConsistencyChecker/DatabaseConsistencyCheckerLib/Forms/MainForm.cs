@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
@@ -14,7 +14,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
     {
         private Collection _collection;
 
-        private CheckConfiguration _configuration;
+        private Config.CheckConfiguration _configuration;
 
         public MainForm() : this(null)
         {
@@ -187,7 +187,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         private void TryLoadConfiguration(string fileName)
         {
-            _configuration = DVDProfilerSerializer<CheckConfiguration>.Deserialize(fileName);
+            _configuration = ConfigurationLoader.Load(fileName);
 
             ConfigurationFileTextBox.Text = fileName;
 
@@ -214,7 +214,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        private void SaveConfiguration(CheckConfiguration configuration, string fileName)
+        private void SaveConfiguration(Config.CheckConfiguration configuration, string fileName)
         {
             using (var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
             {
@@ -222,7 +222,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 {
                     xtw.Formatting = Formatting.Indented;
 
-                    DVDProfilerSerializer<CheckConfiguration>.Serialize(xtw, configuration);
+                    DVDProfilerSerializer<Config.CheckConfiguration>.Serialize(xtw, configuration);
                 }
             }
 
@@ -242,7 +242,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         private void CreateNewConfiguration()
         {
-            var newItem = new CheckConfiguration();
+            var newItem = new Config.CheckConfiguration();
 
             using (var form = new ConfigurationForm(newItem))
             {
@@ -253,7 +253,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        private void TrySaveNewConfiguration(CheckConfiguration newItem)
+        private void TrySaveNewConfiguration(Config.CheckConfiguration newItem)
         {
             using (var sfd = new SaveFileDialog()
             {

@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
@@ -19,7 +20,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         /// <remarks>
         /// Only for designer!
         /// </remarks>
-        protected BaseForm() : this(default)
+        public BaseForm() : this(default)
         {
         }
 
@@ -38,7 +39,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         protected void FillFilterType(ComboBox comboBox)
         {
-            var baseType = typeof(Configuration.Item);
+            var baseType = typeof(Config.Item);
 
             var assembly = baseType.Assembly;
 
@@ -57,11 +58,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             comboBox.SelectedIndex = 0;
         }
 
-        protected bool OpenFilterWindow(Configuration.Item filter)
+        protected bool OpenFilterWindow(Config.Item filter)
         {
             switch (filter)
-            {
-                case Configuration.BooleanItem booleanFilter:
+            {  
+                case Config.BooleanValueItem booleanFilter:
                     {
                         using (var form = new BooleanFilterForm(booleanFilter))
                         {
@@ -75,7 +76,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                             }
                         }
                     }
-                case Configuration.IntItem intFilter:
+                case Config.IntValueItem intFilter:
                     {
                         using (var form = new IntFilterForm(intFilter))
                         {
@@ -89,7 +90,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                             }
                         }
                     }
-                case Configuration.StringItem stringFilter:
+                case Config.StringValueItem stringFilter:
                     {
                         using (var form = new StringFilterForm(stringFilter))
                         {
@@ -103,7 +104,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                             }
                         }
                     }
-                case Configuration.HasEventItem eventItem:
+                case Config.HasEventItem eventItem:
                     {
                         using (var form = new EventFilterForm(eventItem))
                         {
@@ -117,7 +118,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                             }
                         }
                     }
-                case Configuration.ExceptItem exceptItem:
+                case Config.ExceptItem exceptItem:
                     {
                         using (var form = new ExceptFilterForm(exceptItem))
                         {
@@ -131,7 +132,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                             }
                         }
                     }
-                case Configuration.AndItem andItem:
+                case Config.AndItem andItem:
                     {
                         using (var form = new AndFilterForm(andItem))
                         {
@@ -145,7 +146,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                             }
                         }
                     }
-                case Configuration.OrItem orItem:
+                case Config.OrItem orItem:
                     {
                         using (var form = new OrFilterForm(orItem))
                         {
@@ -159,7 +160,35 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                             }
                         }
                     }
-                case Configuration.NoParamItem _:
+                case Config.ChoiceStringItem choiceStringFilter:
+                    {
+                        using (var form = new ChoiceStringFilterForm(choiceStringFilter))
+                        {
+                            if (form.ShowDialog() == DialogResult.OK)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                case Config.ChoiceItem choiceFilter:
+                    {
+                        using (var form = new ChoiceFilterForm(choiceFilter))
+                        {
+                            if (form.ShowDialog() == DialogResult.OK)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                case Config.NoParamItem _:
                     {
                         return true;
                     }

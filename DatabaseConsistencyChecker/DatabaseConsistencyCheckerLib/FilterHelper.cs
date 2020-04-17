@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
 
-namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration
+namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 {
     internal static class FilterHelper
     {

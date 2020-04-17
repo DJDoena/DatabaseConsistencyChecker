@@ -1,8 +1,10 @@
-﻿namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
+﻿using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
+
+namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
-    public partial class IntFilterForm : BaseForm<Configuration.IntItem>
+    public partial class IntFilterForm : BaseForm<Config.IntValueItem>
     {
-        public IntFilterForm(Configuration.IntItem value) : base(value)
+        public IntFilterForm(Config.IntValueItem value) : base(value)
         {
             InitializeComponent();
 

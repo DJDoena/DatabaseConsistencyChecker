@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
-    public partial class ConfigurationForm : BaseForm<Configuration.CheckConfiguration>
+    public partial class ConfigurationForm : BaseForm<Config.CheckConfiguration>
     {
-        public ConfigurationForm(Configuration.CheckConfiguration config) : base(config)
+        public ConfigurationForm(Config.CheckConfiguration config) : base(config)
         {
             InitializeComponent();
 
@@ -43,7 +44,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        private void AddRuleListRow(Configuration.RuleItem rule)
+        private void AddRuleListRow(Config.RuleItem rule)
         {
             var row = new ListViewItem();
 
@@ -52,7 +53,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             RuleListView.Items.Add(row);
         }
 
-        private void DrawRuleListItem(ListViewItem row, Configuration.RuleItem item)
+        private void DrawRuleListItem(ListViewItem row, Config.RuleItem item)
         {
             row.Tag = item;
 
@@ -61,13 +62,13 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         private void OnAddRuleButtonClick(object sender, EventArgs e)
         {
-            var newItem = new Configuration.RuleItem();
+            var newItem = new Config.RuleItem();
 
             using (var form = new RuleForm(newItem))
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    var list = (EditValue.Rule ?? Enumerable.Empty<Configuration.RuleItem>()).ToList();
+                    var list = (EditValue.Rule ?? Enumerable.Empty<Config.RuleItem>()).ToList();
 
                     list.Add(newItem);
 
@@ -84,7 +85,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             var row = RuleListView.SelectedItems[0];
 
-            var original = (Configuration.RuleItem)row.Tag;
+            var original = (Config.RuleItem)row.Tag;
 
             var copy = original.Clone();
 
@@ -113,7 +114,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             var row = RuleListView.SelectedItems[0];
 
-            var obsolete = (Configuration.RuleItem)row.Tag;
+            var obsolete = (Config.RuleItem)row.Tag;
 
             RuleListView.Items.Remove(row);
 

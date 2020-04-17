@@ -121,16 +121,31 @@
     <value>Logic: Combine profiles with AND</value>
   </data>
   <data name="CountAsEqualToItem" xml:space="preserve">
-    <value>Count As: Must be equal to given number</value>
+    <value>Count As: Must be equal to given value</value>
   </data>
   <data name="CountAsNotEqualToItem" xml:space="preserve">
-    <value>Count As: Must not be equal to given number</value>
+    <value>Count As: Must not be equal to given value</value>
   </data>
   <data name="ExceptItem" xml:space="preserve">
     <value>Logic: Exclude profiles</value>
   </data>
+  <data name="HasAspectRatioItem" xml:space="preserve">
+    <value>Video Format: Aspect Ratio must be set (true = must, false = must not)</value>
+  </data>
+  <data name="HasAudioTrackItem" xml:space="preserve">
+    <value>Audio Track: Must contain given value (true = must, false = must not)</value>
+  </data>
+  <data name="HasAudioTracksItem" xml:space="preserve">
+    <value>Audio Track: Must contain audio tracks (true = must, false = must not)</value>
+  </data>
+  <data name="HasBoxSetChildrenItem" xml:space="preserve">
+    <value>Box set: Must have child profiles (true = must, false = must not)</value>
+  </data>
   <data name="HasCastItem" xml:space="preserve">
     <value>Cast: Must contain cast members (true = must, false = must not)</value>
+  </data>
+  <data name="HasColorFormatItem" xml:space="preserve">
+    <value>Video Format: Any Color Format must be checked</value>
   </data>
   <data name="HasCrewItem" xml:space="preserve">
     <value>Crew: Must contain crew members (true = must, false = must not)</value>
@@ -138,8 +153,17 @@
   <data name="HasCustomMediaTypeItem" xml:space="preserve">
     <value>Media Type: Custom Type must be set (true = must, false = must not)</value>
   </data>
+  <data name="HasDimensionsItem" xml:space="preserve">
+    <value>Video Format: Any Dimension must be checked</value>
+  </data>
+  <data name="HasDiscsItem" xml:space="preserve">
+    <value>Disc: Must contain discs (true = must, false = must not)</value>
+  </data>
   <data name="HasEventItem" xml:space="preserve">
-    <value>Event: Must contain event of the given type and user (true = must, false = must not)</value>
+    <value>Event: Must contain event of the given event type and user (true = must, false = must not)</value>
+  </data>
+  <data name="HasFeaturesItem" xml:space="preserve">
+    <value>Features: Must contain features (true = must, false = must not)</value>
   </data>
   <data name="HasOnlinePrivateExclusionItem" xml:space="preserve">
     <value>Exclusion: Must be excluded from online private listing (true = must, false = must not)</value>
@@ -147,20 +171,56 @@
   <data name="HasOnlinePublicExclusionItem" xml:space="preserve">
     <value>Exclusion: Must be excluded from online public listing (true = must, false = must not)</value>
   </data>
+  <data name="HasOverviewItem" xml:space="preserve">
+    <value>Overview: Must be set (true = must, false = must not)</value>
+  </data>
   <data name="HasPDAExclusionItem" xml:space="preserve">
     <value>Exclusion: Must be excluded from DVD Profiler Mobile (PDA) (true = must, false = must not)</value>
   </data>
+  <data name="HasPurchaseCurrencyItem" xml:space="preserve">
+    <value>Purchase: Currency must be set (true = must, false = must not)</value>
+  </data>
+  <data name="HasPurchaseDateItem" xml:space="preserve">
+    <value>Purchase: Date must be set (true = must, false = must not)</value>
+  </data>
+  <data name="HasPurchasePlaceItem" xml:space="preserve">
+    <value>Purchase: Place must be set  (true = must, false = must not)</value>
+  </data>
+  <data name="HasPurchasePriceItem" xml:space="preserve">
+    <value>Purchase: Prices must be set (true = must, false = must not)</value>
+  </data>
+  <data name="HasRatingEqualToItem" xml:space="preserve">
+    <value>Rating: Must be equal to given value (true = must, false = must not)</value>
+  </data>
+  <data name="HasRatingItem" xml:space="preserve">
+    <value>Rating: Must be set (true = must, false = must not)</value>
+  </data>
+  <data name="HasRatingSystemEqualToItem" xml:space="preserve">
+    <value>Rating: Rating System must be equal to given value (true = must, false = must not)</value>
+  </data>
+  <data name="HasReleaseDateItem" xml:space="preserve">
+    <value>Release Date: Must be set (true = must, false = must not)</value>
+  </data>
   <data name="HasSmartPhoneExclusionItem" xml:space="preserve">
     <value>Exclusion: Must be excluded from DVD Profiler for iPhone / Android (true = must, false = must not)</value>
+  </data>
+  <data name="HasSubtitleItem" xml:space="preserve">
+    <value>Subtitle: Must contain given value (true = must, false = must not)</value>
+  </data>
+  <data name="HasSubtitlesItem" xml:space="preserve">
+    <value>Subtitle: Must contain subtitles (true = must, false = must not)</value>
+  </data>
+  <data name="HasVideoFormatItem" xml:space="preserve">
+    <value>Video Format: Any Video Format must be checked</value>
   </data>
   <data name="IsCollectionNumberSetItem" xml:space="preserve">
     <value>Collection Number: Must be set (true = must, false = must not)</value>
   </data>
   <data name="IsCollectionTypeItem" xml:space="preserve">
-    <value>Collection Type: Must be part of given collection type</value>
+    <value>Collection Type: Must be part of given collection type value</value>
   </data>
   <data name="IsCustomMediaTypeItem" xml:space="preserve">
-    <value>Media Type: Custom Type must be equal to given custom media type</value>
+    <value>Media Type: Custom Type must be equal to given value</value>
   </data>
   <data name="IsMediaTypeBluRayItem" xml:space="preserve">
     <value>Media Type: Must be Blu-ray (true = must, false = must not)</value>
@@ -175,25 +235,31 @@
     <value>Media Type: Must be Ultra-HD (true = must, false = must not)</value>
   </data>
   <data name="IsNotCollectionTypeItem" xml:space="preserve">
-    <value>Collection Type: Must not be part of given collection type</value>
+    <value>Collection Type: Must not be part of given collection type value</value>
   </data>
   <data name="IsNotCustomMediaTypeItem" xml:space="preserve">
-    <value>Media Type: Custom Type must not be equal to given custom media type</value>
+    <value>Media Type: Custom Type must not be equal to given value</value>
   </data>
   <data name="IsPartOfOwnedCollectionItem" xml:space="preserve">
     <value>Collection Type: Must be part of Owned collection (true = must, false = must not)</value>
   </data>
   <data name="IsProductionYearSet" xml:space="preserve">
-    <value>Production Year: must be set (true = must, false = must not)</value>
+    <value>Production Year: Must be set (true = must, false = must not)</value>
+  </data>
+  <data name="IsPurchaseCurrencyItem" xml:space="preserve">
+    <value>Purchase: Currency must be equal to given (true = must, false = must not)</value>
+  </data>
+  <data name="IsPurchasePlaceItem" xml:space="preserve">
+    <value>Purchase: Place must be equal to given value  (true = must, false = must not)</value>
   </data>
   <data name="IsRunningTimeSetItem" xml:space="preserve">
-    <value>Running Time: must be set (true = must, false = must not)</value>
+    <value>Running Time: Must be set (true = must, false = must not)</value>
   </data>
   <data name="MustContainCountryOfOriginsItem" xml:space="preserve">
     <value>Country of Origin: Must contain countries of origin</value>
   </data>
   <data name="MustContainGenreItem" xml:space="preserve">
-    <value>Genre: Must contain given genre</value>
+    <value>Genre: Must contain given value</value>
   </data>
   <data name="MustContainGenresItem" xml:space="preserve">
     <value>Genre: Must contain genres</value>
@@ -205,13 +271,13 @@
     <value>Studio: Must contain studios</value>
   </data>
   <data name="MustContainTagItem" xml:space="preserve">
-    <value>Tag: Must contain given tag name</value>
+    <value>Tag: Must contain given value</value>
   </data>
   <data name="MustNotContainCountryOfOriginsItem" xml:space="preserve">
     <value>Country of Origin: Must not contain countries of origin</value>
   </data>
   <data name="MustNotContainGenreItem" xml:space="preserve">
-    <value>Genre: Must not contain given genre</value>
+    <value>Genre: Must not contain given value</value>
   </data>
   <data name="MustNotContainGenresItem" xml:space="preserve">
     <value>Genre: Must not contain genres</value>
@@ -223,7 +289,7 @@
     <value>Studio: Must not contain studios</value>
   </data>
   <data name="MustNotContainTagItem" xml:space="preserve">
-    <value>Tag: Must not contain given tag name</value>
+    <value>Tag: Must not contain given value</value>
   </data>
   <data name="OrItem" xml:space="preserve">
     <value>Logic: Combine profiles with OR</value>

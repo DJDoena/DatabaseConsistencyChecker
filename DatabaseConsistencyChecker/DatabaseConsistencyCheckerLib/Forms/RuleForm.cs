@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
-    public partial class RuleForm : BaseForm<Configuration.RuleItem>
+    public partial class RuleForm : BaseForm<Config.RuleItem>
     {
-        public RuleForm(Configuration.RuleItem rule) : base(rule)
+        public RuleForm(Config.RuleItem rule) : base(rule)
         {
             InitializeComponent();
 
@@ -60,7 +61,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        private static void DrawFilterListItem(ListViewItem row, Configuration.Item item)
+        private static void DrawFilterListItem(ListViewItem row, Config.Item item)
         {
             row.Tag = item;
 
@@ -80,7 +81,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             var type = (Type)FilterTypeComboBox.SelectedValue;
 
-            var newItem = (Configuration.Item)Activator.CreateInstance(type);
+            var newItem = (Config.Item)Activator.CreateInstance(type);
 
             if (OpenFilterWindow(newItem))
             {
@@ -98,7 +99,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             var row = FilterListView.SelectedItems[0];
 
-            var original = (Configuration.Item)row.Tag;
+            var original = (Config.Item)row.Tag;
 
             var copy = original.Clone();
 
@@ -155,7 +156,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        private void AddCheckListRow(Configuration.CheckItem check)
+        private void AddCheckListRow(Config.CheckItem check)
         {
             var row = new ListViewItem();
 
@@ -164,7 +165,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             CheckListView.Items.Add(row);
         }
 
-        private void DrawCheckListItem(ListViewItem row, Configuration.CheckItem item)
+        private void DrawCheckListItem(ListViewItem row, Config.CheckItem item)
         {
             row.Tag = item;
 
@@ -173,13 +174,13 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         private void OnAddCheckButtonClick(object sender, EventArgs e)
         {
-            var newItem = new Configuration.CheckItem();
+            var newItem = new Config.CheckItem();
 
             using (var form = new CheckForm(newItem))
             {
                 if (form.ShowDialog() == DialogResult.OK)
                 {
-                    var list = (EditValue.Check ?? Enumerable.Empty<Configuration.CheckItem>()).ToList();
+                    var list = (EditValue.Check ?? Enumerable.Empty<Config.CheckItem>()).ToList();
 
                     list.Add(newItem);
 
@@ -196,7 +197,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             var row = CheckListView.SelectedItems[0];
 
-            var original = (Configuration.CheckItem)row.Tag;
+            var original = (Config.CheckItem)row.Tag;
 
             var copy = original.Clone();
 
@@ -225,7 +226,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             var row = CheckListView.SelectedItems[0];
 
-            var obsolete = (Configuration.CheckItem)row.Tag;
+            var obsolete = (Config.CheckItem)row.Tag;
 
             CheckListView.Items.Remove(row);
 

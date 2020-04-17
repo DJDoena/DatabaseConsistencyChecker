@@ -423,4 +423,16 @@
     </xs:complexContent>
   </xs:complexType>
 
+  <xs:complexType name="HasAudioReviewItem">
+    <xs:complexContent>
+      <xs:extension base="ValueItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasExtrasReviewItem">
+    <xs:complexContent>
+      <xs:extension base="ValueItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
 </xs:schema>

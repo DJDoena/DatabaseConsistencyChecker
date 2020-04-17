@@ -57,6 +57,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1 {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OrItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ExceptItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ValueItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasExtrasReviewItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasAudioReviewItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasDVDReviewItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasMovieReviewItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasEasterEggsItem))]
@@ -182,6 +184,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1 {
     }
     
     /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasExtrasReviewItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasAudioReviewItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasDVDReviewItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasMovieReviewItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasEasterEggsItem))]
@@ -247,6 +251,22 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1 {
         /// <remarks/>
         [System.Xml.Serialization.XmlAttributeAttribute()]
         public bool Choice;
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class HasExtrasReviewItem : ValueItem {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class HasAudioReviewItem : ValueItem {
     }
     
     /// <remarks/>

@@ -1622,4 +1622,56 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
             };
         }
     }
+
+    partial class HasAudioReviewItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(p => HasAudioReview(p) == Choice);
+
+            return result;
+        }
+
+        private static bool HasAudioReview(DVD profile)
+        {
+            var result = profile.Review != null
+                && profile.Review.Audio > 0;
+
+            return result;
+        }
+
+        public override Item Clone()
+        {
+            return new HasDVDReviewItem()
+            {
+                Choice = Choice,
+            };
+        }
+    }
+
+    partial class HasExtrasReviewItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(p => HasExtrasReview(p) == Choice);
+
+            return result;
+        }
+
+        private static bool HasExtrasReview(DVD profile)
+        {
+            var result = profile.Review != null
+                && profile.Review.Extras > 0;
+
+            return result;
+        }
+
+        public override Item Clone()
+        {
+            return new HasDVDReviewItem()
+            {
+                Choice = Choice,
+            };
+        }
+    }
 }

@@ -88,6 +88,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Review: Audio must be set.
+        /// </summary>
+        internal static string HasAudioReviewItem {
+            get {
+                return ResourceManager.GetString("HasAudioReviewItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audio Track: Must contain given value.
         /// </summary>
         internal static string HasAudioTrackItem {
@@ -196,7 +205,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Review DVD: Must be set.
+        ///   Looks up a localized string similar to Review: DVD / Video must be set.
         /// </summary>
         internal static string HasDVDReviewItem {
             get {
@@ -219,6 +228,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         internal static string HasEventItem {
             get {
                 return ResourceManager.GetString("HasEventItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Review: Extras must be set.
+        /// </summary>
+        internal static string HasExtrasReviewItem {
+            get {
+                return ResourceManager.GetString("HasExtrasReviewItem", resourceCulture);
             }
         }
         
@@ -259,7 +277,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Review Movie: Must be set.
+        ///   Looks up a localized string similar to Review: Movie must be set.
         /// </summary>
         internal static string HasMovieReviewItem {
             get {

@@ -126,6 +126,9 @@
   <data name="HasAspectRatioItem" xml:space="preserve">
     <value>Video Format: Aspect Ratio must be set</value>
   </data>
+  <data name="HasAudioReviewItem" xml:space="preserve">
+    <value>Review: Audio must be set</value>
+  </data>
   <data name="HasAudioTrackItem" xml:space="preserve">
     <value>Audio Track: Must contain given value</value>
   </data>
@@ -163,13 +166,16 @@
     <value>Disc: Must contain discs</value>
   </data>
   <data name="HasDVDReviewItem" xml:space="preserve">
-    <value>Review DVD: Must be set</value>
+    <value>Review: DVD / Video must be set</value>
   </data>
   <data name="HasEasterEggsItem" xml:space="preserve">
     <value>Easter Eggs: Must be set</value>
   </data>
   <data name="HasEventItem" xml:space="preserve">
     <value>Event: Must contain event of the given event type and user</value>
+  </data>
+  <data name="HasExtrasReviewItem" xml:space="preserve">
+    <value>Review: Extras must be set</value>
   </data>
   <data name="HasFeaturesItem" xml:space="preserve">
     <value>Features: Must contain features</value>
@@ -184,7 +190,7 @@
     <value>Media Company: Must contain media companies</value>
   </data>
   <data name="HasMovieReviewItem" xml:space="preserve">
-    <value>Review Movie: Must be set</value>
+    <value>Review: Movie must be set</value>
   </data>
   <data name="HasOnlinePrivateExclusionItem" xml:space="preserve">
     <value>Exclusion: Must be excluded from online private listing</value>

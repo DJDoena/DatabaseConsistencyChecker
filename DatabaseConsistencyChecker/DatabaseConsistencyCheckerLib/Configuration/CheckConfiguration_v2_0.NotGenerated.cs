@@ -436,7 +436,10 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0
 
         public override Item Clone()
         {
-            return new HasGenresItem();
+            return new HasGenresItem()
+            {
+                Choice = Choice,
+            };
         }
     }
 
@@ -459,7 +462,10 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0
 
         public override Item Clone()
         {
-            return new HasStudiosItem();
+            return new HasStudiosItem()
+            {
+                Choice = Choice,
+            };
         }
     }
 
@@ -482,7 +488,10 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0
 
         public override Item Clone()
         {
-            return new HasMediaCompaniesItem();
+            return new HasMediaCompaniesItem()
+            {
+                Choice = Choice,
+            };
         }
     }
 
@@ -505,7 +514,10 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0
 
         public override Item Clone()
         {
-            return new HasCountryOfOriginsItem();
+            return new HasCountryOfOriginsItem()
+            {
+                Choice = Choice,
+            };
         }
     }
 
@@ -1363,8 +1375,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0
 
         private static bool HasPurchaseCurrency(DVD profile)
         {
-            var result = profile.PurchaseInfo?.Price != null
-                && !string.IsNullOrWhiteSpace(profile.PurchaseInfo.Price.DenominationType);
+            var result = profile.PurchaseInfo != null
+                && profile.PurchaseInfo.Price.HasCurrency();
 
             return result;
         }

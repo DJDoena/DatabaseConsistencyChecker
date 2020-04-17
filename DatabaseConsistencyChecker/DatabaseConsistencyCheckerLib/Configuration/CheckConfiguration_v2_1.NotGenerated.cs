@@ -436,7 +436,10 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
 
         public override Item Clone()
         {
-            return new HasGenresItem();
+            return new HasGenresItem()
+            {
+                Choice = Choice,
+            };
         }
     }
 
@@ -459,7 +462,10 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
 
         public override Item Clone()
         {
-            return new HasStudiosItem();
+            return new HasStudiosItem()
+            {
+                Choice = Choice,
+            };
         }
     }
 
@@ -482,7 +488,10 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
 
         public override Item Clone()
         {
-            return new HasMediaCompaniesItem();
+            return new HasMediaCompaniesItem()
+            {
+                Choice = Choice,
+            };
         }
     }
 
@@ -505,7 +514,10 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
 
         public override Item Clone()
         {
-            return new HasCountryOfOriginsItem();
+            return new HasCountryOfOriginsItem()
+            {
+                Choice = Choice,
+            };
         }
     }
 

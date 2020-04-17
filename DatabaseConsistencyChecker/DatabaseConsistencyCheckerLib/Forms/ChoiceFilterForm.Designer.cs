@@ -32,6 +32,7 @@
             this.ValueCheckBox = new System.Windows.Forms.CheckBox();
             this.ValueLabel = new System.Windows.Forms.Label();
             this.FilterDescriptionLabel = new System.Windows.Forms.Label();
+            this.ChoiceInfoLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ValueCheckBox
@@ -62,11 +63,21 @@
             this.FilterDescriptionLabel.TabIndex = 0;
             this.FilterDescriptionLabel.Text = "Filter Description";
             // 
+            // ChoiceInfoLabel
+            // 
+            this.ChoiceInfoLabel.AutoSize = true;
+            this.ChoiceInfoLabel.Location = new System.Drawing.Point(73, 29);
+            this.ChoiceInfoLabel.Name = "ChoiceInfoLabel";
+            this.ChoiceInfoLabel.Size = new System.Drawing.Size(47, 13);
+            this.ChoiceInfoLabel.TabIndex = 3;
+            this.ChoiceInfoLabel.Text = "must not";
+            // 
             // ChoiceFilterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 161);
+            this.Controls.Add(this.ChoiceInfoLabel);
             this.Controls.Add(this.ValueLabel);
             this.Controls.Add(this.FilterDescriptionLabel);
             this.Controls.Add(this.ValueCheckBox);
@@ -77,6 +88,7 @@
             this.Controls.SetChildIndex(this.ValueCheckBox, 0);
             this.Controls.SetChildIndex(this.FilterDescriptionLabel, 0);
             this.Controls.SetChildIndex(this.ValueLabel, 0);
+            this.Controls.SetChildIndex(this.ChoiceInfoLabel, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -87,5 +99,6 @@
         private System.Windows.Forms.CheckBox ValueCheckBox;
         private System.Windows.Forms.Label ValueLabel;
         private System.Windows.Forms.Label FilterDescriptionLabel;
+        private System.Windows.Forms.Label ChoiceInfoLabel;
     }
 }

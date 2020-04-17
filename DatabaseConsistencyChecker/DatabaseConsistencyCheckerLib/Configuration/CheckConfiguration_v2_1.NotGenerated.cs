@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Linq;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
 
-namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0
+namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
 {
-    //xsd.exe CheckConfiguration_v2_0.xsd /c /l:cs /f /n:DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration.v2_0
+    //xsd.exe CheckConfiguration_v2_1.xsd /c /l:cs /f /n:DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration.v2_1
 
     partial class CheckConfiguration
     {
@@ -1363,8 +1363,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0
 
         private static bool HasPurchaseCurrency(DVD profile)
         {
-            var result = profile.PurchaseInfo?.Price != null
-                && !string.IsNullOrWhiteSpace(profile.PurchaseInfo.Price.DenominationType);
+            var result = profile.PurchaseInfo != null
+                && profile.PurchaseInfo.Price.HasCurrency();
 
             return result;
         }
@@ -1428,6 +1428,185 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0
             {
                 Choice = Choice,
                 Value = Value,
+            };
+        }
+    }
+
+    partial class HasCaseTypeItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(p => HasCaseType(p) == Choice);
+
+            return result;
+        }
+
+        private static bool HasCaseType(DVD profile)
+        {
+            var result = !string.IsNullOrWhiteSpace(profile.CaseType);
+
+            return result;
+        }
+
+        public override Item Clone()
+        {
+            return new HasCaseTypeItem()
+            {
+                Choice = Choice,
+            };
+        }
+    }
+
+    partial class IsCaseTypeItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(p => IsCaseType(p) == Choice);
+
+            return result;
+        }
+
+        private bool IsCaseType(DVD profile)
+        {
+            var result = profile.CaseType.IsExpected(Value);
+
+            return result;
+        }
+
+        public override Item Clone()
+        {
+            return new IsCaseTypeItem()
+            {
+                Choice = Choice,
+                Value = Value,
+            };
+        }
+    }
+
+    partial class HasSRPPriceItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(p => HasSRPrice(p) == Choice);
+
+            return result;
+        }
+
+        private static bool HasSRPrice(DVD profile)
+        {
+            var result = profile.SRP.CheckValue();
+
+            return result;
+        }
+
+        public override Item Clone()
+        {
+            return new HasSRPPriceItem()
+            {
+                Choice = Choice,
+            };
+        }
+    }
+
+    partial class HasSRPCurrencyItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(p => HasSRPCurrency(p) == Choice);
+
+            return result;
+        }
+
+        private static bool HasSRPCurrency(DVD profile)
+        {
+            var result = profile.SRP.HasCurrency();
+
+            return result;
+        }
+
+        public override Item Clone()
+        {
+            return new HasSRPCurrencyItem()
+            {
+                Choice = Choice,
+            };
+        }
+    }
+
+    partial class HasEasterEggsItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(p => HasEasterEggs(p) == Choice);
+
+            return result;
+        }
+
+        private static bool HasEasterEggs(DVD profile)
+        {
+            var result = !string.IsNullOrWhiteSpace(profile.EasterEggs);
+
+            return result;
+        }
+
+        public override Item Clone()
+        {
+            return new HasEasterEggsItem()
+            {
+                Choice = Choice,
+            };
+        }
+    }
+
+    partial class HasMovieReviewItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(p => HasMovieReview(p) == Choice);
+
+            return result;
+        }
+
+        private static bool HasMovieReview(DVD profile)
+        {
+            var result = profile.Review != null
+                && profile.Review.Film > 0;
+
+            return result;
+        }
+
+
+        public override Item Clone()
+        {
+            return new HasMovieReviewItem()
+            {
+                Choice = Choice,
+            };
+        }
+    }
+
+    partial class HasDVDReviewItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(p => HasDVDReview(p) == Choice);
+
+            return result;
+        }
+
+        private static bool HasDVDReview(DVD profile)
+        {
+            var result = profile.Review != null
+                && profile.Review.Video > 0;
+
+            return result;
+        }
+
+        public override Item Clone()
+        {
+            return new HasDVDReviewItem()
+            {
+                Choice = Choice,
             };
         }
     }

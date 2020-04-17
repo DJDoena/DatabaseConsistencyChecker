@@ -7,21 +7,21 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 {
     internal static class FilterHelper
     {
-        internal static IEnumerable<DVD> FilterNullProfiles(this IEnumerable<DVD> profiles)
+        internal static IEnumerable<DVD> FilterNull(this IEnumerable<DVD> profiles)
         {
             var result = profiles?.Where(p => p != null) ?? Enumerable.Empty<DVD>();
 
             return result;
         }
 
-        internal static bool CheckString(this string actual, string expected)
+        internal static bool IsExpected(this string actual, string expected)
         {
             var result = actual?.Equals(expected, StringComparison.CurrentCultureIgnoreCase) == true;
 
             return result;
         }
 
-        internal static bool CheckTagName(this IEnumerable<Tag> tags, string expected)
+        internal static bool HasTagName(this IEnumerable<Tag> tags, string expected)
         {
             if (tags == null)
             {
@@ -30,7 +30,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
             else
             {
                 var filtered = tags.Where(t => t != null
-                    && (t.Name.CheckString(expected) || t.FullName.CheckString(expected)));
+                    && (t.Name.IsExpected(expected) || t.FullName.IsExpected(expected)));
 
                 var result = filtered.Any();
 
@@ -38,7 +38,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
             }
         }
 
-        internal static bool CheckEvents(this IEnumerable<Event> events, string eventType, string userFirstName, string userLastName)
+        internal static bool HasEvent(this IEnumerable<Event> events, string eventType, string userFirstName, string userLastName)
         {
             if (events == null)
             {
@@ -52,7 +52,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 
                 if (!string.IsNullOrWhiteSpace(userFirstName))
                 {
-                    filtered = filtered.Where(e => e.User.FirstName.CheckString(userFirstName));
+                    filtered = filtered.Where(e => e.User.FirstName.IsExpected(userFirstName));
                 }
                 else
                 {
@@ -61,7 +61,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 
                 if (!string.IsNullOrWhiteSpace(userLastName))
                 {
-                    filtered = filtered.Where(e => e.User.LastName.CheckString(userLastName));
+                    filtered = filtered.Where(e => e.User.LastName.IsExpected(userLastName));
                 }
                 else
                 {
@@ -72,6 +72,31 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 
                 return result;
             }
+        }
+
+        internal static bool CheckValue(this Price price)
+        {
+            var result = price != null
+                && price.Value > 0;
+
+            return result;
+        }
+
+        internal static bool HasCurrency(this Price price)
+        {
+            var result = price != null
+                && !string.IsNullOrWhiteSpace(price.DenominationType);
+
+            return result;
+        }
+
+        internal static bool IsCurrency(this Price price, string value)
+        {
+            var result = price != null
+                && (price.DenominationType.IsExpected(value)
+                    || price.DenominationDesc.IsExpected(value));
+
+            return result;
         }
     }
 }

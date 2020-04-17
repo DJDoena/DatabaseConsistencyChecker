@@ -169,7 +169,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         internal static bool IsGenreSet(DVD profile, string value)
         {
             var result = profile.GenreList != null
-                && profile.GenreList.Any(g => g.CheckString(value));
+                && profile.GenreList.Any(g => g.IsExpected(value));
 
             return result;
         }
@@ -212,7 +212,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         internal static bool IsTagSet(DVD profile, string value)
         {
-            var result = profile.TagList.CheckTagName(value);
+            var result = profile.TagList.HasTagName(value);
 
             return result;
         }
@@ -361,7 +361,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         internal static bool IsCustomMediaTypeSet(DVD profile, string value)
         {
             var result = profile.MediaTypes != null
-                && profile.MediaTypes.CustomMediaType.CheckString(value);
+                && profile.MediaTypes.CustomMediaType.IsExpected(value);
 
             return result;
         }
@@ -431,7 +431,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         internal static bool IsCollectionType(DVD profile, string value)
         {
             var result = profile.CollectionType != null
-                && profile.CollectionType.Value.CheckString(value);
+                && profile.CollectionType.Value.IsExpected(value);
 
             return result;
         }
@@ -753,7 +753,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         private bool HasEvent(DVD profile)
         {
-            var result = profile.EventList.CheckEvents(EventType.ToString(), UserFirstName, UserLastName);
+            var result = profile.EventList.HasEvent(EventType.ToString(), UserFirstName, UserLastName);
 
             return result;
         }
@@ -1037,7 +1037,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         private bool RatingEqualTo(DVD profile)
         {
-            var result = profile.Rating.CheckString(Value);
+            var result = profile.Rating.IsExpected(Value);
 
             return result;
         }
@@ -1063,7 +1063,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         private bool RatingSystemEqualTo(DVD profile)
         {
-            var result = profile.RatingSystem.CheckString(Value);
+            var result = profile.RatingSystem.IsExpected(Value);
 
             return result;
         }
@@ -1284,7 +1284,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         private bool HasAudioTrack(DVD profile)
         {
             var result = profile.AudioList != null
-                && profile.AudioList.Any(a => a.Content.CheckString(Value));
+                && profile.AudioList.Any(a => a.Content.IsExpected(Value));
 
             return result;
         }
@@ -1337,7 +1337,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         private bool HasSubtitle(DVD profile)
         {
             var result = profile.SubtitleList != null
-                && profile.SubtitleList.Any(s => s.CheckString(Value));
+                && profile.SubtitleList.Any(s => s.IsExpected(Value));
 
             return result;
         }
@@ -1493,8 +1493,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         private static bool HasPurchasePrice(DVD profile)
         {
-            var result = profile.PurchaseInfo?.Price != null
-                && profile.PurchaseInfo.Price.Value > 0;
+            var result = profile.PurchaseInfo != null
+                && profile.PurchaseInfo.Price.CheckValue();
 
             return result;
         }
@@ -1546,8 +1546,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         private bool HasPurchaseCurrency(DVD profile)
         {
             var result = profile.PurchaseInfo?.Price != null
-                && (profile.PurchaseInfo.Price.DenominationType.CheckString(Value)
-                    || profile.PurchaseInfo.Price.DenominationDesc.CheckString(Value));
+                && (profile.PurchaseInfo.Price.DenominationType.IsExpected(Value)
+                    || profile.PurchaseInfo.Price.DenominationDesc.IsExpected(Value));
 
             return result;
         }
@@ -1574,7 +1574,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         private bool IsPurchasePlace(DVD profile)
         {
             var result = profile.PurchaseInfo != null
-                && profile.PurchaseInfo.Place.CheckString(Value);
+                && profile.PurchaseInfo.Place.IsExpected(Value);
 
             return result;
         }

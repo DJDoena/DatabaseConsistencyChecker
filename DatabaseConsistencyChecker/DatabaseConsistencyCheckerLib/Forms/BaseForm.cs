@@ -1,6 +1,7 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Windows.Forms;
-using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
@@ -202,6 +203,20 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             DialogResult = DialogResult.Cancel;
 
             Close();
+        }
+
+        protected static Config.Item CreateInstance(ComboBox filterTypeComboBox)
+        {
+            var type = (Type)filterTypeComboBox.SelectedValue;
+
+            var newItem = (Config.Item)Activator.CreateInstance(type);
+
+            if (newItem is Config.ValueItem valueItem)
+            {
+                valueItem.Choice = true;
+            }
+
+            return newItem;
         }
     }
 }

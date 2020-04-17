@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
@@ -76,9 +76,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         protected Config.Item[] AddFilter(Config.Item[] items, ComboBox filterTypeComboBox, ListView filterListView)
         {
-            var type = (Type)filterTypeComboBox.SelectedValue;
-
-            var newItem = (Config.Item)Activator.CreateInstance(type);
+            var newItem = CreateInstance(filterTypeComboBox);
 
             if (OpenFilterWindow(newItem))
             {

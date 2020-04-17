@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Linq;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
-using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 {

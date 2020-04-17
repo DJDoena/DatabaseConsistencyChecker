@@ -159,7 +159,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_0
         internal static bool IsGenreSet(DVD profile, string value)
         {
             var result = profile.GenreList != null
-                && profile.GenreList.Any(g => g.CheckString(value));
+                && profile.GenreList.Any(g => g.IsExpected(value));
 
             return result;
         }
@@ -202,7 +202,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_0
 
         internal static bool IsTagSet(DVD profile, string value)
         {
-            var result = profile.TagList.CheckTagName(value);
+            var result = profile.TagList.HasTagName(value);
 
             return result;
         }
@@ -351,7 +351,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_0
         internal static bool IsCustomMediaTypeSet(DVD profile, string value)
         {
             var result = profile.MediaTypes != null
-                && profile.MediaTypes.CustomMediaType.CheckString(value);
+                && profile.MediaTypes.CustomMediaType.IsExpected(value);
 
             return result;
         }
@@ -421,7 +421,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_0
         internal static bool IsCollectionType(DVD profile, string value)
         {
             var result = profile.CollectionType != null
-                && profile.CollectionType.Value.CheckString(value);
+                && profile.CollectionType.Value.IsExpected(value);
 
             return result;
         }
@@ -743,7 +743,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_0
 
         private bool HasEvent(DVD profile)
         {
-            var result = profile.EventList.CheckEvents(EventType.ToString(), UserFirstName, UserLastName);
+            var result = profile.EventList.HasEvent(EventType.ToString(), UserFirstName, UserLastName);
 
             return result;
         }

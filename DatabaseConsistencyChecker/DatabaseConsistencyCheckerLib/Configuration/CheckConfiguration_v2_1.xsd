@@ -381,4 +381,46 @@
     </xs:complexContent>
   </xs:complexType>
 
+  <xs:complexType name="HasCaseTypeItem">
+    <xs:complexContent>
+      <xs:extension base="ValueItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="IsCaseTypeItem">
+    <xs:complexContent>
+      <xs:extension base="StringItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasSRPPriceItem">
+    <xs:complexContent>
+      <xs:extension base="ValueItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasSRPCurrencyItem">
+    <xs:complexContent>
+      <xs:extension base="ValueItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasEasterEggsItem">
+    <xs:complexContent>
+      <xs:extension base="ValueItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasMovieReviewItem">
+    <xs:complexContent>
+      <xs:extension base="ValueItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasDVDReviewItem">
+    <xs:complexContent>
+      <xs:extension base="ValueItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
 </xs:schema>

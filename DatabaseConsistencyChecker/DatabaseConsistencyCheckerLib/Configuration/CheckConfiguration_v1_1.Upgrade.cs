@@ -49,7 +49,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override v2_0.Item Upgrade()
         {
-            return new v2_0.CountAsEqualToItem()
+            return new v2_0.IsCountAsItem()
             {
                 Choice = true,
                 Value = Value,
@@ -61,7 +61,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override v2_0.Item Upgrade()
         {
-            return new v2_0.CountAsEqualToItem()
+            return new v2_0.IsCountAsItem()
             {
                 Choice = false,
                 Value = Value,
@@ -426,7 +426,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override v2_0.Item Upgrade()
         {
-            return new v2_0.HasSmartPhoneExclusionItem()
+            return new v2_0.HasSmartphoneExclusionItem()
             {
                 Choice = Value,
             };
@@ -492,7 +492,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override v2_0.Item Upgrade()
         {
-            return new v2_0.RatingEqualToItem()
+            return new v2_0.IsRatingItem()
             {
                 Choice = Choice,
                 Value = Value,
@@ -504,7 +504,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override v2_0.Item Upgrade()
         {
-            return new v2_0.RatingSystemEqualToItem()
+            return new v2_0.IsRatingSystemItem()
             {
                 Choice = Choice,
                 Value = Value,

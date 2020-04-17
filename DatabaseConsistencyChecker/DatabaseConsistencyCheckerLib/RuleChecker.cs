@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
-using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 {
@@ -17,7 +17,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
                 throw new ArgumentNullException(nameof(collection));
             }
 
-            _profiles = collection.DVDList.FilterNullProfiles();
+            _profiles = collection.DVDList.FilterNull();
         }
 
         public RuleChecker(IEnumerable<DVD> profiles)
@@ -27,7 +27,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
                 throw new ArgumentNullException(nameof(profiles));
             }
 
-            _profiles = profiles.FilterNullProfiles();
+            _profiles = profiles.FilterNull();
         }
 
         public IEnumerable<CheckResult> Check(Config.RuleItem rule)

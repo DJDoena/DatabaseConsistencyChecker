@@ -65,7 +65,7 @@
       <Link>Properties\DatabaseConsistencyChecker.AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="ConfigurationItemHelper.cs" />
-    <Compile Include="ConfigurationLoader.cs" />
+    <Compile Include="ConfigurationHelper.cs" />
     <Compile Include="Configuration\CheckConfiguration_v1_0.cs">
       <DependentUpon>CheckConfiguration_v1_0.xsd</DependentUpon>
     </Compile>
@@ -77,6 +77,15 @@
     </Compile>
     <Compile Include="Configuration\CheckConfiguration_v1_1.NotGenerated.cs">
       <DependentUpon>CheckConfiguration_v1_1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\CheckConfiguration_v1_1.Upgrade.cs">
+      <DependentUpon>CheckConfiguration_v1_1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\CheckConfiguration_v2_0.cs">
+      <DependentUpon>CheckConfiguration_v2_0.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\CheckConfiguration_v2_0.NotGenerated.cs">
+      <DependentUpon>CheckConfiguration_v2_0.xsd</DependentUpon>
     </Compile>
     <Compile Include="CheckResult.cs" />
     <Compile Include="FilterHelper.cs" />
@@ -128,11 +137,11 @@
     <Compile Include="Forms\EventFilterForm.Designer.cs">
       <DependentUpon>EventFilterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\IntFilterForm.cs">
+    <Compile Include="Forms\NumericFilterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\IntFilterForm.Designer.cs">
-      <DependentUpon>IntFilterForm.cs</DependentUpon>
+    <Compile Include="Forms\NumericFilterForm.Designer.cs">
+      <DependentUpon>NumericFilterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\MultiLogicFilterForm.cs">
       <SubType>Form</SubType>
@@ -143,23 +152,11 @@
     <Compile Include="Forms\ConfigurationForm.Designer.cs">
       <DependentUpon>ConfigurationForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ChoiceStringFilterForm.cs">
+    <Compile Include="Forms\TextFilterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ChoiceStringFilterForm.Designer.cs">
-      <DependentUpon>ChoiceStringFilterForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\StringFilterForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\StringFilterForm.Designer.cs">
-      <DependentUpon>StringFilterForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\BooleanFilterForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\BooleanFilterForm.Designer.cs">
-      <DependentUpon>BooleanFilterForm.cs</DependentUpon>
+    <Compile Include="Forms\TextFilterForm.Designer.cs">
+      <DependentUpon>TextFilterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FilterTypeComboBoxItem.cs" />
     <Compile Include="Forms\RuleForm.cs">
@@ -188,6 +185,9 @@
     <None Include="Configuration\CheckConfiguration_v1_1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Configuration\CheckConfiguration_v2_0.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -210,9 +210,6 @@
     <EmbeddedResource Include="Forms\BaseForm.resx">
       <DependentUpon>BaseForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\BooleanFilterForm.resx">
-      <DependentUpon>BooleanFilterForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\EventFilterForm.resx">
       <DependentUpon>EventFilterForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -222,8 +219,8 @@
     <EmbeddedResource Include="Forms\ExceptFilterForm.resx">
       <DependentUpon>ExceptFilterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\IntFilterForm.resx">
-      <DependentUpon>IntFilterForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\NumericFilterForm.resx">
+      <DependentUpon>NumericFilterForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConfigurationForm.resx">
       <DependentUpon>ConfigurationForm.cs</DependentUpon>
@@ -236,11 +233,8 @@
       <LastGenOutput>ConfigurationItemResources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ChoiceStringFilterForm.resx">
-      <DependentUpon>ChoiceStringFilterForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\StringFilterForm.resx">
-      <DependentUpon>StringFilterForm.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\TextFilterForm.resx">
+      <DependentUpon>TextFilterForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

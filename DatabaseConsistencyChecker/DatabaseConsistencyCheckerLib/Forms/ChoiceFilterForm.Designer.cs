@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BooleanFilterForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ChoiceFilterForm));
             this.ValueCheckBox = new System.Windows.Forms.CheckBox();
             this.ValueLabel = new System.Windows.Forms.Label();
             this.FilterDescriptionLabel = new System.Windows.Forms.Label();
@@ -62,17 +62,17 @@
             this.FilterDescriptionLabel.TabIndex = 0;
             this.FilterDescriptionLabel.Text = "Filter Description";
             // 
-            // BooleanFilterForm
+            // ChoiceFilterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(384, 161);
+            this.ClientSize = new System.Drawing.Size(734, 161);
             this.Controls.Add(this.ValueLabel);
             this.Controls.Add(this.FilterDescriptionLabel);
             this.Controls.Add(this.ValueCheckBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(400, 200);
-            this.Name = "BooleanFilterForm";
+            this.MinimumSize = new System.Drawing.Size(750, 200);
+            this.Name = "ChoiceFilterForm";
             this.Text = "True/False Filter";
             this.Controls.SetChildIndex(this.ValueCheckBox, 0);
             this.Controls.SetChildIndex(this.FilterDescriptionLabel, 0);

@@ -3,10 +3,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Xml;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
-using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
@@ -187,7 +186,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         private void TryLoadConfiguration(string fileName)
         {
-            _configuration = ConfigurationLoader.Load(fileName);
+            _configuration = ConfigurationHelper.Load(fileName);
 
             ConfigurationFileTextBox.Text = fileName;
 
@@ -216,15 +215,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         private void SaveConfiguration(Config.CheckConfiguration configuration, string fileName)
         {
-            using (var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
-            {
-                using (var xtw = new XmlTextWriter(fs, Encoding.UTF8))
-                {
-                    xtw.Formatting = Formatting.Indented;
-
-                    DVDProfilerSerializer<Config.CheckConfiguration>.Serialize(xtw, configuration);
-                }
-            }
+            ConfigurationHelper.Save(configuration, fileName);
 
             _configuration = configuration;
 

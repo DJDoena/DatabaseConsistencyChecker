@@ -3,9 +3,9 @@ using System.Diagnostics;
 using System.Linq;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
 
-namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
+namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0
 {
-    //xsd.exe CheckConfiguration_v1_1.xsd /c /l:cs /f /n:DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration.v1_1
+    //xsd.exe CheckConfiguration_v2_0.xsd /c /l:cs /f /n:DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration.v2_0
 
     partial class CheckConfiguration
     {
@@ -50,27 +50,17 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         public override string ToString() => string.Empty;
     }
 
-    partial class BooleanValueItem
-    {
-        public override string ToString() => Value.ToString();
-    }
-
-    partial class IntValueItem
-    {
-        public override string ToString() => Value.ToString();
-    }
-
-    partial class StringValueItem
-    {
-        public override string ToString() => Value;
-    }
-
-    partial class ChoiceItem
+    partial class ValueItem
     {
         public override string ToString() => Choice.ToString();
     }
 
-    partial class ChoiceStringItem
+    partial class StringItem
+    {
+        public override string ToString() => $"{Choice}: {Value}";
+    }
+
+    partial class IntItem
     {
         public override string ToString() => $"{Choice}: {Value}";
     }
@@ -92,14 +82,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => CountAsEqualTo(p, Value));
+            var result = profiles.Where(p => CountAsEqualTo(p) == Choice);
 
             return result;
         }
 
-        internal static bool CountAsEqualTo(DVD profile, int value)
+        private bool CountAsEqualTo(DVD profile)
         {
-            var result = profile.CountAs == value;
+            var result = profile.CountAs == Value;
 
             return result;
         }
@@ -108,24 +98,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new CountAsEqualToItem()
             {
-                Value = Value,
-            };
-        }
-    }
-
-    partial class CountAsNotEqualToItem
-    {
-        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
-        {
-            var result = profiles.Where(p => !CountAsEqualToItem.CountAsEqualTo(p, Value));
-
-            return result;
-        }
-
-        public override Item Clone()
-        {
-            return new CountAsNotEqualToItem()
-            {
+                Choice = Choice,
                 Value = Value,
             };
         }
@@ -135,7 +108,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => IsPartOfOwnedCollection(p) == Value);
+            var result = profiles.Where(p => IsPartOfOwnedCollection(p) == Choice);
 
             return result;
         }
@@ -152,104 +125,69 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new IsPartOfOwnedCollectionItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
 
-    partial class MustContainGenreItem
+    partial class HasGenreItem
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => IsGenreSet(p, Value));
+            var result = profiles.Where(p => HasGenre(p) == Choice);
 
             return result;
         }
 
-        internal static bool IsGenreSet(DVD profile, string value)
+        private bool HasGenre(DVD profile)
         {
             var result = profile.GenreList != null
-                && profile.GenreList.Any(g => g.CheckString(value));
+                && profile.GenreList.Any(g => g.CheckString(Value));
 
             return result;
         }
 
         public override Item Clone()
         {
-            return new MustContainGenreItem()
+            return new HasGenreItem()
             {
+                Choice = Choice,
                 Value = Value,
             };
         }
     }
 
-    partial class MustNotContainGenreItem
+    partial class HasTagItem
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => !MustContainGenreItem.IsGenreSet(p, Value));
+            var result = profiles.Where(p => HasTag(p) == Choice);
+
+            return result;
+        }
+
+        private bool HasTag(DVD profile)
+        {
+            var result = profile.TagList.CheckTagName(Value);
 
             return result;
         }
 
         public override Item Clone()
         {
-            return new MustNotContainGenreItem()
+            return new HasTagItem()
             {
+                Choice = Choice,
                 Value = Value,
             };
         }
     }
-
-    partial class MustContainTagItem
-    {
-        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
-        {
-            var result = profiles.Where(p => IsTagSet(p, Value));
-
-            return result;
-        }
-
-        internal static bool IsTagSet(DVD profile, string value)
-        {
-            var result = profile.TagList.CheckTagName(value);
-
-            return result;
-        }
-
-        public override Item Clone()
-        {
-            return new MustContainTagItem()
-            {
-                Value = Value,
-            };
-        }
-    }
-
-    partial class MustNotContainTagItem
-    {
-        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
-        {
-            var result = profiles.Where(p => !MustContainTagItem.IsTagSet(p, Value));
-
-            return result;
-        }
-
-        public override Item Clone()
-        {
-            return new MustNotContainTagItem()
-            {
-                Value = Value,
-            };
-        }
-    }
-
 
     partial class IsMediaTypeDVDItem
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => IsMediaTypeDVD(p) == Value);
+            var result = profiles.Where(p => IsMediaTypeDVD(p) == Choice);
 
             return result;
         }
@@ -266,7 +204,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new IsMediaTypeDVDItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
@@ -275,7 +213,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => IsMediaTypeBluRay(p) == Value);
+            var result = profiles.Where(p => IsMediaTypeBluRay(p) == Choice);
 
             return result;
         }
@@ -292,7 +230,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new IsMediaTypeBluRayItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
@@ -301,7 +239,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => IsMediaTypeUltraHD(p) == Value);
+            var result = profiles.Where(p => IsMediaTypeUltraHD(p) == Choice);
 
             return result;
         }
@@ -318,7 +256,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new IsMediaTypeUltraHDItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
@@ -327,7 +265,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => IsMediaTypeHDDVD(p) == Value);
+            var result = profiles.Where(p => IsMediaTypeHDDVD(p) == Choice);
 
             return result;
         }
@@ -344,7 +282,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new IsMediaTypeHDDVDItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
@@ -353,15 +291,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => IsCustomMediaTypeSet(p, Value));
+            var result = profiles.Where(p => IsCustomMediaType(p) == Choice);
 
             return result;
         }
 
-        internal static bool IsCustomMediaTypeSet(DVD profile, string value)
+        private bool IsCustomMediaType(DVD profile)
         {
             var result = profile.MediaTypes != null
-                && profile.MediaTypes.CustomMediaType.CheckString(value);
+                && profile.MediaTypes.CustomMediaType.CheckString(Value);
 
             return result;
         }
@@ -370,24 +308,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new IsCustomMediaTypeItem()
             {
-                Value = Value,
-            };
-        }
-    }
-
-    partial class IsNotCustomMediaTypeItem
-    {
-        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
-        {
-            var result = profiles.Where(p => !IsCustomMediaTypeItem.IsCustomMediaTypeSet(p, Value));
-
-            return result;
-        }
-
-        public override Item Clone()
-        {
-            return new IsNotCustomMediaTypeItem()
-            {
+                Choice = Choice,
                 Value = Value,
             };
         }
@@ -397,7 +318,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => HasCustomeMediaType(p) == Value);
+            var result = profiles.Where(p => HasCustomeMediaType(p) == Choice);
 
             return result;
         }
@@ -414,7 +335,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new HasCustomMediaTypeItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
@@ -423,15 +344,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => IsCollectionType(p, Value));
+            var result = profiles.Where(p => IsCollectionType(p) == Choice);
 
             return result;
         }
 
-        internal static bool IsCollectionType(DVD profile, string value)
+        private bool IsCollectionType(DVD profile)
         {
             var result = profile.CollectionType != null
-                && profile.CollectionType.Value.CheckString(value);
+                && profile.CollectionType.Value.CheckString(Value);
 
             return result;
         }
@@ -440,39 +361,22 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new IsCollectionTypeItem()
             {
+                Choice = Choice,
                 Value = Value,
             };
         }
     }
 
-    partial class IsNotCollectionTypeItem
+    partial class HasCollectionNumberItem
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => !IsCollectionTypeItem.IsCollectionType(p, Value));
+            var result = profiles.Where(p => HasCollectionNumber(p) == Choice);
 
             return result;
         }
 
-        public override Item Clone()
-        {
-            return new IsNotCollectionTypeItem()
-            {
-                Value = Value,
-            };
-        }
-    }
-
-    partial class IsCollectionNumberSetItem
-    {
-        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
-        {
-            var result = profiles.Where(p => IsCollectionNumberSet(p) == Value);
-
-            return result;
-        }
-
-        private static bool IsCollectionNumberSet(DVD profile)
+        private static bool HasCollectionNumber(DVD profile)
         {
             var result = !string.IsNullOrWhiteSpace(profile.CollectionNumber);
 
@@ -481,23 +385,23 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         public override Item Clone()
         {
-            return new IsCollectionNumberSetItem()
+            return new HasCollectionNumberItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
 
-    partial class IsRunningTimeSetItem
+    partial class HasRunningTimeItem
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => IsRunningTimeSet(p) == Value);
+            var result = profiles.Where(p => HasRunningTime(p) == Choice);
 
             return result;
         }
 
-        private static bool IsRunningTimeSet(DVD profile)
+        private static bool HasRunningTime(DVD profile)
         {
             var result = profile.RunningTime > 0;
 
@@ -506,18 +410,18 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         public override Item Clone()
         {
-            return new IsRunningTimeSetItem()
+            return new HasRunningTimeItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
 
-    partial class MustContainGenresItem
+    partial class HasGenresItem
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => HasGenres(p));
+            var result = profiles.Where(p => HasGenres(p) == Choice);
 
             return result;
         }
@@ -532,30 +436,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         public override Item Clone()
         {
-            return new MustContainGenresItem();
+            return new HasGenresItem();
         }
     }
 
-    partial class MustNotContainGenresItem
+    partial class HasStudiosItem
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => !MustContainGenresItem.HasGenres(p));
-
-            return result;
-        }
-
-        public override Item Clone()
-        {
-            return new MustNotContainGenresItem();
-        }
-    }
-
-    partial class MustContainStudiosItem
-    {
-        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
-        {
-            var result = profiles.Where(p => HasStudios(p));
+            var result = profiles.Where(p => HasStudios(p) == Choice);
 
             return result;
         }
@@ -570,30 +459,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         public override Item Clone()
         {
-            return new MustContainStudiosItem();
+            return new HasStudiosItem();
         }
     }
 
-    partial class MustNotContainStudiosItem
+    partial class HasMediaCompaniesItem
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => !MustContainStudiosItem.HasStudios(p));
-
-            return result;
-        }
-
-        public override Item Clone()
-        {
-            return new MustNotContainStudiosItem();
-        }
-    }
-
-    partial class MustContainMediaCompaniesItem
-    {
-        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
-        {
-            var result = profiles.Where(p => HasMediaCompanies(p));
+            var result = profiles.Where(p => HasMediaCompanies(p) == Choice);
 
             return result;
         }
@@ -608,30 +482,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         public override Item Clone()
         {
-            return new MustContainMediaCompaniesItem();
+            return new HasMediaCompaniesItem();
         }
     }
 
-    partial class MustNotContainMediaCompaniesItem
+    partial class HasCountryOfOriginsItem
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => !MustContainMediaCompaniesItem.HasMediaCompanies(p));
-
-            return result;
-        }
-
-        public override Item Clone()
-        {
-            return new MustNotContainMediaCompaniesItem();
-        }
-    }
-
-    partial class MustContainCountryOfOriginsItem
-    {
-        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
-        {
-            var result = profiles.Where(p => HasCountryOfOrigins(p));
+            var result = profiles.Where(p => HasCountryOfOrigins(p) == Choice);
 
             return result;
         }
@@ -646,30 +505,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         public override Item Clone()
         {
-            return new MustContainCountryOfOriginsItem();
+            return new HasCountryOfOriginsItem();
         }
     }
 
-    partial class MustNotContainCountryOfOriginsItem
+    partial class HasProductionYearItem
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => !MustContainCountryOfOriginsItem.HasCountryOfOrigins(p));
-
-            return result;
-        }
-
-        public override Item Clone()
-        {
-            return new MustNotContainCountryOfOriginsItem();
-        }
-    }
-
-    partial class IsProductionYearSet
-    {
-        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
-        {
-            var result = profiles.Where(p => IsProductionYearSetCheck(p) == Value);
+            var result = profiles.Where(p => IsProductionYearSetCheck(p) == Choice);
 
             return result;
         }
@@ -683,9 +527,9 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         public override Item Clone()
         {
-            return new IsProductionYearSet()
+            return new HasProductionYearItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
@@ -694,7 +538,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => HasCast(p) == Value);
+            var result = profiles.Where(p => HasCast(p) == Choice);
 
             return result;
         }
@@ -711,7 +555,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new HasCastItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
@@ -720,7 +564,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => HasCrew(p) == Value);
+            var result = profiles.Where(p => HasCrew(p) == Choice);
 
             return result;
         }
@@ -737,7 +581,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new HasCrewItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
@@ -746,7 +590,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => HasEvent(p) == Value);
+            var result = profiles.Where(p => HasEvent(p) == Choice);
 
             return result;
         }
@@ -762,7 +606,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new HasEventItem()
             {
-                Value = Value,
+                Choice = Choice,
                 EventType = EventType,
                 UserFirstName = UserFirstName,
                 UserLastName = UserLastName,
@@ -776,7 +620,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => HasOnlinePublicExclusion(p) == Value);
+            var result = profiles.Where(p => HasOnlinePublicExclusion(p) == Choice);
 
             return result;
         }
@@ -794,7 +638,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new HasOnlinePublicExclusionItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
@@ -803,7 +647,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => HasOnlinePrivateExclusion(p) == Value);
+            var result = profiles.Where(p => HasOnlinePrivateExclusion(p) == Choice);
 
             return result;
         }
@@ -821,7 +665,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new HasOnlinePrivateExclusionItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
@@ -830,7 +674,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => HasPDAExclusion(p) == Value);
+            var result = profiles.Where(p => HasPDAExclusion(p) == Choice);
 
             return result;
         }
@@ -848,7 +692,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new HasPDAExclusionItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
@@ -857,7 +701,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
-            var result = profiles.Where(p => HasSmartPhoneExclusion(p) == Value);
+            var result = profiles.Where(p => HasSmartPhoneExclusion(p) == Choice);
 
             return result;
         }
@@ -875,7 +719,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         {
             return new HasSmartPhoneExclusionItem()
             {
-                Value = Value,
+                Choice = Choice,
             };
         }
     }
@@ -1026,7 +870,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         }
     }
 
-    partial class HasRatingEqualToItem
+    partial class RatingEqualToItem
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
@@ -1044,7 +888,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         public override Item Clone()
         {
-            return new HasRatingEqualToItem()
+            return new RatingEqualToItem()
             {
                 Choice = Choice,
                 Value = Value,
@@ -1052,7 +896,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
         }
     }
 
-    partial class HasRatingSystemEqualToItem
+    partial class RatingSystemEqualToItem
     {
         public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
         {
@@ -1070,7 +914,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
         public override Item Clone()
         {
-            return new HasRatingSystemEqualToItem()
+            return new RatingSystemEqualToItem()
             {
                 Choice = Choice,
                 Value = Value,
@@ -1588,4 +1432,5 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
             };
         }
     }
+
 }

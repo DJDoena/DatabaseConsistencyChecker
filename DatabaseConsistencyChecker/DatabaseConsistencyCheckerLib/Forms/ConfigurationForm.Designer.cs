@@ -69,7 +69,7 @@
             this.RuleListView.HideSelection = false;
             this.RuleListView.Location = new System.Drawing.Point(81, 49);
             this.RuleListView.Name = "RuleListView";
-            this.RuleListView.Size = new System.Drawing.Size(418, 283);
+            this.RuleListView.Size = new System.Drawing.Size(560, 283);
             this.RuleListView.TabIndex = 3;
             this.RuleListView.UseCompatibleStateImageBehavior = false;
             this.RuleListView.View = System.Windows.Forms.View.Details;
@@ -83,7 +83,7 @@
             // RemoveRuleButton
             // 
             this.RemoveRuleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveRuleButton.Location = new System.Drawing.Point(505, 107);
+            this.RemoveRuleButton.Location = new System.Drawing.Point(647, 107);
             this.RemoveRuleButton.Name = "RemoveRuleButton";
             this.RemoveRuleButton.Size = new System.Drawing.Size(75, 23);
             this.RemoveRuleButton.TabIndex = 6;
@@ -94,7 +94,7 @@
             // EditRuleButton
             // 
             this.EditRuleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.EditRuleButton.Location = new System.Drawing.Point(505, 78);
+            this.EditRuleButton.Location = new System.Drawing.Point(647, 78);
             this.EditRuleButton.Name = "EditRuleButton";
             this.EditRuleButton.Size = new System.Drawing.Size(75, 23);
             this.EditRuleButton.TabIndex = 5;
@@ -105,7 +105,7 @@
             // AddRuleButton
             // 
             this.AddRuleButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddRuleButton.Location = new System.Drawing.Point(505, 49);
+            this.AddRuleButton.Location = new System.Drawing.Point(647, 49);
             this.AddRuleButton.Name = "AddRuleButton";
             this.AddRuleButton.Size = new System.Drawing.Size(75, 23);
             this.AddRuleButton.TabIndex = 4;
@@ -126,7 +126,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 386);
+            this.ClientSize = new System.Drawing.Size(734, 386);
             this.Controls.Add(this.CheckLabel);
             this.Controls.Add(this.RemoveRuleButton);
             this.Controls.Add(this.EditRuleButton);
@@ -135,7 +135,7 @@
             this.Controls.Add(this.InfoLabel2);
             this.Controls.Add(this.InfoLabel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(600, 425);
+            this.MinimumSize = new System.Drawing.Size(750, 425);
             this.Name = "ConfigurationForm";
             this.Text = "Configuration";
             this.Controls.SetChildIndex(this.InfoLabel1, 0);

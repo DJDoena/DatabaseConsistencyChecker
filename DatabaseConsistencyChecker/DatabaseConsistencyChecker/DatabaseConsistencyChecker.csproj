@@ -71,7 +71,9 @@
     <Compile Include="Properties\DatabaseConsistencyChecker.AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="DJDSOFT.ICO" />
+    <EmbeddedResource Include="DJDSOFT.ICO">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="SampleConfiguration.xml">

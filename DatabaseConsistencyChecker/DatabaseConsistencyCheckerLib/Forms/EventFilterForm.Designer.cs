@@ -55,7 +55,7 @@
             this.EventTypeComboBox.FormattingEnabled = true;
             this.EventTypeComboBox.Location = new System.Drawing.Point(95, 25);
             this.EventTypeComboBox.Name = "EventTypeComboBox";
-            this.EventTypeComboBox.Size = new System.Drawing.Size(477, 21);
+            this.EventTypeComboBox.Size = new System.Drawing.Size(627, 21);
             this.EventTypeComboBox.TabIndex = 2;
             this.EventTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.OnEventTypeComboBoxSelectedIndexChanged);
             // 
@@ -74,7 +74,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UserFirstNameTextBox.Location = new System.Drawing.Point(95, 52);
             this.UserFirstNameTextBox.Name = "UserFirstNameTextBox";
-            this.UserFirstNameTextBox.Size = new System.Drawing.Size(477, 20);
+            this.UserFirstNameTextBox.Size = new System.Drawing.Size(627, 20);
             this.UserFirstNameTextBox.TabIndex = 4;
             this.UserFirstNameTextBox.TextChanged += new System.EventHandler(this.OnUserFirstNameTextBoxTextChanged);
             // 
@@ -93,7 +93,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.UserLastNameTextBox.Location = new System.Drawing.Point(95, 78);
             this.UserLastNameTextBox.Name = "UserLastNameTextBox";
-            this.UserLastNameTextBox.Size = new System.Drawing.Size(477, 20);
+            this.UserLastNameTextBox.Size = new System.Drawing.Size(627, 20);
             this.UserLastNameTextBox.TabIndex = 6;
             this.UserLastNameTextBox.TextChanged += new System.EventHandler(this.OnUserLastNameTextBoxTextChanged);
             // 
@@ -110,7 +110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 161);
+            this.ClientSize = new System.Drawing.Size(734, 161);
             this.Controls.Add(this.UserLastNameTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.UserFirstNameTextBox);
@@ -119,7 +119,7 @@
             this.Controls.Add(this.EventTypeComboBox);
             this.Controls.Add(this.FilterDescriptionLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(600, 200);
+            this.MinimumSize = new System.Drawing.Size(750, 200);
             this.Name = "EventFilterForm";
             this.Text = "Event Filter";
             this.Controls.SetChildIndex(this.FilterDescriptionLabel, 0);

@@ -61,7 +61,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logic: Combine profiles with AND.
+        ///   Looks up a localized string similar to Logic: Combine filters/checks with AND.
         /// </summary>
         internal static string AndItem {
             get {
@@ -70,20 +70,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Count As: Must be equal to given value.
+        ///   Looks up a localized string similar to Count As: Must be equal to given value (true = must, false = must not).
         /// </summary>
         internal static string CountAsEqualToItem {
             get {
                 return ResourceManager.GetString("CountAsEqualToItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Count As: Must not be equal to given value.
-        /// </summary>
-        internal static string CountAsNotEqualToItem {
-            get {
-                return ResourceManager.GetString("CountAsNotEqualToItem", resourceCulture);
             }
         }
         
@@ -142,11 +133,29 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Collection Number: Must be set (true = must, false = must not).
+        /// </summary>
+        internal static string HasCollectionNumberItem {
+            get {
+                return ResourceManager.GetString("HasCollectionNumberItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Video Format: Any Color Format must be checked.
         /// </summary>
         internal static string HasColorFormatItem {
             get {
                 return ResourceManager.GetString("HasColorFormatItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Country of Origin: Must contain countries of origin (true = must, false = must not).
+        /// </summary>
+        internal static string HasCountryOfOriginsItem {
+            get {
+                return ResourceManager.GetString("HasCountryOfOriginsItem", resourceCulture);
             }
         }
         
@@ -205,6 +214,33 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Genre: Must contain given value (true = must, false = must not).
+        /// </summary>
+        internal static string HasGenreItem {
+            get {
+                return ResourceManager.GetString("HasGenreItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genre: Must contain genres (true = must, false = must not).
+        /// </summary>
+        internal static string HasGenresItem {
+            get {
+                return ResourceManager.GetString("HasGenresItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Media Company: Must contain media companies (true = must, false = must not).
+        /// </summary>
+        internal static string HasMediaCompaniesItem {
+            get {
+                return ResourceManager.GetString("HasMediaCompaniesItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exclusion: Must be excluded from online private listing (true = must, false = must not).
         /// </summary>
         internal static string HasOnlinePrivateExclusionItem {
@@ -237,6 +273,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         internal static string HasPDAExclusionItem {
             get {
                 return ResourceManager.GetString("HasPDAExclusionItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Production Year: Must be set (true = must, false = must not).
+        /// </summary>
+        internal static string HasProductionYearItem {
+            get {
+                return ResourceManager.GetString("HasProductionYearItem", resourceCulture);
             }
         }
         
@@ -277,29 +322,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rating: Must be equal to given value (true = must, false = must not).
-        /// </summary>
-        internal static string HasRatingEqualToItem {
-            get {
-                return ResourceManager.GetString("HasRatingEqualToItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Rating: Must be set (true = must, false = must not).
         /// </summary>
         internal static string HasRatingItem {
             get {
                 return ResourceManager.GetString("HasRatingItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Rating: Rating System must be equal to given value (true = must, false = must not).
-        /// </summary>
-        internal static string HasRatingSystemEqualToItem {
-            get {
-                return ResourceManager.GetString("HasRatingSystemEqualToItem", resourceCulture);
             }
         }
         
@@ -313,11 +340,29 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Running Time: Must be set (true = must, false = must not).
+        /// </summary>
+        internal static string HasRunningTimeItem {
+            get {
+                return ResourceManager.GetString("HasRunningTimeItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Exclusion: Must be excluded from DVD Profiler for iPhone / Android (true = must, false = must not).
         /// </summary>
         internal static string HasSmartPhoneExclusionItem {
             get {
                 return ResourceManager.GetString("HasSmartPhoneExclusionItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Studio: Must contain studios (true = must, false = must not).
+        /// </summary>
+        internal static string HasStudiosItem {
+            get {
+                return ResourceManager.GetString("HasStudiosItem", resourceCulture);
             }
         }
         
@@ -340,6 +385,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tag: Must contain given value (true = must, false = must not).
+        /// </summary>
+        internal static string HasTagItem {
+            get {
+                return ResourceManager.GetString("HasTagItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Video Format: Any Video Format must be checked.
         /// </summary>
         internal static string HasVideoFormatItem {
@@ -349,16 +403,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Collection Number: Must be set (true = must, false = must not).
-        /// </summary>
-        internal static string IsCollectionNumberSetItem {
-            get {
-                return ResourceManager.GetString("IsCollectionNumberSetItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Collection Type: Must be part of given collection type value.
+        ///   Looks up a localized string similar to Collection Type: Must be part of given collection type value (true = must, false = must not).
         /// </summary>
         internal static string IsCollectionTypeItem {
             get {
@@ -367,7 +412,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Media Type: Custom Type must be equal to given value.
+        ///   Looks up a localized string similar to Media Type: Custom Type must be equal to given value (true = must, false = must not).
         /// </summary>
         internal static string IsCustomMediaTypeItem {
             get {
@@ -412,38 +457,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Collection Type: Must not be part of given collection type value.
-        /// </summary>
-        internal static string IsNotCollectionTypeItem {
-            get {
-                return ResourceManager.GetString("IsNotCollectionTypeItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Media Type: Custom Type must not be equal to given value.
-        /// </summary>
-        internal static string IsNotCustomMediaTypeItem {
-            get {
-                return ResourceManager.GetString("IsNotCustomMediaTypeItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Collection Type: Must be part of Owned collection (true = must, false = must not).
         /// </summary>
         internal static string IsPartOfOwnedCollectionItem {
             get {
                 return ResourceManager.GetString("IsPartOfOwnedCollectionItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Production Year: Must be set (true = must, false = must not).
-        /// </summary>
-        internal static string IsProductionYearSet {
-            get {
-                return ResourceManager.GetString("IsProductionYearSet", resourceCulture);
             }
         }
         
@@ -466,128 +484,29 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Running Time: Must be set (true = must, false = must not).
-        /// </summary>
-        internal static string IsRunningTimeSetItem {
-            get {
-                return ResourceManager.GetString("IsRunningTimeSetItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Country of Origin: Must contain countries of origin.
-        /// </summary>
-        internal static string MustContainCountryOfOriginsItem {
-            get {
-                return ResourceManager.GetString("MustContainCountryOfOriginsItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Genre: Must contain given value.
-        /// </summary>
-        internal static string MustContainGenreItem {
-            get {
-                return ResourceManager.GetString("MustContainGenreItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Genre: Must contain genres.
-        /// </summary>
-        internal static string MustContainGenresItem {
-            get {
-                return ResourceManager.GetString("MustContainGenresItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Media Company: Must contain media companies.
-        /// </summary>
-        internal static string MustContainMediaCompaniesItem {
-            get {
-                return ResourceManager.GetString("MustContainMediaCompaniesItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Studio: Must contain studios.
-        /// </summary>
-        internal static string MustContainStudiosItem {
-            get {
-                return ResourceManager.GetString("MustContainStudiosItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tag: Must contain given value.
-        /// </summary>
-        internal static string MustContainTagItem {
-            get {
-                return ResourceManager.GetString("MustContainTagItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Country of Origin: Must not contain countries of origin.
-        /// </summary>
-        internal static string MustNotContainCountryOfOriginsItem {
-            get {
-                return ResourceManager.GetString("MustNotContainCountryOfOriginsItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Genre: Must not contain given value.
-        /// </summary>
-        internal static string MustNotContainGenreItem {
-            get {
-                return ResourceManager.GetString("MustNotContainGenreItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Genre: Must not contain genres.
-        /// </summary>
-        internal static string MustNotContainGenresItem {
-            get {
-                return ResourceManager.GetString("MustNotContainGenresItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Media Company: Must not contain media companies.
-        /// </summary>
-        internal static string MustNotContainMediaCompaniesItem {
-            get {
-                return ResourceManager.GetString("MustNotContainMediaCompaniesItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Studio: Must not contain studios.
-        /// </summary>
-        internal static string MustNotContainStudiosItem {
-            get {
-                return ResourceManager.GetString("MustNotContainStudiosItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Tag: Must not contain given value.
-        /// </summary>
-        internal static string MustNotContainTagItem {
-            get {
-                return ResourceManager.GetString("MustNotContainTagItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Logic: Combine profiles with OR.
+        ///   Looks up a localized string similar to Logic: Combine filters/checks with OR.
         /// </summary>
         internal static string OrItem {
             get {
                 return ResourceManager.GetString("OrItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rating: Must be equal to given value (true = must, false = must not).
+        /// </summary>
+        internal static string RatingEqualToItem {
+            get {
+                return ResourceManager.GetString("RatingEqualToItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rating: Rating System must be equal to given value (true = must, false = must not).
+        /// </summary>
+        internal static string RatingSystemEqualToItem {
+            get {
+                return ResourceManager.GetString("RatingSystemEqualToItem", resourceCulture);
             }
         }
     }

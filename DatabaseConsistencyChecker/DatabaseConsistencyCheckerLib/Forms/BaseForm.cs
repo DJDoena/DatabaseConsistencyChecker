@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Windows.Forms;
-using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
@@ -61,10 +61,10 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         protected bool OpenFilterWindow(Config.Item filter)
         {
             switch (filter)
-            {  
-                case Config.BooleanValueItem booleanFilter:
+            {
+                case Config.IntItem intFilter:
                     {
-                        using (var form = new BooleanFilterForm(booleanFilter))
+                        using (var form = new NumericFilterForm(intFilter))
                         {
                             if (form.ShowDialog() == DialogResult.OK)
                             {
@@ -76,23 +76,9 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                             }
                         }
                     }
-                case Config.IntValueItem intFilter:
+                case Config.StringItem stringFilter:
                     {
-                        using (var form = new IntFilterForm(intFilter))
-                        {
-                            if (form.ShowDialog() == DialogResult.OK)
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                case Config.StringValueItem stringFilter:
-                    {
-                        using (var form = new StringFilterForm(stringFilter))
+                        using (var form = new TextFilterForm(stringFilter))
                         {
                             if (form.ShowDialog() == DialogResult.OK)
                             {
@@ -117,10 +103,25 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                                 return false;
                             }
                         }
+
                     }
                 case Config.ExceptItem exceptItem:
                     {
                         using (var form = new ExceptFilterForm(exceptItem))
+                        {
+                            if (form.ShowDialog() == DialogResult.OK)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                case Config.ValueItem choiceFilter:
+                    {
+                        using (var form = new ChoiceFilterForm(choiceFilter))
                         {
                             if (form.ShowDialog() == DialogResult.OK)
                             {
@@ -159,38 +160,6 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                                 return false;
                             }
                         }
-                    }
-                case Config.ChoiceStringItem choiceStringFilter:
-                    {
-                        using (var form = new ChoiceStringFilterForm(choiceStringFilter))
-                        {
-                            if (form.ShowDialog() == DialogResult.OK)
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                case Config.ChoiceItem choiceFilter:
-                    {
-                        using (var form = new ChoiceFilterForm(choiceFilter))
-                        {
-                            if (form.ShowDialog() == DialogResult.OK)
-                            {
-                                return true;
-                            }
-                            else
-                            {
-                                return false;
-                            }
-                        }
-                    }
-                case Config.NoParamItem _:
-                    {
-                        return true;
                     }
                 default:
                     {

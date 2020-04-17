@@ -1,11 +1,11 @@
 ﻿using System;
-using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
-    public partial class ChoiceFilterForm : BaseForm<Config.ChoiceItem>
+    public partial class ChoiceFilterForm : BaseForm<Config.ValueItem>
     {
-        public ChoiceFilterForm(Config.ChoiceItem value) : base(value)
+        public ChoiceFilterForm(Config.ValueItem value) : base(value)
         {
             InitializeComponent();
 

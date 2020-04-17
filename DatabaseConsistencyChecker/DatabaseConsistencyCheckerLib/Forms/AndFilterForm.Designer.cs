@@ -67,13 +67,13 @@
             this.FilterTypeComboBox.FormattingEnabled = true;
             this.FilterTypeComboBox.Location = new System.Drawing.Point(74, 25);
             this.FilterTypeComboBox.Name = "FilterTypeComboBox";
-            this.FilterTypeComboBox.Size = new System.Drawing.Size(417, 21);
+            this.FilterTypeComboBox.Size = new System.Drawing.Size(567, 21);
             this.FilterTypeComboBox.TabIndex = 2;
             // 
             // RemoveFilterButton
             // 
             this.RemoveFilterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveFilterButton.Location = new System.Drawing.Point(497, 83);
+            this.RemoveFilterButton.Location = new System.Drawing.Point(647, 83);
             this.RemoveFilterButton.Name = "RemoveFilterButton";
             this.RemoveFilterButton.Size = new System.Drawing.Size(75, 23);
             this.RemoveFilterButton.TabIndex = 7;
@@ -84,7 +84,7 @@
             // EditFilterButton
             // 
             this.EditFilterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.EditFilterButton.Location = new System.Drawing.Point(497, 54);
+            this.EditFilterButton.Location = new System.Drawing.Point(647, 54);
             this.EditFilterButton.Name = "EditFilterButton";
             this.EditFilterButton.Size = new System.Drawing.Size(75, 23);
             this.EditFilterButton.TabIndex = 6;
@@ -95,7 +95,7 @@
             // AddFilterButton
             // 
             this.AddFilterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddFilterButton.Location = new System.Drawing.Point(497, 25);
+            this.AddFilterButton.Location = new System.Drawing.Point(647, 25);
             this.AddFilterButton.Name = "AddFilterButton";
             this.AddFilterButton.Size = new System.Drawing.Size(75, 23);
             this.AddFilterButton.TabIndex = 3;
@@ -125,7 +125,7 @@
             this.FilterListView.HideSelection = false;
             this.FilterListView.Location = new System.Drawing.Point(74, 54);
             this.FilterListView.Name = "FilterListView";
-            this.FilterListView.Size = new System.Drawing.Size(417, 116);
+            this.FilterListView.Size = new System.Drawing.Size(567, 116);
             this.FilterListView.TabIndex = 5;
             this.FilterListView.UseCompatibleStateImageBehavior = false;
             this.FilterListView.View = System.Windows.Forms.View.Details;
@@ -145,7 +145,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 211);
+            this.ClientSize = new System.Drawing.Size(734, 211);
             this.Controls.Add(this.FilterTypeLabel);
             this.Controls.Add(this.FilterTypeComboBox);
             this.Controls.Add(this.RemoveFilterButton);
@@ -155,7 +155,7 @@
             this.Controls.Add(this.FilterListView);
             this.Controls.Add(this.FilterDescriptionLabel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(600, 250);
+            this.MinimumSize = new System.Drawing.Size(750, 250);
             this.Name = "AndFilterForm";
             this.Text = "AND Filter";
             this.Controls.SetChildIndex(this.FilterDescriptionLabel, 0);

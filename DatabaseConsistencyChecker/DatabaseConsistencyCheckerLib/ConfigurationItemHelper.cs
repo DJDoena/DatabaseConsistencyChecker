@@ -1,5 +1,5 @@
 ﻿using System;
-using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 {
@@ -16,7 +16,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 
             var rm = ConfigurationItemResources.ResourceManager;
 
-            var result = rm.GetString(typeName) ?? typeName;
+            var result = rm.GetString(typeName) ?? $"--- {typeName}";
 
             return result;
         }

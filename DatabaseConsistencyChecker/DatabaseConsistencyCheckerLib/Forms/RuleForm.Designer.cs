@@ -105,7 +105,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.RuleNameTextBox.Location = new System.Drawing.Point(81, 120);
             this.RuleNameTextBox.Name = "RuleNameTextBox";
-            this.RuleNameTextBox.Size = new System.Drawing.Size(499, 20);
+            this.RuleNameTextBox.Size = new System.Drawing.Size(641, 20);
             this.RuleNameTextBox.TabIndex = 6;
             this.RuleNameTextBox.TextChanged += new System.EventHandler(this.OnRuleNameTextBoxTextChanged);
             // 
@@ -130,7 +130,7 @@
             this.FilterListView.HideSelection = false;
             this.FilterListView.Location = new System.Drawing.Point(81, 175);
             this.FilterListView.Name = "FilterListView";
-            this.FilterListView.Size = new System.Drawing.Size(418, 81);
+            this.FilterListView.Size = new System.Drawing.Size(560, 81);
             this.FilterListView.TabIndex = 11;
             this.FilterListView.UseCompatibleStateImageBehavior = false;
             this.FilterListView.View = System.Windows.Forms.View.Details;
@@ -158,7 +158,7 @@
             // AddFilterButton
             // 
             this.AddFilterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddFilterButton.Location = new System.Drawing.Point(505, 146);
+            this.AddFilterButton.Location = new System.Drawing.Point(647, 146);
             this.AddFilterButton.Name = "AddFilterButton";
             this.AddFilterButton.Size = new System.Drawing.Size(75, 23);
             this.AddFilterButton.TabIndex = 9;
@@ -169,7 +169,7 @@
             // EditFilterButton
             // 
             this.EditFilterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.EditFilterButton.Location = new System.Drawing.Point(505, 175);
+            this.EditFilterButton.Location = new System.Drawing.Point(647, 175);
             this.EditFilterButton.Name = "EditFilterButton";
             this.EditFilterButton.Size = new System.Drawing.Size(75, 23);
             this.EditFilterButton.TabIndex = 12;
@@ -180,7 +180,7 @@
             // RemoveFilterButton
             // 
             this.RemoveFilterButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveFilterButton.Location = new System.Drawing.Point(505, 204);
+            this.RemoveFilterButton.Location = new System.Drawing.Point(647, 204);
             this.RemoveFilterButton.Name = "RemoveFilterButton";
             this.RemoveFilterButton.Size = new System.Drawing.Size(75, 23);
             this.RemoveFilterButton.TabIndex = 13;
@@ -200,7 +200,7 @@
             this.CheckListView.HideSelection = false;
             this.CheckListView.Location = new System.Drawing.Point(81, 262);
             this.CheckListView.Name = "CheckListView";
-            this.CheckListView.Size = new System.Drawing.Size(418, 83);
+            this.CheckListView.Size = new System.Drawing.Size(560, 83);
             this.CheckListView.TabIndex = 15;
             this.CheckListView.UseCompatibleStateImageBehavior = false;
             this.CheckListView.View = System.Windows.Forms.View.Details;
@@ -214,7 +214,7 @@
             // RemoveCheckButton
             // 
             this.RemoveCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.RemoveCheckButton.Location = new System.Drawing.Point(505, 320);
+            this.RemoveCheckButton.Location = new System.Drawing.Point(647, 320);
             this.RemoveCheckButton.Name = "RemoveCheckButton";
             this.RemoveCheckButton.Size = new System.Drawing.Size(75, 23);
             this.RemoveCheckButton.TabIndex = 18;
@@ -225,7 +225,7 @@
             // EditCheckButton
             // 
             this.EditCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.EditCheckButton.Location = new System.Drawing.Point(505, 291);
+            this.EditCheckButton.Location = new System.Drawing.Point(647, 291);
             this.EditCheckButton.Name = "EditCheckButton";
             this.EditCheckButton.Size = new System.Drawing.Size(75, 23);
             this.EditCheckButton.TabIndex = 17;
@@ -236,7 +236,7 @@
             // AddCheckButton
             // 
             this.AddCheckButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.AddCheckButton.Location = new System.Drawing.Point(505, 262);
+            this.AddCheckButton.Location = new System.Drawing.Point(647, 262);
             this.AddCheckButton.Name = "AddCheckButton";
             this.AddCheckButton.Size = new System.Drawing.Size(75, 23);
             this.AddCheckButton.TabIndex = 16;
@@ -252,7 +252,7 @@
             this.FilterTypeComboBox.FormattingEnabled = true;
             this.FilterTypeComboBox.Location = new System.Drawing.Point(81, 148);
             this.FilterTypeComboBox.Name = "FilterTypeComboBox";
-            this.FilterTypeComboBox.Size = new System.Drawing.Size(418, 21);
+            this.FilterTypeComboBox.Size = new System.Drawing.Size(560, 21);
             this.FilterTypeComboBox.TabIndex = 8;
             // 
             // FilterTypeLabel
@@ -277,7 +277,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 386);
+            this.ClientSize = new System.Drawing.Size(734, 386);
             this.Controls.Add(this.CheckLabel);
             this.Controls.Add(this.FilterTypeLabel);
             this.Controls.Add(this.FilterTypeComboBox);
@@ -298,7 +298,7 @@
             this.Controls.Add(this.InfoLabel2);
             this.Controls.Add(this.InfoLabel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(600, 425);
+            this.MinimumSize = new System.Drawing.Size(750, 425);
             this.Name = "RuleForm";
             this.Text = "Rule";
             this.Controls.SetChildIndex(this.InfoLabel1, 0);

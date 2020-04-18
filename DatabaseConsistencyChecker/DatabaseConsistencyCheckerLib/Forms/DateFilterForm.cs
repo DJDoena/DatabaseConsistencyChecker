@@ -19,6 +19,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
             SetLabels();
 
+            SetPicker();
+
             HasChanged = false;
         }
 
@@ -51,6 +53,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
             HasChanged = true;
 
+            SetPicker();
+        }
+
+        private void SetPicker()
+        {
             if (IsTodayCheckBox.Checked)
             {
                 ValueDateTimePicker.Value = DateTime.Today;

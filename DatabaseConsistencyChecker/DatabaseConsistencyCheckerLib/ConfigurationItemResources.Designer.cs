@@ -250,6 +250,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event: Date is older than the purchase date.
+        /// </summary>
+        internal static string HasEventBeforePurchaseDateItem {
+            get {
+                return ResourceManager.GetString("HasEventBeforePurchaseDateItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event: Must contain event of the given event type and user.
         /// </summary>
         internal static string HasEventItem {

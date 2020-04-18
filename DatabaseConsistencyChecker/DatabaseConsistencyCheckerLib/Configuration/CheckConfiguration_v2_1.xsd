@@ -60,6 +60,12 @@
     </xs:complexContent>
   </xs:complexType>
 
+  <xs:complexType name="NoParameterItem" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="Item" />
+    </xs:complexContent>
+  </xs:complexType>
+
   <xs:complexType name="LogicItem" abstract="true">
     <xs:complexContent>
       <xs:extension base="Item" />
@@ -471,6 +477,12 @@
   <xs:complexType name="CrewMemberBirthYearIsLargerThanItem">
     <xs:complexContent>
       <xs:extension base="DateItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="HasEventBeforePurchaseDateItem">
+    <xs:complexContent>
+      <xs:extension base="NoParameterItem" />
     </xs:complexContent>
   </xs:complexType>
 

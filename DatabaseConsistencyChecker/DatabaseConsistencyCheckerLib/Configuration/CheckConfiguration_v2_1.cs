@@ -56,6 +56,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1 {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(AndItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(OrItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ExceptItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(NoParameterItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasEventBeforePurchaseDateItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(ValueItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasExtrasReviewItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasAudioReviewItem))]
@@ -187,6 +189,23 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1 {
         
         /// <remarks/>
         public Item Except;
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(HasEventBeforePurchaseDateItem))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public abstract partial class NoParameterItem : Item {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class HasEventBeforePurchaseDateItem : NoParameterItem {
     }
     
     /// <remarks/>

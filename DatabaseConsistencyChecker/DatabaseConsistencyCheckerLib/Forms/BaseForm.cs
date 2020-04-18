@@ -177,6 +177,10 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                             }
                         }
                     }
+                case Config.NoParameterItem _:
+                    {
+                        return true;
+                    }
                 default:
                     {
                         MessageBox.Show($"Unknown filter type '{filter.GetType().Name}'.", "Unexpected error", MessageBoxButtons.OK, MessageBoxIcon.Error);

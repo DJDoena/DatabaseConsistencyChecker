@@ -71,6 +71,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
         public override string ToString() => $"{(Choice ? "Must be larger than" : "Must be smaller than")}: {(IsToday ? DateTime.Today : Value.Date).ToShortDateString()}";
     }
 
+    partial class NoParameterItem
+    {
+        public override string ToString() => string.Empty;
+    }
+
     [DebuggerDisplay("{Name}")]
     partial class CheckItem
     {
@@ -1933,6 +1938,47 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
                 Choice = Choice,
                 Value = Value,
                 IsToday = IsToday,
+            };
+        }
+    }
+
+    partial class HasEventBeforePurchaseDateItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(IsMatch);
+
+            return result;
+        }
+
+        public override IEnumerable<DVD> Check(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(IsMatch);
+
+            return result;
+        }
+
+        private static bool IsMatch(DVD profile)
+        {
+            var events = profile.EventList ?? Enumerable.Empty<Event>();
+
+            if (profile.PurchaseInfo != null && profile.PurchaseInfo.DateSpecified && events.Any())
+            {
+                var result = events.Any(e => e.Timestamp.Date < profile.PurchaseInfo.Date.Date);
+
+                return result;
+            }
+            else
+            {
+                //it's not in filter, but it's also not a failed check
+                return false;
+            }
+        }
+
+        public override Item Clone()
+        {
+            return new HasEventBeforePurchaseDateItem()
+            {
             };
         }
     }

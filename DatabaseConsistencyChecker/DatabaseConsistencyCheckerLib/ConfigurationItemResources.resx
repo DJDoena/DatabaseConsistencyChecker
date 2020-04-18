@@ -180,6 +180,9 @@
   <data name="HasEasterEggsItem" xml:space="preserve">
     <value>Easter Eggs: Must be set</value>
   </data>
+  <data name="HasEventBeforePurchaseDateItem" xml:space="preserve">
+    <value>Event: Date is older than the purchase date</value>
+  </data>
   <data name="HasEventItem" xml:space="preserve">
     <value>Event: Must contain event of the given event type and user</value>
   </data>

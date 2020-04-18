@@ -17,9 +17,12 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
             FilterDescriptionLabel.Text = ConfigurationItemHelper.GetDisplayValue(EditValue);
 
+            ChoiceCheckBox.Checked = EditValue.Choice;
             EventTypeComboBox.SelectedItem = EditValue.EventType.ToString();
             UserFirstNameTextBox.Text = EditValue.UserFirstName;
             UserLastNameTextBox.Text = EditValue.UserLastName;
+
+            SetLabels();
 
             HasChanged = false;
         }
@@ -43,6 +46,21 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             EditValue.UserLastName = UserLastNameTextBox.Text;
 
             HasChanged = true;
+        }
+
+        private void OnChoiceCheckBoxCheckedChanged(object sender, EventArgs e)
+        {
+            EditValue.Choice = ChoiceCheckBox.Checked;
+
+            HasChanged = true;
+
+            SetLabels();
+        }
+        private void SetLabels()
+        {
+            ChoiceInfoLabel.Text = EditValue.Choice
+              ? "must be"
+              : "must not be";
         }
     }
 }

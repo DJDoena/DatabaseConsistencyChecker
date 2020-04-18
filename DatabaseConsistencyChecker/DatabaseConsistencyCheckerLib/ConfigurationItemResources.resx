@@ -120,6 +120,15 @@
   <data name="AndItem" xml:space="preserve">
     <value>Logic: Combine filters/checks with AND</value>
   </data>
+  <data name="CastMemberBirthYearIsLargerThanItem" xml:space="preserve">
+    <value>Cast: Birth Year must be larger / smaller than given value</value>
+  </data>
+  <data name="CrewMemberBirthYearIsLargerThanItem" xml:space="preserve">
+    <value>Crew: Birth Year must be larger / smaller than given value</value>
+  </data>
+  <data name="EventDateDateIsLargerThanItem" xml:space="preserve">
+    <value>Event: Must contain event with date larger / smaller than given value</value>
+  </data>
   <data name="ExceptItem" xml:space="preserve">
     <value>Logic: Exclude profiles</value>
   </data>
@@ -296,5 +305,8 @@
   </data>
   <data name="OrItem" xml:space="preserve">
     <value>Logic: Combine filters/checks with OR</value>
+  </data>
+  <data name="PurchaseDateIsLargerThanItem" xml:space="preserve">
+    <value>Purchase: Date must be larger / smaller than given value</value>
   </data>
 </root>

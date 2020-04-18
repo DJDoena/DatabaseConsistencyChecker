@@ -101,6 +101,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1 {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsMediaTypeBluRayItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsMediaTypeDVDItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsPartOfOwnedCollectionItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(DateItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CrewMemberBirthYearIsLargerThanItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CastMemberBirthYearIsLargerThanItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EventDateDateIsLargerThanItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PurchaseDateIsLargerThanItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IntItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsCountAsItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StringItem))]
@@ -229,6 +234,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1 {
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsMediaTypeBluRayItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsMediaTypeDVDItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsPartOfOwnedCollectionItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(DateItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CrewMemberBirthYearIsLargerThanItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CastMemberBirthYearIsLargerThanItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EventDateDateIsLargerThanItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PurchaseDateIsLargerThanItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IntItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(IsCountAsItem))]
     [System.Xml.Serialization.XmlIncludeAttribute(typeof(StringItem))]
@@ -633,6 +643,58 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1 {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class IsPartOfOwnedCollectionItem : ValueItem {
+    }
+    
+    /// <remarks/>
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CrewMemberBirthYearIsLargerThanItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(CastMemberBirthYearIsLargerThanItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(EventDateDateIsLargerThanItem))]
+    [System.Xml.Serialization.XmlIncludeAttribute(typeof(PurchaseDateIsLargerThanItem))]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public abstract partial class DateItem : ValueItem {
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute(DataType="date")]
+        public System.DateTime Value;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlAttributeAttribute()]
+        public bool IsToday;
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CrewMemberBirthYearIsLargerThanItem : DateItem {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CastMemberBirthYearIsLargerThanItem : DateItem {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class EventDateDateIsLargerThanItem : DateItem {
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("xsd", "4.8.3928.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PurchaseDateIsLargerThanItem : DateItem {
     }
     
     /// <remarks/>

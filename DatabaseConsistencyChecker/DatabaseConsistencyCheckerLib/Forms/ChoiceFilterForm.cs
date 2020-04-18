@@ -15,7 +15,9 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
             ArrangeControls();
 
-            HasChanged = false;
+            SetLabels();
+
+            HasChanged = false;            
         }
 
         private void OnValueCheckBoxCheckedChanged(object sender, EventArgs e)
@@ -24,6 +26,11 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
             HasChanged = true;
 
+            SetLabels();
+        }
+
+        private void SetLabels()
+        {
             ChoiceInfoLabel.Text = EditValue.Choice
               ? "must be"
               : "must not be";

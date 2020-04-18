@@ -70,6 +70,33 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cast: Birth Year must be larger / smaller than given value.
+        /// </summary>
+        internal static string CastMemberBirthYearIsLargerThanItem {
+            get {
+                return ResourceManager.GetString("CastMemberBirthYearIsLargerThanItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crew: Birth Year must be larger / smaller than given value.
+        /// </summary>
+        internal static string CrewMemberBirthYearIsLargerThanItem {
+            get {
+                return ResourceManager.GetString("CrewMemberBirthYearIsLargerThanItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Event: Must contain event with date larger / smaller than given value.
+        /// </summary>
+        internal static string EventDateDateIsLargerThanItem {
+            get {
+                return ResourceManager.GetString("EventDateDateIsLargerThanItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logic: Exclude profiles.
         /// </summary>
         internal static string ExceptItem {
@@ -597,6 +624,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker {
         internal static string OrItem {
             get {
                 return ResourceManager.GetString("OrItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase: Date must be larger / smaller than given value.
+        /// </summary>
+        internal static string PurchaseDateIsLargerThanItem {
+            get {
+                return ResourceManager.GetString("PurchaseDateIsLargerThanItem", resourceCulture);
             }
         }
     }

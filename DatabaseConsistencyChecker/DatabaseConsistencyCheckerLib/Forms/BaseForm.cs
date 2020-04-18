@@ -63,9 +63,9 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             switch (filter)
             {
-                case Config.IntItem intFilter:
+                case Config.IntItem intItem:
                     {
-                        using (var form = new NumericFilterForm(intFilter))
+                        using (var form = new NumericFilterForm(intItem))
                         {
                             if (form.ShowDialog() == DialogResult.OK)
                             {
@@ -77,9 +77,9 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                             }
                         }
                     }
-                case Config.StringItem stringFilter:
+                case Config.StringItem stringItem:
                     {
-                        using (var form = new TextFilterForm(stringFilter))
+                        using (var form = new TextFilterForm(stringItem))
                         {
                             if (form.ShowDialog() == DialogResult.OK)
                             {
@@ -106,9 +106,24 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                         }
 
                     }
-                case Config.ExceptItem exceptItem:
+                case Config.DateItem dateItem:
                     {
-                        using (var form = new ExceptFilterForm(exceptItem))
+                        using (var form = new DateFilterForm(dateItem))
+                        {
+                            if (form.ShowDialog() == DialogResult.OK)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+
+                    }
+                case Config.ValueItem choiceItem:
+                    {
+                        using (var form = new ChoiceFilterForm(choiceItem))
                         {
                             if (form.ShowDialog() == DialogResult.OK)
                             {
@@ -120,9 +135,9 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                             }
                         }
                     }
-                case Config.ValueItem choiceFilter:
+                case Config.ExceptItem exceptItem:
                     {
-                        using (var form = new ChoiceFilterForm(choiceFilter))
+                        using (var form = new ExceptFilterForm(exceptItem))
                         {
                             if (form.ShowDialog() == DialogResult.OK)
                             {
@@ -188,7 +203,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        private void OnSaveButtonClick(object sender, System.EventArgs e)
+        private void OnSaveButtonClick(object sender, EventArgs e)
         {
             if (ValidateData())
             {
@@ -198,7 +213,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        private void OnDiscardButtonClick(object sender, System.EventArgs e)
+        private void OnDiscardButtonClick(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
 
@@ -211,9 +226,15 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
             var newItem = (Config.Item)Activator.CreateInstance(type);
 
-            if (newItem is Config.ValueItem valueItem)
+            if (newItem is Config.ValueItem choiceItem)
             {
-                valueItem.Choice = true;
+                choiceItem.Choice = true;
+            }
+
+            if (newItem is Config.DateItem dateItem)
+            {
+                dateItem.Value = DateTime.Today;
+                dateItem.IsToday = true;
             }
 
             return newItem;

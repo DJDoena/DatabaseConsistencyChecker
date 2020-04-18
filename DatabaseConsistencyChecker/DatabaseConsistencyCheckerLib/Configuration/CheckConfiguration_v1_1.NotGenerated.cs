@@ -5,7 +5,7 @@ using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 {
-    //xsd.exe CheckConfiguration_v1_1.xsd /c /l:cs /f /n:DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration.v1_1
+    //xsd.exe CheckConfiguration_v1_1.xsd /c /l:cs /f /n:DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1
 
     partial class CheckConfiguration
     {

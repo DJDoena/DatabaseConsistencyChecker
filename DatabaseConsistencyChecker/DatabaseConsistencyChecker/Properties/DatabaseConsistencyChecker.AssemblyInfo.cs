@@ -9,5 +9,5 @@
 
 [assembly: AssemblyDescription("This tool checks the DVD Profiler database for a set of rules that profiles must comply with.")]
 
-[assembly: AssemblyVersion("1.1.2.1")]
-[assembly: AssemblyFileVersion("1.1.2.1")]
+[assembly: AssemblyVersion("1.1.3.0")]
+[assembly: AssemblyFileVersion("1.1.3.0")]

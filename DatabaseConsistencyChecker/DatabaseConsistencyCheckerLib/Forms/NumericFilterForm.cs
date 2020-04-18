@@ -1,4 +1,5 @@
-﻿using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1;
+﻿using System;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
@@ -15,21 +16,29 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
             ArrangeControls();
 
+            SetLabels();
+
             HasChanged = false;
         }
 
-        private void OnChoiceCheckBoxCheckedChanged(object sender, System.EventArgs e)
+        private void OnChoiceCheckBoxCheckedChanged(object sender, EventArgs e)
         {
             EditValue.Choice = ChoiceCheckBox.Checked;
 
             HasChanged = true;
 
-            ChoiceInfoLabel.Text = EditValue.Choice
-                ? "must be"
-                : "must not be";
+            SetLabels();
         }
 
-        private void OnValueUpDownValueChanged(object sender, System.EventArgs e)
+        private void SetLabels()
+        {
+            ChoiceInfoLabel.Text = EditValue.Choice
+              ? "must be"
+              : "must not be";
+        }
+
+
+        private void OnValueUpDownValueChanged(object sender, EventArgs e)
         {
             EditValue.Value = (int)ValueUpDown.Value;
 

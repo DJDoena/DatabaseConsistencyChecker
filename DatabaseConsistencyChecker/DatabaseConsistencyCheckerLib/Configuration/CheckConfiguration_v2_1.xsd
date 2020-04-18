@@ -51,6 +51,15 @@
     </xs:complexContent>
   </xs:complexType>
 
+  <xs:complexType name="DateItem" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="ValueItem">
+        <xs:attribute name="Value" type="xs:date" use="required" />
+        <xs:attribute name="IsToday" type="xs:boolean" use="required" />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
   <xs:complexType name="LogicItem" abstract="true">
     <xs:complexContent>
       <xs:extension base="Item" />
@@ -438,6 +447,30 @@
   <xs:complexType name="IsSRPCurrencyItem">
     <xs:complexContent>
       <xs:extension base="StringItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PurchaseDateIsLargerThanItem">
+    <xs:complexContent>
+      <xs:extension base="DateItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="EventDateDateIsLargerThanItem">
+    <xs:complexContent>
+      <xs:extension base="DateItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CastMemberBirthYearIsLargerThanItem">
+    <xs:complexContent>
+      <xs:extension base="DateItem" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="CrewMemberBirthYearIsLargerThanItem">
+    <xs:complexContent>
+      <xs:extension base="DateItem" />
     </xs:complexContent>
   </xs:complexType>
 

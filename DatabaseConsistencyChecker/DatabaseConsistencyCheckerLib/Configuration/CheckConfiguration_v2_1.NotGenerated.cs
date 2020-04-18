@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
 {
-    //xsd.exe CheckConfiguration_v2_1.xsd /c /l:cs /f /n:DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration.v2_1
+    //xsd.exe CheckConfiguration_v2_1.xsd /c /l:cs /f /n:DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
 
     partial class CheckConfiguration
     {
@@ -36,7 +37,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
     {
         public abstract IEnumerable<DVD> Filter(IEnumerable<DVD> profiles);
 
-        public IEnumerable<DVD> Check(IEnumerable<DVD> profiles)
+        public virtual IEnumerable<DVD> Check(IEnumerable<DVD> profiles)
         {
             var correct = Filter(profiles);
 
@@ -57,12 +58,17 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
 
     partial class StringItem
     {
-        public override string ToString() => $"{Choice}: {Value}";
+        public override string ToString() => $"{(Choice ? "Must be" : "Must not be")}: {Value}";
     }
 
     partial class IntItem
     {
-        public override string ToString() => $"{Choice}: {Value}";
+        public override string ToString() => $"{(Choice ? "Must be" : "Must not be")}: {Value}";
+    }
+
+    partial class DateItem
+    {
+        public override string ToString() => $"{(Choice ? "Must be larger than" : "Must be smaller than")}: {(IsToday ? DateTime.Today : Value.Date).ToShortDateString()}";
     }
 
     [DebuggerDisplay("{Name}")]
@@ -1697,6 +1703,236 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
             {
                 Choice = Choice,
                 Value = Value,
+            };
+        }
+    }
+
+    partial class PurchaseDateIsLargerThanItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(IsMatch);
+
+            return result;
+        }
+
+        public override IEnumerable<DVD> Check(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(IsMatch);
+
+            return result;
+        }
+
+        private bool IsMatch(DVD profile)
+        {
+            if (profile.PurchaseInfo != null && profile.PurchaseInfo.DateSpecified)
+            {
+                var date = IsToday
+                    ? DateTime.Today
+                    : Value.Date;
+
+                if (Choice)
+                {
+                    var result = profile.PurchaseInfo.Date.Date > date;
+
+                    return result;
+                }
+                else
+                {
+                    var result = profile.PurchaseInfo.Date.Date < date;
+
+                    return result;
+                }
+            }
+            else
+            {
+                //it's not in filter, but it's also not a failed check
+                return false;
+            }
+        }
+
+        public override Item Clone()
+        {
+            return new PurchaseDateIsLargerThanItem()
+            {
+                Choice = Choice,
+                Value = Value,
+                IsToday = IsToday,
+            };
+        }
+    }
+
+    partial class EventDateDateIsLargerThanItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(IsMatch);
+
+            return result;
+        }
+
+        public override IEnumerable<DVD> Check(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(IsMatch);
+
+            return result;
+        }
+
+        private bool IsMatch(DVD profile)
+        {
+            var events = profile.EventList ?? Enumerable.Empty<Event>();
+
+            if (events.Any())
+            {
+                var date = IsToday
+                    ? DateTime.Today
+                    : Value.Date;
+
+                if (Choice)
+                {
+                    var result = events.Any(e => e.Timestamp.Date > date);
+
+                    return result;
+                }
+                else
+                {
+                    var result = events.Any(e => e.Timestamp.Date < date);
+
+                    return result;
+                }
+            }
+            else
+            {
+                //it's not in filter, but it's also not a failed check
+                return false;
+            }
+        }
+
+        public override Item Clone()
+        {
+            return new EventDateDateIsLargerThanItem()
+            {
+                Choice = Choice,
+                Value = Value,
+                IsToday = IsToday,
+            };
+        }
+    }
+
+    partial class CastMemberBirthYearIsLargerThanItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(IsMatch);
+
+            return result;
+        }
+
+        public override IEnumerable<DVD> Check(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(IsMatch);
+
+            return result;
+        }
+
+        private bool IsMatch(DVD profile)
+        {
+            var castMembers = profile.CastList?.OfType<CastMember>() ?? Enumerable.Empty<CastMember>();
+
+            castMembers = castMembers.Where(c => c.BirthYear != 0);
+
+            if (castMembers.Any())
+            {
+                var year = IsToday
+                    ? DateTime.Today.Year
+                    : Value.Year;
+
+                if (Choice)
+                {
+                    var result = castMembers.Any(c => c.BirthYear > year);
+
+                    return result;
+                }
+                else
+                {
+                    var result = castMembers.Any(c => c.BirthYear < year);
+
+                    return result;
+                }
+            }
+            else
+            {
+                //it's not in filter, but it's also not a failed check
+                return false;
+            }
+        }
+
+        public override Item Clone()
+        {
+            return new CastMemberBirthYearIsLargerThanItem()
+            {
+                Choice = Choice,
+                Value = Value,
+                IsToday = IsToday,
+            };
+        }
+    }
+
+    partial class CrewMemberBirthYearIsLargerThanItem
+    {
+        public override IEnumerable<DVD> Filter(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(IsMatch);
+
+            return result;
+        }
+
+        public override IEnumerable<DVD> Check(IEnumerable<DVD> profiles)
+        {
+            var result = profiles.Where(IsMatch);
+
+            return result;
+        }
+
+        private bool IsMatch(DVD profile)
+        {
+            var crewMembers = profile.CrewList?.OfType<CrewMember>() ?? Enumerable.Empty<CrewMember>();
+
+            crewMembers = crewMembers.Where(c => c.BirthYear != 0);
+
+            if (crewMembers.Any())
+            {
+                var year = IsToday
+                    ? DateTime.Today.Year
+                    : Value.Year;
+
+                if (Choice)
+                {
+                    var result = crewMembers.Any(c => c.BirthYear > year);
+
+                    return result;
+                }
+                else
+                {
+                    var result = crewMembers.Any(c => c.BirthYear < year);
+
+                    return result;
+                }
+            }
+            else
+            {
+                //it's not in filter, but it's also not a failed check
+                return false;
+            }
+        }
+
+        public override Item Clone()
+        {
+            return new CrewMemberBirthYearIsLargerThanItem()
+            {
+                Choice = Choice,
+                Value = Value,
+                IsToday = IsToday,
             };
         }
     }

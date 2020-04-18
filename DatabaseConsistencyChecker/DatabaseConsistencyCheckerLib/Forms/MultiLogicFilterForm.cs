@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows.Forms;
 using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1;
 
@@ -20,13 +19,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         protected static bool ValidateData(Config.Item[] items)
         {
-            if (items == null || items.Length == 0)
-            {
-                MessageBox.Show("Value is empty!", "Invalid data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
-                return false;
-            }
-            else if (items.Length < 2)
+            if (items == null || items.Length < 2)
             {
                 MessageBox.Show("There must be at least two filters!", "Invalid data", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 

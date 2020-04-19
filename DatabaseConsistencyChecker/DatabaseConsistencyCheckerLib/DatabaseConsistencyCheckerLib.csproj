@@ -81,8 +81,11 @@
     <Compile Include="Configuration\CheckConfiguration_v2_1.cs">
       <DependentUpon>CheckConfiguration_v2_1.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Configuration\CheckConfiguration_v2_1.NotGenerated.cs">
-      <DependentUpon>CheckConfiguration_v2_1.xsd</DependentUpon>
+    <Compile Include="Configuration\CheckConfiguration_v2_2.cs">
+      <DependentUpon>CheckConfiguration_v2_2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Configuration\CheckConfiguration_v2_2.NotGenerated.cs">
+      <DependentUpon>CheckConfiguration_v2_2.xsd</DependentUpon>
     </Compile>
     <Compile Include="CheckResult.cs" />
     <Compile Include="FilterHelper.cs" />
@@ -192,6 +195,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Configuration\CheckConfiguration_v2_1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Configuration\CheckConfiguration_v2_2.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">

@@ -1,5 +1,5 @@
 ﻿using System;
-using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_2;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 {

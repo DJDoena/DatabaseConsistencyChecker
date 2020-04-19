@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
-using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_2;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {
@@ -57,7 +57,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             {
                 try
                 {
-                    TryLoadConfiguration(configurationFile);
+                    TryLoadConfiguration(configurationFile, true);
                 }
                 catch
                 { }
@@ -171,11 +171,10 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
                 if (ofd.ShowDialog() == DialogResult.OK)
                 {
-                    TryLoadConfiguration(ofd.FileName);
+                    TryLoadConfiguration(ofd.FileName, false);
 
                     Properties.Settings.Default.ConfigurationFile = ofd.FileName;
                     Properties.Settings.Default.Save();
-
 
                     SwitchButtons();
 
@@ -184,15 +183,24 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
-        private void TryLoadConfiguration(string fileName)
+        private void TryLoadConfiguration(string fileName, bool silent)
         {
-            _configuration = ConfigurationHelper.Load(fileName);
+            _configuration = ConfigurationHelper.Load(fileName, silent);
 
-            ConfigurationFileTextBox.Text = fileName;
+            if (_configuration != null)
+            {
+                ConfigurationFileTextBox.Text = fileName;
 
-            var ruleCount = _configuration.Rule?.Length ?? 0;
+                var ruleCount = _configuration.Rule?.Length ?? 0;
 
-            RulesLoadedLabel.Text = $"{ruleCount:#,0} rules loaded.";
+                RulesLoadedLabel.Text = $"{ruleCount:#,0} rules loaded.";
+            }
+            else
+            {
+                ConfigurationFileTextBox.Text = string.Empty;
+
+                RulesLoadedLabel.Text = string.Empty;
+            }
         }
 
         private void OnEditConfigurationButtonClick(object sender, EventArgs e)

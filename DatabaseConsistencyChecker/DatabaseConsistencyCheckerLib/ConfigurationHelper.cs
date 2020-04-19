@@ -1,68 +1,128 @@
-﻿using System.IO;
+﻿using System;
+using System.Globalization;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using System.Xml;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using v1_1 = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 using v2_0 = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0;
-using v2_1 = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1;
+using v2_2 = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_2;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 {
     internal static class ConfigurationHelper
     {
-        internal static v2_1.CheckConfiguration Load(string fileName)
+        internal static Regex _versionRegex;
+
+        static ConfigurationHelper()
         {
-            if (IsVersionXFile(fileName, "2"))
+            _versionRegex = new Regex("Version=\"(?'Version'[0-9]+\\.[0-9]+)\"");
+        }
+
+        internal static v2_2.CheckConfiguration Load(string fileName, bool silent)
+        {
+            var fileVersion = GetFileVersion(fileName);
+
+            if (fileVersion > 2.2m)
             {
-                var config = DVDProfilerSerializer<v2_1.CheckConfiguration>.Deserialize(fileName);
+                if (!silent)
+                {
+                    MessageBox.Show("The configuration file is newer than this program can read.", "Read error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                return null;
+            }
+            else if (fileVersion >= 2.0m)
+            {
+                var config = TryLoad(fileName, silent, LoadFrom_v2_2);
 
                 return config;
             }
-            else
+            else if (fileVersion < 2.0m)
             {
-                var config_v1_1 = DVDProfilerSerializer<v1_1.CheckConfiguration>.Deserialize(fileName);
+                var config = TryLoad(fileName, silent, LoadFrom_v1_x);
 
-                var config_v2_0 = config_v1_1.Upgrade();
+                return config;
+            }
+            else //fileVersion is null
+            {
+                var config = TryLoad(fileName, silent, LoadFrom_v2_2);
 
-                Save(config_v2_0, fileName);
-
-                var config_v2_1 = DVDProfilerSerializer<v2_1.CheckConfiguration>.Deserialize(fileName);
-
-                return config_v2_1;
+                return config;
             }
         }
 
-        internal static void Save(v2_1.CheckConfiguration configuration, string fileName)
+        internal static void Save(v2_2.CheckConfiguration configuration, string fileName)
         {
-            configuration.Version = 2.1m;
+            configuration.Version = 2.2m;
 
-            using (var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
+            ExecuteSave(configuration, fileName);
+        }
+
+        private static v2_2.CheckConfiguration TryLoad(string fileName, bool silent, Func<string, v2_2.CheckConfiguration> load)
+        {
+            try
             {
-                using (var xtw = new XmlTextWriter(fs, Encoding.UTF8))
-                {
-                    xtw.Formatting = Formatting.Indented;
+                var config = load(fileName);
 
-                    DVDProfilerSerializer<v2_1.CheckConfiguration>.Serialize(xtw, configuration);
-                }
+                return config;
             }
+            catch
+            {
+                if (!silent)
+                {
+                    MessageBox.Show("The configuration file cannot be read.", "Read error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                return null;
+            }
+        }
+
+        private static v2_2.CheckConfiguration LoadFrom_v2_2(string fileName)
+        {
+            var config = DVDProfilerSerializer<v2_2.CheckConfiguration>.Deserialize(fileName);
+
+            return config;
+        }
+
+        private static v2_2.CheckConfiguration LoadFrom_v1_x(string fileName)
+        {
+            var config_v1_1 = DVDProfilerSerializer<v1_1.CheckConfiguration>.Deserialize(fileName);
+
+            var config_v2_0 = config_v1_1.Upgrade();
+
+            var tempFile = Path.GetTempFileName();
+
+            Save(config_v2_0, tempFile);
+
+            var config_v2_2 = DVDProfilerSerializer<v2_2.CheckConfiguration>.Deserialize(tempFile);
+
+            return config_v2_2;
         }
 
         private static void Save(v2_0.CheckConfiguration configuration, string fileName)
         {
             configuration.Version = 2.0m;
 
+            ExecuteSave(configuration, fileName);
+        }
+
+        private static void ExecuteSave<T>(T configuration, string fileName) where T : class, new()
+        {
             using (var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write, FileShare.Read))
             {
                 using (var xtw = new XmlTextWriter(fs, Encoding.UTF8))
                 {
                     xtw.Formatting = Formatting.Indented;
 
-                    DVDProfilerSerializer<v2_0.CheckConfiguration>.Serialize(xtw, configuration);
+                    DVDProfilerSerializer<T>.Serialize(xtw, configuration);
                 }
             }
         }
 
-        private static bool IsVersionXFile(string fileName, string version)
+        private static decimal? GetFileVersion(string fileName)
         {
             using (var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
@@ -79,7 +139,23 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
                         lineNumber++;
                     }
 
-                    return line.Contains($"Version=\"{version}.");
+                    var match = _versionRegex.Match(line);
+
+                    if (match.Success)
+                    {
+                        if (decimal.TryParse(match.Groups["Version"].Value, NumberStyles.Float, CultureInfo.GetCultureInfo("en-US"), out var version))
+                        {
+                            return version;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        return 1.0m;
+                    }
                 }
             }
         }

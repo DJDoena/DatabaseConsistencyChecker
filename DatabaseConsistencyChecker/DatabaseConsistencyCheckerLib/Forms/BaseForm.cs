@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1;
+using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_2;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 {

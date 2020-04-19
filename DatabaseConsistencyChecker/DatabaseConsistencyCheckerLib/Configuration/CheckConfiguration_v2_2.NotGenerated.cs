@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
 
-namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
+namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_2
 {
-    //xsd.exe CheckConfiguration_v2_1.xsd /c /l:cs /f /n:DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_1
+    //xsd.exe CheckConfiguration_v2_2.xsd /c /l:cs /f /n:DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_2
 
     partial class CheckConfiguration
     {

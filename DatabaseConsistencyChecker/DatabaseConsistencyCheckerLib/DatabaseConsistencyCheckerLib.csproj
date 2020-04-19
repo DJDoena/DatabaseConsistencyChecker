@@ -69,22 +69,13 @@
     <Compile Include="Configuration\CheckConfiguration_v1_0.cs">
       <DependentUpon>CheckConfiguration_v1_0.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Configuration\CheckConfiguration_v1_0.NotGenerated.cs">
-      <DependentUpon>CheckConfiguration_v1_0.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Configuration\CheckConfiguration_v1_1.cs">
-      <DependentUpon>CheckConfiguration_v1_1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Configuration\CheckConfiguration_v1_1.NotGenerated.cs">
       <DependentUpon>CheckConfiguration_v1_1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Configuration\CheckConfiguration_v1_1.Upgrade.cs">
       <DependentUpon>CheckConfiguration_v1_1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Configuration\CheckConfiguration_v2_0.cs">
-      <DependentUpon>CheckConfiguration_v2_0.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Configuration\CheckConfiguration_v2_0.NotGenerated.cs">
       <DependentUpon>CheckConfiguration_v2_0.xsd</DependentUpon>
     </Compile>
     <Compile Include="Configuration\CheckConfiguration_v2_1.cs">

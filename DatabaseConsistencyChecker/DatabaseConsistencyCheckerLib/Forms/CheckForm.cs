@@ -10,6 +10,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             InitializeComponent();
 
+            Icon = Properties.Resources.DJDSOFT;
+
             ArrangeControls();
 
             CheckNameTextBox.Text = EditValue.Name;

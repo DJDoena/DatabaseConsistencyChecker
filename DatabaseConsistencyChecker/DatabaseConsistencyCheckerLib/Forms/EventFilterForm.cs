@@ -9,6 +9,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             InitializeComponent();
 
+            Icon = Properties.Resources.DJDSOFT;
+
             ArrangeControls();
 
             EventTypeComboBox.Items.Add(Config.HasEventItemEventType.Watched.ToString());

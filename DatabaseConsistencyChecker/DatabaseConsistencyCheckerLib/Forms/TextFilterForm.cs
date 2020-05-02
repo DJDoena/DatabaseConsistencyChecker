@@ -10,6 +10,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             InitializeComponent();
 
+            Icon = Properties.Resources.DJDSOFT;
+
             FilterDescriptionLabel.Text = ConfigurationItemHelper.GetDisplayValue(EditValue);
 
             ChoiceCheckBox.Checked = EditValue.Choice;

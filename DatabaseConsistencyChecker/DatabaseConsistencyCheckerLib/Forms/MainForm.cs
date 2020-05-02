@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         private Config.CheckConfiguration _configuration;
 
+        private Ignore.IgnoreConfiguration _ignore;
+
         public MainForm() : this(null)
         {
         }
@@ -22,6 +25,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         public MainForm(Collection collection)
         {
             _collection = collection;
+            _configuration = null;
+            _ignore = null;
 
             if (Properties.Settings.Default.UpgradeRequired)
             {
@@ -31,6 +36,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
 
             InitializeComponent();
+
+            Icon = Properties.Resources.DJDSOFT;
 
             if (collection != null)
             {
@@ -63,7 +70,51 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 { }
             }
 
+            var ignoreFile = Properties.Settings.Default.IgnoreFile;
+
+            if (!string.IsNullOrEmpty(ignoreFile) && File.Exists(ignoreFile))
+            {
+                try
+                {
+                    TryLoadIgnore(ignoreFile, true);
+                }
+                catch
+                { }
+            }
+
+
             SwitchButtons();
+
+            var toolTip = new ToolTip()
+            {
+                AutoPopDelay = 10000,
+                InitialDelay = 1000,
+                ReshowDelay = 1000,
+                IsBalloon = true,
+                ShowAlways = false,
+                ToolTipIcon = ToolTipIcon.Info,
+                ToolTipTitle = "Ignore",
+            };
+
+            const string ToolTipText = "The ignore feature is for profiles that fail the check but will never be successful either.";
+
+            toolTip.SetToolTip(IgnoreFileLabel, ToolTipText);
+            toolTip.SetToolTip(IgnoreFileTextBox, ToolTipText);
+            toolTip.SetToolTip(LoadIgnoreButton, ToolTipText);
+            toolTip.SetToolTip(ClearIgnoreButton, ToolTipText);
+            toolTip.SetToolTip(IgnoresLoadedLabel, ToolTipText);
+        }
+
+        private IEnumerable<ListViewItem> GetResults(bool mustBeChecked)
+        {
+            var results = ResultListView.Items.OfType<ListViewItem>();
+
+            if (mustBeChecked)
+            {
+                results = results.Where(item => item.Checked);
+            }
+
+            return results;
         }
 
         private void SwitchButtons()
@@ -72,12 +123,33 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
             RunChecksButton.Enabled = _collection != null && _configuration != null;
 
-            ExportFlagSetButton.Enabled = ResultListView.Items.Count > 0;
+            var hasResults = GetResults(false).Any();
+
+            var hasCheckedResults = GetResults(true).Any();
+
+            ExportAllProfilesFlagSetButton.Enabled = hasResults;
+            ExportCheckedProfilesFlagSetButton.Enabled = hasCheckedResults;
+
+            IgnoreCheckedProfilesButton.Enabled = hasCheckedResults;
         }
 
         private void ClearResults()
         {
-            ResultListView.Items.Clear();
+            NewMethod();
+
+            try
+            {
+                ResultListView.Items.Clear();
+            }
+            finally
+            {
+                ResultListView.ItemChecked += OnResultListViewItemChecked;
+            }
+        }
+
+        private void NewMethod()
+        {
+            ResultListView.ItemChecked -= OnResultListViewItemChecked;
         }
 
         private static void TryExecute(Action action)
@@ -203,6 +275,36 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
         }
 
+        private void TryLoadIgnore(string fileName, bool silent)
+        {
+            try
+            {
+                _ignore = DVDProfilerSerializer<Ignore.IgnoreConfiguration>.Deserialize(fileName);
+            }
+            catch
+            {
+                if (!silent)
+                {
+                    MessageBox.Show("The ignore file cannot be read.", "Read error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                _ignore = null;
+            }
+
+            if (_ignore != null)
+            {
+                IgnoreFileTextBox.Text = fileName;
+
+                UpdateIgnoreLabel();
+            }
+            else
+            {
+                IgnoreFileTextBox.Text = string.Empty;
+
+                IgnoresLoadedLabel.Text = string.Empty;
+            }
+        }
+
         private void OnEditConfigurationButtonClick(object sender, EventArgs e)
         {
             TryExecute(EditConfiguration);
@@ -228,6 +330,9 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             _configuration = configuration;
 
             ConfigurationFileTextBox.Text = fileName;
+
+            Properties.Settings.Default.ConfigurationFile = fileName;
+            Properties.Settings.Default.Save();
 
             SwitchButtons();
 
@@ -306,37 +411,48 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
             ClearResults();
 
-            var ruleChecker = new RuleChecker(_collection);
+            ResultListView.ItemChecked -= OnResultListViewItemChecked;
 
-            foreach (var rule in _configuration.Rule)
+            try
             {
-                var allResults = ruleChecker.Check(rule);
+                var ruleChecker = new RuleChecker(_collection);
 
-                var invalidResults = allResults.Where(result => !result.Success);
-
-                foreach (var result in invalidResults)
+                foreach (var rule in _configuration.Rule)
                 {
-                    foreach (var profile in result.FailedProfiles)
-                    {
-                        var row = new ListViewItem(new[] { rule.Name, result.Check.Name, profile.ToString() })
-                        {
-                            Tag = profile,
-                        };
+                    var allResults = ruleChecker.Check(rule);
 
-                        ResultListView.Items.Add(row);
+                    var invalidResults = allResults.Where(result => !result.Success);
+
+                    foreach (var result in invalidResults)
+                    {
+                        foreach (var profile in result.FailedProfiles)
+                        {
+                            var row = new ListViewItem(new[] { rule.Name, result.Check.Name, profile.ToString() })
+                            {
+                                Tag = profile,
+                            };
+
+                            ResultListView.Items.Add(row);
+                        }
                     }
                 }
+
+                ApplyResultIgnores();
+
+                SwitchButtons();
             }
-
-            SwitchButtons();
+            finally
+            {
+                ResultListView.ItemChecked += OnResultListViewItemChecked;
+            }
         }
 
-        private void OnExportFlagSetButtonClick(object sender, EventArgs e)
+        private void OnExportAllProfilesFlagSetButtonClick(object sender, EventArgs e)
         {
-            TryExecute(ExportFlagSet);
+            TryExecute(() => ExportAllProfilesFlagSet(true));
         }
 
-        private void ExportFlagSet()
+        private void ExportAllProfilesFlagSet(bool all)
         {
             using (var sfd = new SaveFileDialog()
             {
@@ -350,16 +466,16 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             {
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    SaveFlagSet(sfd.FileName);
+                    SaveFlagSet(sfd.FileName, all);
                 }
             }
         }
 
-        private void SaveFlagSet(string fileName)
+        private void SaveFlagSet(string fileName, bool all)
         {
             using (var sw = new StreamWriter(fileName, false, Encoding.GetEncoding("Windows-1252")))
             {
-                foreach (ListViewItem row in ResultListView.Items)
+                foreach (var row in GetResults(!all))
                 {
                     var profile = (DVD)row.Tag;
 
@@ -409,6 +525,256 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             {
                 aboutBox.ShowDialog();
             }
+        }
+
+        private void OnExportCheckedProfilesFlagSetButtonClick(object sender, EventArgs e)
+        {
+            TryExecute(() => ExportAllProfilesFlagSet(false));
+        }
+
+        private void OnLoadIgnoreButtonClick(object sender, EventArgs e)
+        {
+            TryExecute(LoadIgnore);
+        }
+
+        private void LoadIgnore()
+        {
+            using (var ofd = new OpenFileDialog()
+            {
+                CheckFileExists = true,
+                Filter = "Ignore file|*.xml",
+                Multiselect = false,
+                RestoreDirectory = true,
+                Title = "Please select your ignore file",
+            })
+            {
+                var ignoreFile = Properties.Settings.Default.IgnoreFile;
+
+                if (!string.IsNullOrEmpty(ignoreFile) && File.Exists(ignoreFile))
+                {
+                    var fi = new FileInfo(ignoreFile);
+
+                    ofd.InitialDirectory = fi.DirectoryName;
+                    ofd.FileName = fi.Name;
+                }
+
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    TryLoadIgnore(ofd.FileName, false);
+
+                    Properties.Settings.Default.IgnoreFile = ofd.FileName;
+                    Properties.Settings.Default.Save();
+
+                    SwitchButtons();
+
+                    ClearResults();
+                }
+            }
+        }
+
+        private void UpdateIgnoreLabel()
+        {
+            var profileCount = _ignore?.Rule?.SelectMany(r => r?.Check?.SelectMany(c => c?.Profile))?.Count(p => p != null) ?? 0;
+
+            IgnoresLoadedLabel.Text = $"{profileCount:#,0} profiles ignored.";
+        }
+
+        private void ApplyResultIgnores()
+        {
+            if (_ignore == null)
+            {
+                return;
+            }
+
+            for (var rowIndex = ResultListView.Items.Count - 1; rowIndex >= 0; rowIndex--)
+            {
+                var row = ResultListView.Items[rowIndex];
+
+                var ruleName = row.SubItems[0].Text;
+
+                var rule = _ignore.Rule?.FirstOrDefault(r => r.Name == ruleName);
+
+                if (rule == null)
+                {
+                    continue;
+                }
+
+                var checkName = row.SubItems[1].Text;
+
+                var check = rule.Check?.FirstOrDefault(c => c.Name == checkName);
+
+                if (check == null)
+                {
+                    continue;
+                }
+
+                var originalProfile = (DVD)row.Tag;
+
+                var profile = check.Profile?.FirstOrDefault(p => p.ID == originalProfile.ID);
+
+                if (profile != null)
+                {
+                    ResultListView.Items.RemoveAt(rowIndex);
+                }
+            }
+        }
+
+        private void OnClearIgnoreButtonClick(object sender, EventArgs e)
+        {
+            TryExecute(ClearIgnore);
+        }
+
+        private void ClearIgnore()
+        {
+            if (_ignore == null)
+            {
+                return;
+            }
+
+            _ignore = new Ignore.IgnoreConfiguration();
+
+            if (string.IsNullOrEmpty(IgnoreFileTextBox.Text))
+            {
+                SaveIgnore();
+            }
+            else
+            {
+                SaveIgnore(IgnoreFileTextBox.Text);
+            }
+        }
+
+        private void SaveIgnore()
+        {
+            using (var sfd = new SaveFileDialog()
+            {
+                CheckPathExists = true,
+                FileName = IgnoreFileTextBox.Text,
+                Filter = "Ignore file|*.xml",
+                OverwritePrompt = true,
+                RestoreDirectory = true,
+                Title = "Please select a destination for your ignore file",
+                ValidateNames = true,
+            })
+            {
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    SaveIgnore(sfd.FileName);
+                }
+            }
+        }
+
+        private void SaveIgnore(string fileName)
+        {
+            DVDProfilerSerializer<Ignore.IgnoreConfiguration>.Serialize(fileName, _ignore);
+
+            IgnoreFileTextBox.Text = fileName;
+
+            Properties.Settings.Default.IgnoreFile = fileName;
+            Properties.Settings.Default.Save();
+
+            UpdateIgnoreLabel();
+        }
+
+        private void OnIgnoreCheckedProfilesButtonClick(object sender, EventArgs e)
+        {
+            TryExecute(IgnoreCheckedProfiles);
+        }
+
+        private void IgnoreCheckedProfiles()
+        {
+            ResultListView.ItemChecked -= OnResultListViewItemChecked;
+
+            try
+            {
+                if (_ignore == null)
+                {
+                    _ignore = new Ignore.IgnoreConfiguration();
+                }
+
+                var rules = (_ignore.Rule ?? Enumerable.Empty<Ignore.Rule>()).ToList();
+
+                foreach (var row in GetResults(true))
+                {
+                    IgnoreProfile(rules, row);
+                }
+
+                _ignore.Rule = rules.ToArray();
+
+                if (string.IsNullOrEmpty(IgnoreFileTextBox.Text))
+                {
+                    SaveIgnore();
+                }
+                else
+                {
+                    SaveIgnore(IgnoreFileTextBox.Text);
+                }
+
+                SwitchButtons();
+
+                ApplyResultIgnores();
+            }
+            finally
+            {
+                ResultListView.ItemChecked += OnResultListViewItemChecked;
+            }
+        }
+
+        private static void IgnoreProfile(List<Ignore.Rule> rules, ListViewItem row)
+        {
+            var ruleName = row.SubItems[0].Text;
+
+            var rule = rules.FirstOrDefault(r => r.Name == ruleName);
+
+            if (rule == null)
+            {
+                rule = new Ignore.Rule()
+                {
+                    Name = ruleName,
+                };
+
+                rules.Add(rule);
+            }
+
+            var checks = (rule.Check ?? Enumerable.Empty<Ignore.Check>()).ToList();
+
+            var checkName = row.SubItems[1].Text;
+
+            var check = checks.FirstOrDefault(c => c.Name == checkName);
+
+            if (check == null)
+            {
+                check = new Ignore.Check()
+                {
+                    Name = checkName,
+                };
+
+                checks.Add(check);
+            }
+
+            var profiles = (check.Profile ?? Enumerable.Empty<Ignore.Profile>()).ToList();
+
+            var originalProfile = (DVD)row.Tag;
+
+            profiles.Add(new Ignore.Profile()
+            {
+                ID = originalProfile.ID,
+                ID_VariantNum = originalProfile.ID_VariantNum,
+                ID_LocalityDesc = originalProfile.ID_LocalityDesc,
+                ID_Type = (Ignore.ProfileID_Type)originalProfile.ID_Type,
+                UPC = originalProfile.UPC,
+                Title = originalProfile.Title,
+                Edition = originalProfile.Edition,
+                OriginalTitle = originalProfile.OriginalTitle,
+            });
+
+            check.Profile = profiles.ToArray();
+
+            rule.Check = checks.ToArray();
+        }
+
+        private void OnResultListViewItemChecked(object sender, ItemCheckedEventArgs e)
+        {
+            SwitchButtons();
         }
     }
 }

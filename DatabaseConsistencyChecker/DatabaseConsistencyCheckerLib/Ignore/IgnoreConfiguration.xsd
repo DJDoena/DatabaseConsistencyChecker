@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+  <xs:element name="IgnoreConfiguration" type="IgnoreConfiguration" />
+
+  <xs:complexType name="IgnoreConfiguration">
+    <xs:sequence>
+      <xs:element name="Rule" type="Rule" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="Rule">
+    <xs:sequence>
+      <xs:element name="Check" type="Check" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="Check">
+    <xs:sequence>
+      <xs:element name="Profile" type="Profile" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="Name" type="xs:string" use="required" />
+  </xs:complexType>
+
+  <xs:complexType name="Profile">
+    <xs:sequence>
+      <xs:element name="UPC" type="xs:string" minOccurs="1" />
+      <xs:element name="Title" type="xs:string" minOccurs="1" />
+      <xs:element name="Edition" type="xs:string" minOccurs="1" />
+      <xs:element name="OriginalTitle" type="xs:string" minOccurs="1" />
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" use="required" />
+    <xs:attribute name="ID_VariantNum" type="xs:int"  use="required" />
+    <xs:attribute name="ID_LocalityDesc" type="xs:string"  use="required" />
+    <xs:attribute name="ID_Type"  use="required">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="UPCEAN" />
+          <xs:enumeration value="ManualID" />
+          <xs:enumeration value="DiscID" />
+          <xs:enumeration value="PluginSpecificID" />
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+</xs:schema>

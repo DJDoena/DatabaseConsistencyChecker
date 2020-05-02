@@ -11,6 +11,8 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             InitializeComponent();
 
+            Icon = Properties.Resources.DJDSOFT;
+
             ArrangeControls();
 
             RuleNameTextBox.Text = EditValue.Name;

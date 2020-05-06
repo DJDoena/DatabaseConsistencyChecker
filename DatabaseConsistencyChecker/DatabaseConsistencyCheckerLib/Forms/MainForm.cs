@@ -425,7 +425,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
                     foreach (var result in invalidResults)
                     {
-                        foreach (var profile in result.FailedProfiles)
+                        foreach (var profile in result.FailedProfiles.OrderBy(p => p.SortTitle))
                         {
                             var row = new ListViewItem(new[] { rule.Name, result.Check.Name, profile.ToString() })
                             {

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.CollectionFileTextBox = new System.Windows.Forms.TextBox();
             this.ConfigurationFileTextBox = new System.Windows.Forms.TextBox();
             this.LoadCollectionButton = new System.Windows.Forms.Button();
@@ -386,7 +385,6 @@
             this.Controls.Add(this.ConfigurationFileTextBox);
             this.Controls.Add(this.CollectionFileTextBox);
             this.Controls.Add(this.FormMenuStrip);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(900, 500);
             this.Name = "MainForm";
             this.Text = "Database Consistency Checker";

@@ -1,7 +1,7 @@
 [Setup]
 AppName=DatabaseConsistencyChecker
 AppId=DatabaseConsistencyChecker
-AppVerName=DatabaseConsistencyChecker 1.1.3.3
+AppVerName=DatabaseConsistencyChecker 1.1.3.4
 AppCopyright=Copyright © Doena Soft. 2020
 AppPublisher=Doena Soft.
 ; AppPublisherURL=http://doena-journal.net/en/dvd-profiler-tools/
@@ -22,7 +22,7 @@ ShowLanguageDialog=no
 VersionInfoCompany=Doena Soft.
 VersionInfoCopyright=2020
 VersionInfoDescription=DatabaseConsistencyChecker Setup
-VersionInfoVersion=1.1.3.3
+VersionInfoVersion=1.1.3.4
 UninstallDisplayIcon={app}\djdsoft.ico
 
 [Languages]

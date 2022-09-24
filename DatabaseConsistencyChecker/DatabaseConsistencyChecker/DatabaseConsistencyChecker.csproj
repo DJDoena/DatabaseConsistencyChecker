@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>djdsoft.ico</ApplicationIcon>
@@ -88,14 +90,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DVDProfilerXML\DVDProfilerHelper\DVDProfilerHelper\DVDProfilerHelper.csproj">
-      <Project>{461dacca-8ebf-4c03-ad1a-c438e4eb3b36}</Project>
-      <Name>DVDProfilerHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DVDProfilerXML\DVDProfilerXML\DVDProfilerXML.csproj">
-      <Project>{2e90cc6f-892e-45b3-8812-ee52ffa3b222}</Project>
-      <Name>DVDProfilerXML</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DatabaseConsistencyCheckerLib\DatabaseConsistencyCheckerLib.csproj">
       <Project>{48c0ed7e-0867-4983-bc5f-7ad91622afe5}</Project>
       <Name>DatabaseConsistencyCheckerLib</Name>
@@ -103,6 +97,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="djdsoft.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="DoenaSoft.DVDProfilerXML">
+      <Version>4.1.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

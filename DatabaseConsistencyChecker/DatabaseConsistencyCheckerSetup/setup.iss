@@ -36,10 +36,8 @@ Name: "full"; Description: "Full installation"
 
 [Files]
 Source: "djdsoft.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DVDProfilerHelper.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DVDProfilerHelper.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DVDProfilerXML.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DVDProfilerXML.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DoenaSoft.DVDProfilerHelper.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DoenaSoft.DVDProfilerXML.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DatabaseConsistencyChecker.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DatabaseConsistencyChecker.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DatabaseConsistencyCheckerLib.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -47,7 +45,7 @@ Source: "DatabaseConsistencyCheckerLib.dll.config"; DestDir: "{app}"; Flags: ign
 Source: "DatabaseConsistencyCheckerLib.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "SampleConfiguration.xml"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "de\DVDProfilerHelper.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
+Source: "de\DoenaSoft.DVDProfilerHelper.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

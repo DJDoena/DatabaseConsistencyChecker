@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -277,17 +279,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DVDProfilerXML\DVDProfilerHelper\DVDProfilerHelper\DVDProfilerHelper.csproj">
-      <Project>{461dacca-8ebf-4c03-ad1a-c438e4eb3b36}</Project>
-      <Name>DVDProfilerHelper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DVDProfilerXML\DVDProfilerXML\DVDProfilerXML.csproj">
-      <Project>{2e90cc6f-892e-45b3-8812-ee52ffa3b222}</Project>
-      <Name>DVDProfilerXML</Name>
-    </ProjectReference>
+    <None Include="Resources\djdsoft.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\djdsoft.ico" />
+    <PackageReference Include="DoenaSoft.DVDProfilerXML">
+      <Version>4.1.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

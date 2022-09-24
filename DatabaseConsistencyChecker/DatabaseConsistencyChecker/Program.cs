@@ -9,9 +9,25 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
         [STAThread]
         public static void Main()
         {
+            var settings = Properties.Settings.Default;
+
+            if (settings.UpgradeRequired)
+            {
+                settings.Upgrade();
+                settings.UpgradeRequired = false;
+                settings.Save();
+            }
+
+            var mainForm = new MainForm(null, settings.CollectionFile, settings.ConfigurationFile, settings.IgnoreFile);
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run();
+
+            settings.CollectionFile = mainForm.CollectionFile;
+            settings.ConfigurationFile = mainForm.ConfigurationFile;
+            settings.IgnoreFile = mainForm.IgnoreFile;
+            settings.Save();
         }
     }
 }

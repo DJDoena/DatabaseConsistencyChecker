@@ -16,24 +16,26 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         private Config.CheckConfiguration _configuration;
 
+        public string CollectionFile { get; private set; }
+
+        public string ConfigurationFile { get; private set; }
+
+        public string IgnoreFile { get; private set; }
+
         private Ignore.IgnoreConfiguration _ignore;
 
-        public MainForm() : this(null)
+        public MainForm() : this(null, null, null, null)
         {
         }
 
-        public MainForm(Collection collection)
+        public MainForm(Collection collection, string collectionFile, string configurationFile, string ignoreFile)
         {
             _collection = collection;
+            this.CollectionFile = collectionFile;
+            this.ConfigurationFile = configurationFile;
+            this.IgnoreFile = ignoreFile;
             _configuration = null;
             _ignore = null;
-
-            if (Properties.Settings.Default.UpgradeRequired)
-            {
-                Properties.Settings.Default.Upgrade();
-                Properties.Settings.Default.UpgradeRequired = false;
-                Properties.Settings.Default.Save();
-            }
 
             InitializeComponent();
 
@@ -45,8 +47,6 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
             }
             else
             {
-                var collectionFile = Properties.Settings.Default.CollectionFile;
-
                 if (!string.IsNullOrEmpty(collectionFile) && File.Exists(collectionFile))
                 {
                     try
@@ -58,8 +58,6 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 }
             }
 
-            var configurationFile = Properties.Settings.Default.ConfigurationFile;
-
             if (!string.IsNullOrEmpty(configurationFile) && File.Exists(configurationFile))
             {
                 try
@@ -70,8 +68,6 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 { }
             }
 
-            var ignoreFile = Properties.Settings.Default.IgnoreFile;
-
             if (!string.IsNullOrEmpty(ignoreFile) && File.Exists(ignoreFile))
             {
                 try
@@ -81,7 +77,6 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 catch
                 { }
             }
-
 
             SwitchButtons();
 
@@ -180,11 +175,9 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 Title = "Please select your collection XML file",
             })
             {
-                var collectionFile = Properties.Settings.Default.CollectionFile;
-
-                if (!string.IsNullOrEmpty(collectionFile) && File.Exists(collectionFile))
+                if (!string.IsNullOrEmpty(CollectionFile) && File.Exists(CollectionFile))
                 {
-                    var fi = new FileInfo(collectionFile);
+                    var fi = new FileInfo(CollectionFile);
 
                     ofd.InitialDirectory = fi.DirectoryName;
                     ofd.FileName = fi.Name;
@@ -194,8 +187,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 {
                     TryLoadCollection(ofd.FileName);
 
-                    Properties.Settings.Default.CollectionFile = ofd.FileName;
-                    Properties.Settings.Default.Save();
+                    CollectionFile = ofd.FileName;
 
                     SwitchButtons();
 
@@ -231,11 +223,10 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 Title = "Please select your configuration file",
             })
             {
-                var configurationFile = Properties.Settings.Default.ConfigurationFile;
 
-                if (!string.IsNullOrEmpty(configurationFile) && File.Exists(configurationFile))
+                if (!string.IsNullOrEmpty(ConfigurationFile) && File.Exists(ConfigurationFile))
                 {
-                    var fi = new FileInfo(configurationFile);
+                    var fi = new FileInfo(ConfigurationFile);
 
                     ofd.InitialDirectory = fi.DirectoryName;
                     ofd.FileName = fi.Name;
@@ -245,8 +236,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 {
                     TryLoadConfiguration(ofd.FileName, false);
 
-                    Properties.Settings.Default.ConfigurationFile = ofd.FileName;
-                    Properties.Settings.Default.Save();
+                    ConfigurationFile = ofd.FileName;
 
                     SwitchButtons();
 
@@ -331,8 +321,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
             ConfigurationFileTextBox.Text = fileName;
 
-            Properties.Settings.Default.ConfigurationFile = fileName;
-            Properties.Settings.Default.Save();
+            ConfigurationFile = fileName;
 
             SwitchButtons();
 
@@ -548,11 +537,9 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 Title = "Please select your ignore file",
             })
             {
-                var ignoreFile = Properties.Settings.Default.IgnoreFile;
-
-                if (!string.IsNullOrEmpty(ignoreFile) && File.Exists(ignoreFile))
+                if (!string.IsNullOrEmpty(IgnoreFile) && File.Exists(IgnoreFile))
                 {
-                    var fi = new FileInfo(ignoreFile);
+                    var fi = new FileInfo(IgnoreFile);
 
                     ofd.InitialDirectory = fi.DirectoryName;
                     ofd.FileName = fi.Name;
@@ -562,8 +549,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
                 {
                     TryLoadIgnore(ofd.FileName, false);
 
-                    Properties.Settings.Default.IgnoreFile = ofd.FileName;
-                    Properties.Settings.Default.Save();
+                    IgnoreFile = ofd.FileName;
 
                     SwitchButtons();
 
@@ -669,8 +655,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
             IgnoreFileTextBox.Text = fileName;
 
-            Properties.Settings.Default.IgnoreFile = fileName;
-            Properties.Settings.Default.Save();
+            IgnoreFile = fileName;
 
             UpdateIgnoreLabel();
         }

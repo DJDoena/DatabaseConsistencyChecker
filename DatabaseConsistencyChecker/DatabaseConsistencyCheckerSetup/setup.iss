@@ -40,9 +40,9 @@ Source: "DoenaSoft.DVDProfilerHelper.dll"; DestDir: "{app}"; Flags: ignoreversio
 Source: "DoenaSoft.DVDProfilerXML.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DatabaseConsistencyChecker.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DatabaseConsistencyChecker.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DatabaseConsistencyCheckerLib.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DatabaseConsistencyCheckerLib.dll.config"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DatabaseConsistencyCheckerLib.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DoenaSoft.DatabaseConsistencyChecker.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DoenaSoft.DatabaseConsistencyChecker.dll.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DoenaSoft.DatabaseConsistencyChecker.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "SampleConfiguration.xml"; DestDir: "{app}"; Flags: ignoreversion
 
 Source: "de\DoenaSoft.DVDProfilerHelper.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion

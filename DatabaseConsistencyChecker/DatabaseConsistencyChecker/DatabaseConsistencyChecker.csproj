@@ -115,9 +115,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>IF NOT $(PlatformName)==x64 GOTO end
+    <PostBuildEvent>xcopy /y ..\..\..\..\djdsoft.ico .
+IF NOT $(PlatformName)==x64 GOTO end
 IF NOT $(ConfigurationName)==Release GOTO end
-"%25ProgramFiles%25\Inno Setup 6\iscc.exe"  ..\..\..\..\..\DatabaseConsistencyCheckerSetup\setup.iss
+"%25ProgramFiles(x86)%25\Inno Setup 6\iscc.exe" ..\..\..\..\..\DatabaseConsistencyCheckerSetup\setup.iss
 :end</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>

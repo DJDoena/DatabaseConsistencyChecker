@@ -13,10 +13,9 @@ Compression=zip/9
 AppMutex=DatabaseConsistencyChecker
 OutputBaseFilename=DatabaseConsistencyCheckerSetup
 OutputDir=..\..\..\..\..\DatabaseConsistencyCheckerSetup\Setup\DatabaseConsistencyChecker
-MinVersion=0,6.0
+MinVersion=0,6.1sp1
 PrivilegesRequired=admin
-WizardImageFile=compiler:wizmodernimage-is.bmp
-WizardSmallImageFile=compiler:wizmodernsmallimage-is.bmp
+WizardStyle=modern
 DisableReadyPage=yes
 ShowLanguageDialog=no
 VersionInfoCompany=Doena Soft.
@@ -41,7 +40,6 @@ Source: "DoenaSoft.DVDProfilerXML.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DatabaseConsistencyChecker.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DatabaseConsistencyChecker.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DoenaSoft.DatabaseConsistencyChecker.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DoenaSoft.DatabaseConsistencyChecker.dll.config"; DestDir: "{app}"; Flags: ignoreversion
 Source: "DoenaSoft.DatabaseConsistencyChecker.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "SampleConfiguration.xml"; DestDir: "{app}"; Flags: ignoreversion
 

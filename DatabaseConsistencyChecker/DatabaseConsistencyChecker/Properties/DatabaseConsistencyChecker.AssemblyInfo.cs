@@ -3,11 +3,11 @@
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Doena Soft.")]
 [assembly: AssemblyProduct("Database Consistency Checker")]
-[assembly: AssemblyCopyright("Copyright © Doena Soft. 2020")]
+[assembly: AssemblyCopyright("Copyright © Doena Soft. 2020 - 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: AssemblyDescription("This tool checks the DVD Profiler database for a set of rules that profiles must comply with.")]
 
-[assembly: AssemblyVersion("1.1.3.4")]
-[assembly: AssemblyFileVersion("1.1.3.4")]
+[assembly: AssemblyVersion("1.1.3.5")]
+[assembly: AssemblyFileVersion("1.1.3.5")]

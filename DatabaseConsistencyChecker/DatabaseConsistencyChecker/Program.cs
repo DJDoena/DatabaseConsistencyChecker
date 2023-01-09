@@ -18,11 +18,12 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
                 settings.Save();
             }
 
-            var mainForm = new MainForm(null, settings.CollectionFile, settings.ConfigurationFile, settings.IgnoreFile);
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run();
+
+            var mainForm = new MainForm(null, settings.CollectionFile, settings.ConfigurationFile, settings.IgnoreFile);
+
+            Application.Run(mainForm);
 
             settings.CollectionFile = mainForm.CollectionFile;
             settings.ConfigurationFile = mainForm.ConfigurationFile;

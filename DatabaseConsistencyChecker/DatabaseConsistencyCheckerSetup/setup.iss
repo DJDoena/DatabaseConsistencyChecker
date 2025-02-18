@@ -1,14 +1,14 @@
 [Setup]
 AppName=DatabaseConsistencyChecker
 AppId=DatabaseConsistencyChecker
-AppVerName=DatabaseConsistencyChecker 1.1.3.5
-AppCopyright=Copyright © Doena Soft. 2020 - 2023
+AppVerName=DatabaseConsistencyChecker 1.1.4
+AppCopyright=Copyright © Doena Soft. 2020 - 2025
 AppPublisher=Doena Soft.
 ; AppPublisherURL=http://doena-journal.net/en/dvd-profiler-tools/
 DefaultDirName={commonpf64}\Doena Soft.\DatabaseConsistencyChecker
 DefaultGroupName=DVD Profiler Database Consistency Checker
 DirExistsWarning=No
-SourceDir=..\DatabaseConsistencyChecker\bin\x64\Release\DatabaseConsistencyChecker
+SourceDir=..\DatabaseConsistencyChecker\bin\x64\Release\net472
 Compression=zip/9
 AppMutex=DatabaseConsistencyChecker
 OutputBaseFilename=DatabaseConsistencyCheckerSetup
@@ -19,9 +19,9 @@ WizardStyle=modern
 DisableReadyPage=yes
 ShowLanguageDialog=no
 VersionInfoCompany=Doena Soft.
-VersionInfoCopyright=2020 - 2023
+VersionInfoCopyright=2020 - 2024
 VersionInfoDescription=DatabaseConsistencyChecker Setup
-VersionInfoVersion=1.1.3.5
+VersionInfoVersion=1.1.4
 UninstallDisplayIcon={app}\djdsoft.ico
 
 [Languages]
@@ -35,15 +35,15 @@ Name: "full"; Description: "Full installation"
 
 [Files]
 Source: "djdsoft.ico"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DoenaSoft.DVDProfilerHelper.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DoenaSoft.DVDProfilerXML.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DatabaseConsistencyChecker.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DatabaseConsistencyChecker.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DoenaSoft.DatabaseConsistencyChecker.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "DoenaSoft.DatabaseConsistencyChecker.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "SampleConfiguration.xml"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "de\DoenaSoft.DVDProfilerHelper.resources.dll"; DestDir: "{app}\de"; Flags: ignoreversion
+Source: "*.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "*.pdb"; DestDir: "{app}"; Flags: ignoreversion
+
+Source: "DatabaseConsistencyChecker.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DatabaseConsistencyChecker.exe.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "DatabaseConsistencyChecker.pdb"; DestDir: "{app}"; Flags: ignoreversion
+
+Source: "de\*.dll"; DestDir: "{app}\de"; Flags: ignoreversion
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

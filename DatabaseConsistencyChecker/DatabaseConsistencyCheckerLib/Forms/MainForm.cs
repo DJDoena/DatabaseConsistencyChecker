@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Forms;
 using DoenaSoft.DVDProfiler.DVDProfilerHelper;
 using DoenaSoft.DVDProfiler.DVDProfilerXML.Version400;
+using DoenaSoft.ToolBox.Generics;
 using Config = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_2;
 
 namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
@@ -198,7 +199,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         private void TryLoadCollection(string fileName)
         {
-            _collection = DVDProfilerSerializer<Collection>.Deserialize(fileName);
+            _collection = XmlSerializer<Collection>.Deserialize(fileName);
 
             CollectionFileTextBox.Text = fileName;
 
@@ -269,7 +270,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
         {
             try
             {
-                _ignore = DVDProfilerSerializer<Ignore.IgnoreConfiguration>.Deserialize(fileName);
+                _ignore = XmlSerializer<Ignore.IgnoreConfiguration>.Deserialize(fileName);
             }
             catch
             {
@@ -651,7 +652,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Forms
 
         private void SaveIgnore(string fileName)
         {
-            DVDProfilerSerializer<Ignore.IgnoreConfiguration>.Serialize(fileName, _ignore);
+            XmlSerializer<Ignore.IgnoreConfiguration>.Serialize(fileName, _ignore);
 
             IgnoreFileTextBox.Text = fileName;
 

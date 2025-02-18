@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
-using DoenaSoft.DVDProfiler.DVDProfilerHelper;
+using DoenaSoft.ToolBox.Generics;
 using v1_1 = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v1_1;
 using v2_0 = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_0;
 using v2_2 = DoenaSoft.DVDProfiler.DatabaseConsistencyChecker.Configuration_v2_2;
@@ -82,14 +82,14 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 
         private static v2_2.CheckConfiguration LoadFrom_v2_2(string fileName)
         {
-            var config = DVDProfilerSerializer<v2_2.CheckConfiguration>.Deserialize(fileName);
+            var config = XmlSerializer<v2_2.CheckConfiguration>.Deserialize(fileName);
 
             return config;
         }
 
         private static v2_2.CheckConfiguration LoadFrom_v1_x(string fileName)
         {
-            var config_v1_1 = DVDProfilerSerializer<v1_1.CheckConfiguration>.Deserialize(fileName);
+            var config_v1_1 = XmlSerializer<v1_1.CheckConfiguration>.Deserialize(fileName);
 
             var config_v2_0 = config_v1_1.Upgrade();
 
@@ -97,7 +97,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
 
             Save(config_v2_0, tempFile);
 
-            var config_v2_2 = DVDProfilerSerializer<v2_2.CheckConfiguration>.Deserialize(tempFile);
+            var config_v2_2 = XmlSerializer<v2_2.CheckConfiguration>.Deserialize(tempFile);
 
             return config_v2_2;
         }
@@ -117,7 +117,7 @@ namespace DoenaSoft.DVDProfiler.DatabaseConsistencyChecker
                 {
                     xtw.Formatting = Formatting.Indented;
 
-                    DVDProfilerSerializer<T>.Serialize(xtw, configuration);
+                    XmlSerializer<T>.Serialize(xtw, configuration);
                 }
             }
         }
